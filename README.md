@@ -1,7 +1,14 @@
 <img src="https://webassets.telerikacademy.com/images/default-source/logos/telerik-academy.svg)" alt="logo" width="300px" style="margin-top: 20px;"/>
 
 # OOP Teamwork Assignment <br><br> Team9 TaskManagementApplication
-<br>
+
+### Members:
+
+- ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) **Ali**
+- ![#00FF00](https://via.placeholder.com/15/00FF00/000000?text=+) **Maggie**
+
+<p align="center">
+For our <img src="https://productivetihube.files.wordpress.com/2019/12/trello-logo-1.png" width="8%"/> board --> [**Click Here**](https://trello.com/b/K80zh1cl)
 
 ## 1. Project Description
 Design and implement a Work Item Management (WIM) Console Application.
