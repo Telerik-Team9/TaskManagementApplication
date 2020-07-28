@@ -4,8 +4,8 @@
 
 ### Members:
 
-- ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) **Ali**
-- ![#00FF00](https://via.placeholder.com/15/00FF00/000000?text=+) **Maggie**
+- ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) **Ali Marekov**
+- ![#00FF00](https://via.placeholder.com/15/00FF00/000000?text=+) **Magdalena Nikolova**
 
 <p align="center">
 For our <img src="https://productivetihube.files.wordpress.com/2019/12/trello-logo-1.png" width="8%"/> board --> [**Click Here**](https://trello.com/b/K80zh1cl)
