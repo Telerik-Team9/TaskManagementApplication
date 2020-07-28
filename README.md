@@ -8,7 +8,7 @@
 - ![#00FF00](https://via.placeholder.com/15/00FF00/000000?text=+) **Magdalena Nikolova**
 
 <p align="center">
-For our <img src="https://productivetihube.files.wordpress.com/2019/12/trello-logo-1.png" width="8%"/> board --> [**Click Here**](https://trello.com/b/K80zh1cl)
+[**Click Here**](https://trello.com/b/K80zh1cl) for our <img src="https://productivetihube.files.wordpress.com/2019/12/trello-logo-1.png" width="8%"/> board
 
 ## 1. Project Description
 Design and implement a Work Item Management (WIM) Console Application.
