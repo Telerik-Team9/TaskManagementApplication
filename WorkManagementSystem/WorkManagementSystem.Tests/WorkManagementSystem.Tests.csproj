@@ -5,4 +5,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WorkManagementSystem.CLI\WorkManagementSystem.CLI.csproj" />
+    <ProjectReference Include="..\WorkManagementSystem.Core\WorkManagementSystem.Core.csproj" />
+    <ProjectReference Include="..\WorkManagementSystem.Models\WorkManagementSystem.Models.csproj" />
+  </ItemGroup>
+
 </Project>
