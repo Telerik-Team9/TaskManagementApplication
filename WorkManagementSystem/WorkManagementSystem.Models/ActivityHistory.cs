@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Runtime.InteropServices.WindowsRuntime;
+using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Models
 {
-    public class ActivityHistory
+    public class ActivityHistory : IActivityHistory
     {
+        // TODO _ PRIOR TO INITIALISATION, A CONSTANT MUST BE PASSED TO THE CONSTRUCTOR
         public ActivityHistory(string activityMessage)
         {
             this.ActivityMessage = activityMessage;
