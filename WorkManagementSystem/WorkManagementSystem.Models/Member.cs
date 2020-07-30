@@ -5,7 +5,7 @@ using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Models
 {
-    class Member : IMember
+    public class Member : IUnit
     {
         // TODO implement
         public string Name => throw new NotImplementedException();

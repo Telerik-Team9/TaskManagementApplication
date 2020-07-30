@@ -2,7 +2,7 @@
 
 namespace WorkManagementSystem.Models.Contracts
 {
-    public interface IMember
+    public interface IUnit
     {
         public string Name { get; }
 
