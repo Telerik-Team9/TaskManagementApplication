@@ -2,10 +2,12 @@
 
 namespace WorkManagementSystem.Models.Contracts
 {
-    public interface IUnit
+    public interface IMember
     {
         public string Name { get; }
+
         public IReadOnlyCollection<IWorkItem> WorkItems { get; }
-        public ActivityHistory ActivityHistory { get; }
+
+        public IReadOnlyCollection<ActivityHistory> ActivityHistory{ get; }
     }
 }

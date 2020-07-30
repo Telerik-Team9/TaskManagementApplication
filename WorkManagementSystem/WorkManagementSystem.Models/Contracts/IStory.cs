@@ -9,9 +9,11 @@ namespace WorkManagementSystem.Models.Contracts
     public interface IStory : IWorkItem
     {
         public Priority Priority { get; }
-        public StorySize Size { get; }
-        public StoryStatus StoryStatus { get; }
-        public IMember assignee { get; }
 
+        public StorySize Size { get; }
+
+        public StoryStatus StoryStatus { get; }
+
+        public IMember Assignee { get; }
     }
 }

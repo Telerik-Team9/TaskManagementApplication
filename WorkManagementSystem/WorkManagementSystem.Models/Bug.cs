@@ -32,5 +32,16 @@ namespace WorkManagementSystem.Models
         public BugStatus Status { get; private set; }
 
         public IMember Assignee { get; private set; }
+
+        public override string PrintInfo()
+        {
+            return base.PrintInfo();
+        }
+
+        protected override string AdditionalInfo()
+        {
+            throw new NotFiniteNumberException();
+            // TODO!! implement AdditionalInfo - Bug
+        }
     }
 }

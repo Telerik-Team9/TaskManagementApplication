@@ -92,7 +92,9 @@ namespace WorkManagementSystem.Models.Abstracts
 
         public virtual string PrintInfo()
         {
-            throw new NotImplementedException(); // TODO 
+            throw new NotImplementedException(); // TODO PrintInfo()
         }
+
+        protected abstract string AdditionalInfo();
     }
 }
