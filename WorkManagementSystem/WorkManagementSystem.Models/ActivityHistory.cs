@@ -16,5 +16,10 @@ namespace WorkManagementSystem.Models
         public string ActivityMessage { get; }
 
         public DateTime ActivityTime { get; }
+
+        public string PrintInfo()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

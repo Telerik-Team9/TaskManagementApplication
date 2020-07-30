@@ -6,7 +6,7 @@ using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Models.Abstracts
 {
-    public abstract class Unit : IMember
+    public abstract class Unit : IUnit
     {
         private string name;
         private IList<IWorkItem> workItems;
@@ -60,6 +60,11 @@ namespace WorkManagementSystem.Models.Abstracts
                 return new ReadOnlyCollection<ActivityHistory>(this.activityHistory);
                 // TODO Swap with interface
             }
+        }
+
+        public string PrintInfo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

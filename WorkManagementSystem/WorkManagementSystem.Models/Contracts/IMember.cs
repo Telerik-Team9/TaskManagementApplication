@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WorkManagementSystem.Models.Contracts
 {
-    public interface IMember : IMember
+    public interface IMember : IUnit
     {
     }
 }

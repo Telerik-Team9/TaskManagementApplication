@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using WorkManagementSystem.Models.Common;
 
 namespace WorkManagementSystem.Models.Contracts
 {
-    public interface IUnit
+    public interface IUnit : IPrintable
     {
         public string Name { get; }
 
         public IReadOnlyCollection<IWorkItem> WorkItems { get; }
 
-        public IReadOnlyCollection<ActivityHistory> ActivityHistory{ get; }
+        public IReadOnlyCollection<ActivityHistory> ActivityHistory { get; }
     }
 }
