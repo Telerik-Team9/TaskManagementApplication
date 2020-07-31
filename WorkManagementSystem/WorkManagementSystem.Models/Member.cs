@@ -11,8 +11,8 @@ namespace WorkManagementSystem.Models
         public Member(string name)
             : base(name)
         {
-            
         }
+
         protected override string AdditionalInfo()
         {
             throw new NotImplementedException();

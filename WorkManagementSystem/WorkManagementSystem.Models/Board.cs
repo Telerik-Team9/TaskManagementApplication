@@ -1,5 +1,6 @@
 ﻿using System;
 using WorkManagementSystem.Models.Abstracts;
+using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Models
@@ -10,6 +11,7 @@ namespace WorkManagementSystem.Models
             : base(name)
         {
         }
+
         public override string Name
         {
             get
@@ -20,12 +22,13 @@ namespace WorkManagementSystem.Models
             {
                 if (value.Length < 5 || value.Length > 10)
                 {
-                    throw new ArgumentException(); //TODO - Finish ArgException
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "name", 5, 10));
                 }
 
                 base.Name = value;
             }
         }
+
         protected override string AdditionalInfo()
         {
             throw new NotImplementedException();

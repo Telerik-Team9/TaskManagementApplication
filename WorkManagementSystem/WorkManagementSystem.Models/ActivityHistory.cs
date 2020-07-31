@@ -4,10 +4,11 @@ using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Models
 {
-    public class ActivityHistory : IActivityHistory
+    internal class ActivityHistory : IActivityHistory
     {
         // TODO _ PRIOR TO INITIALISATION, A CONSTANT MUST BE PASSED TO THE CONSTRUCTOR
-        public ActivityHistory(string activityMessage)
+        // TODO SHould be internal?
+        internal ActivityHistory(string activityMessage)
         {
             this.ActivityMessage = activityMessage;
             this.ActivityTime = DateTime.Now;

@@ -9,6 +9,6 @@ namespace WorkManagementSystem.Models.Contracts
 
         public IReadOnlyCollection<IWorkItem> WorkItems { get; }
 
-        public IReadOnlyCollection<ActivityHistory> ActivityHistory { get; }
+        public IReadOnlyCollection<IActivityHistory> ActivityHistory { get; }
     }
 }

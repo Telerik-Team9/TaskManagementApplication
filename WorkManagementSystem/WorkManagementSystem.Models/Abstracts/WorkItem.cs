@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Models.Abstracts
@@ -36,12 +37,12 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(); // null
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "title"));
                 }
 
                 if (value.Length < 10 || value.Length > 50)
                 {
-                    throw new ArgumentException(); // TODO - lenght between 10 and 50 symbols
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "title", 10, 50));
                 }
 
                 // Add validations for non-digit&letter symbols
@@ -60,12 +61,12 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(); // null
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "description"));
                 }
 
                 if (value.Length < 10 || value.Length > 500)
                 {
-                    throw new ArgumentException(); // TODO - lenght between 10 and 50 symbols
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "description", 10, 50));
                 }
 
                 // Add validations for non-digit&letter symbols

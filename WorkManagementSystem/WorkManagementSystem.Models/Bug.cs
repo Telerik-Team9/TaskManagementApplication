@@ -15,6 +15,7 @@ namespace WorkManagementSystem.Models
         public Bug(string title, string description)
             : base(title, description)
         {
+            this.stepsToReproduce = new List<string>();
         }
 
         public IReadOnlyCollection<string> StepsToReproduce

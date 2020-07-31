@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using WorkManagementSystem.Models.Abstracts;
+using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
@@ -32,14 +33,14 @@ namespace WorkManagementSystem.Models
 
             private set
             {
-                this.assignee = value ?? throw new ArgumentException();
+                if (value == null)
+                {
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "assignee"));
+                }
+
+                this.assignee = value; 
                 // TODO another validation?
             }
-        }
-
-        public override string PrintInfo()
-        {
-            return base.PrintInfo();
         }
 
         protected override string AdditionalInfo()

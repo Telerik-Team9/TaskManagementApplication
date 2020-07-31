@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using WorkManagementSystem.Models.Abstracts;
+using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
@@ -11,9 +12,10 @@ namespace WorkManagementSystem.Models
     {
         private int rating;
 
-        public Feedback(string title, string description) 
+        public Feedback(string title, string description, int rating) 
             : base(title, description)
         {
+            this.Rating = rating;
         }
         
         public int Rating
@@ -25,8 +27,12 @@ namespace WorkManagementSystem.Models
 
             private set
             {
-                this.rating = (value >= 1 && value <= 10) ? 
-                    value : throw new ArgumentException();
+                if (value < 1 || value > 10)
+                {
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidNumberRange, "rating", 1, 10));
+                }
+
+                this.rating = value;
             }
         }
 
