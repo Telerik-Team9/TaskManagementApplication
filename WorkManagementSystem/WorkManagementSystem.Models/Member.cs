@@ -8,19 +8,12 @@ namespace WorkManagementSystem.Models
 {
     public class Member : Unit, IMember
     {
-        public Member(string name) 
+        public Member(string name)
             : base(name)
         {
+            
         }
-
-        // TODO implement
-        public string Name => throw new NotImplementedException();
-
-        public IReadOnlyCollection<IWorkItem> WorkItems => throw new NotImplementedException();
-
-        public IReadOnlyCollection<ActivityHistory> ActivityHistory => throw new NotImplementedException();
-
-        public string PrintInfo()
+        protected override string AdditionalInfo()
         {
             throw new NotImplementedException();
         }

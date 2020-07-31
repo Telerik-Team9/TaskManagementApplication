@@ -62,9 +62,10 @@ namespace WorkManagementSystem.Models.Abstracts
             }
         }
 
-        public string PrintInfo()
+        public virtual string PrintInfo()
         {
             throw new NotImplementedException();
         }
+        protected abstract string AdditionalInfo();
     }
 }
