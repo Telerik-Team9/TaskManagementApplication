@@ -28,7 +28,7 @@ Application should support multiple teams. Each team has name, members, and boar
 
 Member has name, list of work items and activity history.
 
-- Name should be unique in the application
+-[ ] Name should be unique in the application
 - Name is a string between 5 and 15 symbols.
 
 Board has name, list of work items and activity history.
