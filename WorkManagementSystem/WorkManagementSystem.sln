@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkManagementSystem.Core",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkManagementSystem.CLI", "WorkManagementSystem.CLI\WorkManagementSystem.CLI.csproj", "{A9C965BD-0CDD-49F5-BE90-5900EBE0F6CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkManagementSystem.Tests", "WorkManagementSystem.Tests\WorkManagementSystem.Tests.csproj", "{65EB089F-9326-4997-8DCF-DE7D650CAE24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkManagementSystem.Tests", "WorkManagementSystem.Tests\WorkManagementSystem.Tests.csproj", "{65EB089F-9326-4997-8DCF-DE7D650CAE24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

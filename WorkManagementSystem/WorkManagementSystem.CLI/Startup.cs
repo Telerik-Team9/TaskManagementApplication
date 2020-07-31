@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Buffers;
+using WorkManagementSystem.Core;
 
 namespace WorkManagementSystem.CLI
 {
-    class Startup
+    public class Startup
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var engine = new Engine();
+            engine.Run();
         }
     }
 }
