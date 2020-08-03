@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+
 using WorkManagementSystem.Models.Abstracts;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
@@ -13,16 +11,30 @@ namespace WorkManagementSystem.Models
     {
         private IMember assignee;
 
-        public Story(string title, string description) 
+        public Story(string title, string description)
             : base(title, description)
         {
         }
 
-        public Priority Priority { get; private set; }
+        public Story(string title, string description, Priority priority, StorySize size, StoryStatus status)
+            : this(title, description)
+        {
+            this.Priority = priority;
+            this.Size = size;
+            this.StoryStatus = status; // remove parameter from ctor and assign default value - notDone, 
+        }
 
-        public StorySize Size { get; private set; }
+        public Story(string title, string description, Priority priority, StorySize size, StoryStatus status, IMember assignee)
+            : this(title, description, priority, size, status)
+        {
+            this.Assignee = assignee;
+        }
 
-        public StoryStatus StoryStatus { get; private set; }
+        public Priority Priority { get; private set; } // default - notDone, if assigned - inProgress; 
+
+        public StorySize Size { get; private set; } // 10-150 - small; 151 - 300 - medium; 301 - 500 - large; 
+
+        public StoryStatus StoryStatus { get; private set; } 
 
         public IMember Assignee
         {
@@ -38,8 +50,7 @@ namespace WorkManagementSystem.Models
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "assignee"));
                 }
 
-                this.assignee = value; 
-                // TODO another validation?
+                this.assignee = value;
             }
         }
 

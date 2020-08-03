@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices.WindowsRuntime;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Models

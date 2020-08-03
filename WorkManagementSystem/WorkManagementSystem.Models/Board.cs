@@ -20,10 +20,17 @@ namespace WorkManagementSystem.Models
             }
             protected set
             {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "name"));
+                }
+
                 if (value.Length < 5 || value.Length > 10)
                 {
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "name", 5, 10));
                 }
+
+                ValidateForSpecialChars(value);
 
                 base.Name = value;
             }

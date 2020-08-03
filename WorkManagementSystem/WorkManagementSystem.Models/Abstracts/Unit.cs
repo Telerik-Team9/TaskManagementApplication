@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Contracts;
 
@@ -33,14 +32,14 @@ namespace WorkManagementSystem.Models.Abstracts
                 if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "name"));
-                    //TODO Fix ArgException
                 }
 
                 if (value.Length < 5 || value.Length > 15)
                 {
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "name", 5, 15));
-                    //TODO Fix ArgException
                 }
+
+                ValidateForSpecialChars(value);
 
                 this.name = value;
             }
@@ -68,5 +67,16 @@ namespace WorkManagementSystem.Models.Abstracts
         }
 
         protected abstract string AdditionalInfo();
+
+        protected void ValidateForSpecialChars(string name)
+        {
+            foreach (char ch in name)
+            {
+                if (!(char.IsLetter(ch) || char.IsWhiteSpace(ch)))
+                {
+                    throw new ArgumentException(GlobalConstants.InvalidUnitName, "member");
+                }
+            }
+        }
     }
 }

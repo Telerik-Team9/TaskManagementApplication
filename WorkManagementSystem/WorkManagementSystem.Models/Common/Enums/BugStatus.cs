@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WorkManagementSystem.Models.Common.Enums
+﻿namespace WorkManagementSystem.Models.Common.Enums
 {
     public enum BugStatus
     {

@@ -45,8 +45,6 @@ namespace WorkManagementSystem.Models.Abstracts
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "title", 10, 50));
                 }
 
-                // Add validations for non-digit&letter symbols
-
                 this.title = value;
             }
         }
@@ -68,8 +66,6 @@ namespace WorkManagementSystem.Models.Abstracts
                 {
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "description", 10, 50));
                 }
-
-                // Add validations for non-digit&letter symbols
 
                 this.description = value;
             }

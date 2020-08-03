@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
+
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Core.Readers;
 using WorkManagementSystem.Core.Writers;
@@ -10,9 +9,28 @@ namespace WorkManagementSystem.Core
 {
     public class Engine : IEngine
     {
+        /*private static Engine instance;
+        public static IEngine Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Engine();
+                }
 
-        private IReader reader = new ConsoleReader();
-        private IWriter writer = new ConsoleWriter();
+                return instance;
+            }
+        }*/
+        /*private readonly ICommandManager commandManager;
+        private Engine()
+        {
+            this.commandManager = new CommandManager();
+        }*/
+
+        //Factory, database, readers, writers - separate Provider class?
+        private readonly IReader reader = new ConsoleReader();
+        private readonly IWriter writer = new ConsoleWriter();
 
         public void Run()
         {
@@ -22,6 +40,8 @@ namespace WorkManagementSystem.Core
                 sw.Start();
 
                 var input = this.reader.Read();
+                // var member = new Member(input);
+             //   var result = this.Process(input);
 
                 if (input == "exit")
                 {
@@ -34,5 +54,32 @@ namespace WorkManagementSystem.Core
                 }
             }
         }
+
+        /*private string Process(string commandLine)
+        {
+            try
+            {
+                ICommand command = this.commandManager.ParseCommand(commandLine);
+                string result = command.Execute();
+
+                return result.Trim();
+            }
+            catch (Exception e)
+            {
+                while (e.InnerException != null)
+                {
+                    e = e.InnerException;
+                }
+
+                return $"ERROR: {e.Message}";
+            }
+        }*/
+        /*private void Print(string commandResult)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(commandResult);
+            sb.AppendLine("####################");
+            Console.WriteLine(sb.ToString().Trim());
+        }*/
     }
 }

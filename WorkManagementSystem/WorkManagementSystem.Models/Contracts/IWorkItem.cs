@@ -15,6 +15,6 @@ namespace WorkManagementSystem.Models.Contracts
 
         public IReadOnlyCollection<IComment> Comments { get; }
 
-        public IReadOnlyCollection<string> HistoryLog { get; }
+        public IReadOnlyCollection<string> HistoryLog { get; } //ActivityHistory instead of string?
     }
 }

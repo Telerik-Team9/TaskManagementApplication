@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 using WorkManagementSystem.Models.Abstracts;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
@@ -12,12 +11,19 @@ namespace WorkManagementSystem.Models
     {
         private int rating;
 
-        public Feedback(string title, string description, int rating) 
+        public Feedback(string title, string description, int rating)
             : base(title, description)
         {
             this.Rating = rating;
+            this.FeedbackStatus = FeedbackStatus.New;
         }
-        
+
+        public Feedback(string title, string description, int rating, FeedbackStatus status)
+            : this(title, description, rating)
+        {
+            this.FeedbackStatus = status;
+        }
+
         public int Rating
         {
             get
