@@ -9,19 +9,19 @@ namespace WorkManagementSystem.Core.Factories
 {
     public class Factory : IFactory //TODO
     {
-        /* private static IFactory instance;
+        private static IFactory instance;
         public static IFactory Instance
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     instance = new Factory();
                 }
 
                 return instance;
             }
-        }*/
+        }
         public IMember CreatePerson(string name)
         {
             return new Member(name);

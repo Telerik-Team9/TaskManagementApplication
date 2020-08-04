@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-
+using System.Text;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Core.Readers;
 using WorkManagementSystem.Core.Writers;
@@ -9,7 +9,7 @@ namespace WorkManagementSystem.Core
 {
     public class Engine : IEngine
     {
-        /*private static Engine instance;
+        private static Engine instance;
         public static IEngine Instance
         {
             get
@@ -21,14 +21,13 @@ namespace WorkManagementSystem.Core
 
                 return instance;
             }
-        }*/
-        /*private readonly ICommandManager commandManager;
+        }
+        private readonly ICommandManager commandManager;
         private Engine()
         {
             this.commandManager = new CommandManager();
-        }*/
+        }
 
-        //Factory, database, readers, writers - separate Provider class?
         private readonly IReader reader = new ConsoleReader();
         private readonly IWriter writer = new ConsoleWriter();
 
@@ -41,7 +40,7 @@ namespace WorkManagementSystem.Core
 
                 var input = this.reader.Read();
                 // var member = new Member(input);
-             //   var result = this.Process(input);
+                //   var result = this.Process(input);
 
                 if (input == "exit")
                 {
@@ -55,7 +54,7 @@ namespace WorkManagementSystem.Core
             }
         }
 
-        /*private string Process(string commandLine)
+        private string Process(string commandLine)
         {
             try
             {
@@ -73,13 +72,13 @@ namespace WorkManagementSystem.Core
 
                 return $"ERROR: {e.Message}";
             }
-        }*/
-        /*private void Print(string commandResult)
+        }
+        private void Print(string commandResult)
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(commandResult);
             sb.AppendLine("####################");
             Console.WriteLine(sb.ToString().Trim());
-        }*/
+        }
     }
 }

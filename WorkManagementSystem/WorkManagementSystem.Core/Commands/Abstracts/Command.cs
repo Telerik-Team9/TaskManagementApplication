@@ -7,11 +7,26 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
     {
         protected Command(IList<string> commandParameters)
         {
-            this.CommandParameters = new List<string>(commandParameters);
-            // Factory and database - separate class? // TODO - Discuss 
+            this.CommandParameters = new List<string>(commandParameters); 
         }
 
         protected IList<string> CommandParameters { get; }
+
+        protected IDatabase Database
+        {
+            get
+            {
+                return Core.Database.Instance;
+            }
+        }
+
+        protected IFactory Factory
+        {
+            get
+            {
+                return Factories.Factory.Instance;
+            }
+        }
 
         public abstract string Execute();
     }
