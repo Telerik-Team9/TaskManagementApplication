@@ -5,7 +5,7 @@ using WorkManagementSystem.Models;
 namespace WorkManagementSystem.Tests.ModelsTests
 {
     [TestClass]
-    public class MemberShould
+    public class TeamShould
     {
         [TestMethod]
         public void ConstructorShould()
@@ -14,8 +14,8 @@ namespace WorkManagementSystem.Tests.ModelsTests
             string expectedName = "Test name";
 
             //Act
-            Member member = new Member(expectedName);
-            string actualName = member.Name;
+            Team team = new Team(expectedName);
+            string actualName = team.Name;
 
             //Assert
             Assert.AreEqual(expectedName, actualName);
@@ -25,9 +25,9 @@ namespace WorkManagementSystem.Tests.ModelsTests
         public void ShouldThrowExceptionOnNullInput()
         {
             Assert.ThrowsException<ArgumentException>(() =>
-                {
-                    Member member = new Member(null);
-                });
+            {
+                Team team = new Team(null);
+            });
         }
 
         [TestMethod]
@@ -35,7 +35,7 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Member member = new Member(new string('a', 4));
+                Team team = new Team(new string('a', 2));
             });
         }
 
@@ -44,19 +44,8 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Member member = new Member(new string('a', 16));
+                Team team = new Team(new string('a', 16));
             });
         }
-
-        [TestMethod]
-        public void ShouldThrowExceptionOnInvalidNameSymbols()
-        {
-            Assert.ThrowsException<ArgumentException>(() =>
-           {
-               Member member = new Member("Ali Marekov99");
-           });
-        }
-
-        //Add test for name uniqueness
     }
 }

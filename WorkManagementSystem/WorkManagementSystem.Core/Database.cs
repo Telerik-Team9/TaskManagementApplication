@@ -11,8 +11,14 @@ namespace WorkManagementSystem.Core
         private readonly List<ITeam> teams = new List<ITeam>();
         private readonly List<IMember> members = new List<IMember>();
         private readonly List<IBoard> boards = new List<IBoard>();
-        private readonly List<IWorkItem> workItems = new List<IWorkItem>();
 
+
+        private readonly List<IBug> bugs = new List<IBug>();
+        private readonly List<IStory> stories = new List<IStory>();
+        private readonly List<IFeedback> feedbacks = new List<IFeedback>();
+
+        // add specific workitemlist
+        // remove IWorkitem list
 
         private static IDatabase instance = null;
 
@@ -36,7 +42,6 @@ namespace WorkManagementSystem.Core
                 return this.teams;
             }
         }
-
         public IList<IMember> Members
         {
             get
@@ -44,7 +49,6 @@ namespace WorkManagementSystem.Core
                 return this.members;
             }
         }
-
         public IList<IBoard> Boards
         {
             get
@@ -53,11 +57,25 @@ namespace WorkManagementSystem.Core
             }
         }
 
-        public IList<IWorkItem> WorkItems
+        public IList<IBug> Bugs
         {
             get
             {
-                return this.workItems;
+                return this.bugs;
+            }
+        }
+        public IList<IStory> Stories
+        {
+            get
+            {
+                return this.stories;
+            }
+        }
+        public IList<IFeedback> Feedbacks
+        {
+            get
+            {
+                return this.feedbacks;
             }
         }
     }

@@ -29,6 +29,11 @@ namespace WorkManagementSystem.Models
             }
             private set
             {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "team name"));
+                }
+
                 if (value.Length < 3 || value.Length > 15)
                 {
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "team name", 3, 15));

@@ -1,33 +1,35 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using System.Text;
 using WorkManagementSystem.Models;
 
 namespace WorkManagementSystem.Tests.ModelsTests
 {
     [TestClass]
-    public class MemberShould
+    public class CommentShould
     {
         [TestMethod]
         public void ConstructorShould()
         {
             //Arrange
-            string expectedName = "Test name";
+            string expectedMessage = "Test message";
 
             //Act
-            Member member = new Member(expectedName);
-            string actualName = member.Name;
+            Comment comment = new Comment(expectedMessage);
+            string actualMessage = comment.Message;
 
             //Assert
-            Assert.AreEqual(expectedName, actualName);
+            Assert.AreEqual(expectedMessage, actualMessage);
         }
 
         [TestMethod]
         public void ShouldThrowExceptionOnNullInput()
         {
             Assert.ThrowsException<ArgumentException>(() =>
-                {
-                    Member member = new Member(null);
-                });
+            {
+                Comment comment = new Comment(null);
+            });
         }
 
         [TestMethod]
@@ -35,7 +37,7 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Member member = new Member(new string('a', 4));
+                Comment comment = new Comment(new string('a', 1));
             });
         }
 
@@ -44,19 +46,8 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Member member = new Member(new string('a', 16));
+                Comment comment = new Comment(new string('a', 51));
             });
         }
-
-        [TestMethod]
-        public void ShouldThrowExceptionOnInvalidNameSymbols()
-        {
-            Assert.ThrowsException<ArgumentException>(() =>
-           {
-               Member member = new Member("Ali Marekov99");
-           });
-        }
-
-        //Add test for name uniqueness
     }
 }

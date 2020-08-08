@@ -11,6 +11,11 @@ namespace WorkManagementSystem.Core.Contracts
 
         public IList<IBoard> Boards { get; }
 
-        public IList<IWorkItem> WorkItems { get; }
+
+        public IList<IBug> Bugs { get; }
+
+        public IList<IStory> Stories { get; }
+
+        public IList<IFeedback> Feedbacks { get; }
     }
 }

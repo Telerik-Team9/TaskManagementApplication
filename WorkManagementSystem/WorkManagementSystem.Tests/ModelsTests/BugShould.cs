@@ -10,39 +10,74 @@ namespace WorkManagementSystem.Tests.ModelsTests
     public class BugShould
     {
         [TestMethod]
+        public void ConstructorShould()
+        {
+            //Arrange
+            string expectedTitle = "This is a test title.";
+            string expectedDescription = "This is a test desctiption.";
+
+            //Act
+            Bug bug = new Bug(expectedTitle, expectedDescription);
+            string actualTitle = bug.Title;
+            string actualDescription = bug.Description;
+
+            //Assert
+            Assert.AreEqual(expectedTitle, actualTitle);
+            Assert.AreEqual(expectedDescription, actualDescription);
+        }
+
+        [TestMethod]
         public void ShouldThrowExceptionWhenTitleIsNull()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Bug(null, new string('a', 11)));
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Bug bug = new Bug(null, new string('a', 11));
+            });
         }
 
         [TestMethod]
         public void ShouldThrowExceptionWhenDescriptionIsNull()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Bug(new string('a', 11), null));
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Bug bug = new Bug(new string('a', 11), null);
+            });
         }
 
         [TestMethod]
         public void ShouldThrowExceptionWhenTitlelengthIsShorter()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Bug(new string('a', 9), new string('b',11)));
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Bug bug = new Bug(new string('a', 9), new string('b', 11));
+            });
         }
 
         [TestMethod]
         public void ShouldThrowExceptionWhenDescrtionlengthIsShorter()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Bug(new string('a', 11), new string('b', 9)));
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Bug bug = new Bug(new string('a', 11), new string('b', 9));
+            });
         }
 
         [TestMethod]
         public void ShouldThrowExceptionWhenTitlelengthIsLonger()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Bug(new string('a', 51), new string('b', 11)));
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Bug bug = new Bug(new string('a', 51), new string('b', 11));
+            });
         }
 
         [TestMethod]
         public void ShouldThrowExceptionWhenDescrtionlengthIsLonger()
         {
-            Assert.ThrowsException<ArgumentException>(() => new Bug(new string('a', 11), new string('b', 501)));
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Bug bug = new Bug(new string('a', 11), new string('b', 501));
+            });
         }
     }
 }

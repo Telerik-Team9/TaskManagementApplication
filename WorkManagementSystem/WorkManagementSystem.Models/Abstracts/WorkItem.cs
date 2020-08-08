@@ -16,7 +16,7 @@ namespace WorkManagementSystem.Models.Abstracts
 
         protected WorkItem(string title, string description)
         {
-            this.Id = new Guid();
+            this.Id = Guid.NewGuid();
 
             this.Title = title;
             this.Description = description;
