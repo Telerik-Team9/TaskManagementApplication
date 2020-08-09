@@ -12,7 +12,7 @@ namespace WorkManagementSystem.Models.Contracts
 
         public StorySize Size { get; }
 
-        public StoryStatus StoryStatus { get; }
+        public StoryStatus Status { get; }
 
         public IMember Assignee { get; }
     }

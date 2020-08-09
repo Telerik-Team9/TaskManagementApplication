@@ -4,6 +4,7 @@ using WorkManagementSystem.Models.Abstracts;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Models
 {
@@ -46,8 +47,8 @@ namespace WorkManagementSystem.Models
 
         protected override string AdditionalInfo()
         {
-            throw new NotImplementedException();
-            // TODO! implement AdditionalInfo - Feedback
+            return $"Rating: {this.Rating}{NewLine}" +
+                $"Status: {this.FeedbackStatus}";
         }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Models.Abstracts
 {
@@ -11,8 +14,8 @@ namespace WorkManagementSystem.Models.Abstracts
         private string title;
         private string description;
 
-        private readonly IList<IComment> comments;
-        private readonly IList<string> historyLog;
+        private IList<IComment> comments;
+        private IList<string> historyLog;
 
         protected WorkItem(string title, string description)
         {
@@ -87,11 +90,76 @@ namespace WorkManagementSystem.Models.Abstracts
             }
         }
 
+        /// <summary>
+        /// Returns all the information about the current Workitem.
+        /// </summary>
+        /// <returns>A string with the formatted info.</returns>
         public virtual string PrintInfo()
         {
-            throw new NotImplementedException(); // TODO PrintInfo()
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"Id: {this.Id}")
+                .AppendLine($"Title: {this.Title}")
+                .AppendLine($"Description: {this.Description}")
+                .AppendLine($"{this.AdditionalInfo()}");
+
+            // Append Comments
+            sb.AppendLine("Comments:");
+
+            if (this.Comments.Any())
+            {
+                sb.AppendLine(string.Join(NewLine, this.Comments.Select(x => " -" + x.PrintInfo())));
+            }
+            else
+            {
+                sb.AppendLine(" No comments");
+            }
+
+            // Append History
+            sb.AppendLine("History:");
+
+            if (this.HistoryLog.Any())
+            {
+                sb.AppendLine(string.Join(NewLine, this.HistoryLog.Select(s => " -" + s)));
+            }
+            else
+            {
+                sb.AppendLine(" No history");
+            }
+
+            return sb.ToString().TrimEnd();
         }
 
+        /// <summary>
+        /// Returns the addititonal information about the current Workitem.
+        /// </summary>
+        /// <returns>A string with the formatted additional info.</returns>
         protected abstract string AdditionalInfo();
+
+
+
+        // TODO: Remove AddComents and AddHistory!!! later
+        public void AddComments(List<IComment> comments)
+        {
+            this.comments = comments;
+        }
+
+        public void AddHistory(List<string> sr)
+        {
+            this.historyLog = sr;
+        }
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

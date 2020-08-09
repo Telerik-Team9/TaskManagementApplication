@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Text;
 using WorkManagementSystem.Models.Abstracts;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
@@ -21,7 +21,7 @@ namespace WorkManagementSystem.Models
         {
             this.Priority = priority;
             this.Size = size;
-            this.StoryStatus = status; // remove parameter from ctor and assign default value - notDone, 
+            this.Status = status; // remove parameter from ctor and assign default value - notDone, 
         }
 
         public Story(string title, string description, Priority priority, StorySize size, StoryStatus status, IMember assignee)
@@ -34,7 +34,7 @@ namespace WorkManagementSystem.Models
 
         public StorySize Size { get; private set; } // 10-150 - small; 151 - 300 - medium; 301 - 500 - large; 
 
-        public StoryStatus StoryStatus { get; private set; } 
+        public StoryStatus Status { get; private set; } 
 
         public IMember Assignee
         {
@@ -56,8 +56,23 @@ namespace WorkManagementSystem.Models
 
         protected override string AdditionalInfo()
         {
-            throw new NotFiniteNumberException();
-            // TODO!! implement AdditionalInfo - Story
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"Priority: { this.Priority}")
+                .AppendLine($"Size: {this.Size}")
+                .AppendLine($"Status: {this.Status}");
+
+            // Append Assignee
+            if (this.Assignee != null)
+            {
+                sb.AppendLine($"Assignee: {this.Assignee.Name}");
+            }
+            else
+            {
+                sb.AppendLine("Assignee: No assignee");
+            }
+
+            return sb.ToString().TrimEnd();
         }
     }
 }

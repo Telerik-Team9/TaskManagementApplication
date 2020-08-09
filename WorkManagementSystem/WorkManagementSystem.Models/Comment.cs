@@ -8,10 +8,10 @@ namespace WorkManagementSystem.Models
     {
         private string message; //TODO - discuss 
 
-        public Comment(string message)
+        public Comment(string message, IMember author)
         {
             this.Message = message;
-            this.Author = null; 
+            this.Author = author; 
         }
 
         public IMember Author { get; set; }
@@ -40,7 +40,7 @@ namespace WorkManagementSystem.Models
 
         public string PrintInfo()
         {
-            throw new NotImplementedException();
+            return $"{this.Author.Name}: {this.Message}";
         }
     }
 }

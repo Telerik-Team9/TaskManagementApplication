@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
+using System.ComponentModel;
+using System.Text;
 using WorkManagementSystem.Models.Abstracts;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
@@ -10,9 +11,9 @@ namespace WorkManagementSystem.Models
 {
     public class Bug : WorkItem, IBug
     {
-        private readonly IList<string> stepsToReproduce;
+        private IList<string> stepsToReproduce;
 
-        public Bug(string title, string description)
+        private Bug(string title, string description)
             : base(title, description)
         {
             this.stepsToReproduce = new List<string>();
@@ -26,9 +27,13 @@ namespace WorkManagementSystem.Models
             this.Status = status; // default when creating - Active?
         }
 
-        public Bug(string title, string description, Priority priority, BugSeverity severity, BugStatus status, IMember assignee)
-            : this(title, description, priority, severity, status)
+        public Bug(string title, string description, Priority priority = Priority.High, BugSeverity severity = BugSeverity.Minor, BugStatus status = BugStatus.Active, IMember assignee = null)
+            : this(title, description)
         {
+            this.Assignee = assignee;
+            this.Priority = priority;
+            this.Severity = severity;
+            this.Status = status;
             this.Assignee = assignee;
         }
 
@@ -49,15 +54,25 @@ namespace WorkManagementSystem.Models
 
         public IMember Assignee { get; private set; }
 
-        public override string PrintInfo()
-        {
-            return base.PrintInfo();
-        }
-
         protected override string AdditionalInfo()
         {
-            throw new NotFiniteNumberException();
-            // TODO!! implement AdditionalInfo - Bug
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"Priority: { this.Priority}")
+                .AppendLine($"Severity: {this.Severity}")
+                .AppendLine($"Status: {this.Status}");
+
+            // Append Assignee
+            if (this.Assignee != null)
+            {
+                sb.AppendLine($"Assignee: {this.Assignee.Name}");
+            }
+            else
+            {
+                sb.AppendLine("Assignee: No assignee");
+            }
+
+            return sb.ToString().TrimEnd();
         }
     }
 }
