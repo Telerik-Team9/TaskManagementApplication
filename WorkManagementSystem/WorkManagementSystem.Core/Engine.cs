@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
+using System.Threading;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Core.Readers;
 using WorkManagementSystem.Core.Writers;
@@ -10,6 +11,17 @@ namespace WorkManagementSystem.Core
     public class Engine : IEngine
     {
         private static Engine instance;
+        private readonly ICommandManager commandManager;
+        private readonly IReader reader;
+        private readonly IWriter writer;
+
+        private Engine()
+        {
+            this.commandManager = new CommandManager();
+            this.reader = new ConsoleReader();
+            this.writer = new ConsoleWriter();
+        }
+
         public static IEngine Instance
         {
             get
@@ -22,43 +34,39 @@ namespace WorkManagementSystem.Core
                 return instance;
             }
         }
-        private readonly ICommandManager commandManager;
-        private Engine()
-        {
-            this.commandManager = new CommandManager();
-        }
-
-        private readonly IReader reader = new ConsoleReader();
-        private readonly IWriter writer = new ConsoleWriter();
 
         public void Run()
         {
             while (true)
             {
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
+                /* Stopwatch sw = new Stopwatch();
+                 sw.Start();*/
 
-                var input = this.reader.Read();
-                // var member = new Member(input);
+                var commandName = this.reader.Read();
+                var result = this.Process(commandName);
+                this.Print(result);
+
+                Thread.Sleep(3000);
+                this.writer.Clear();
                 //   var result = this.Process(input);
 
-                if (input == "exit")
-                {
-                    sw.Stop();
-                    TimeSpan ts = sw.Elapsed;
-                    string elapsedTime = String.Format
-                        ("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                    this.writer.WriteLine($"You have been using our application for {elapsedTime} :).");
-                    Environment.Exit(0);
-                }
+                /* if (input == "exit")
+                 {
+                     sw.Stop();
+                     TimeSpan ts = sw.Elapsed;
+                     string elapsedTime = String.Format
+                         ("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
+                     this.writer.WriteLine($"You have been using our application for {elapsedTime} :).");
+                     Environment.Exit(0);
+                 }*/
             }
         }
 
-        private string Process(string commandLine)
+        private string Process(string commandName)
         {
             try
             {
-                ICommand command = this.commandManager.ParseCommand(commandLine);
+                ICommand command = this.commandManager.ParseCommand(commandName);
                 string result = command.Execute();
 
                 return result.Trim();
