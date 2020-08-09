@@ -7,7 +7,8 @@ namespace WorkManagementSystem.Models.Contracts
 {
     public interface IWorkItem : IPrintable
     {
-        public Guid Id { get; }
+       // public Guid Id { get; }
+        public int Id { get; }
 
         public string Title { get; }
 

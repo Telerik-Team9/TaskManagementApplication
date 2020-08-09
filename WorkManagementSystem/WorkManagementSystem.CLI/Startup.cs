@@ -15,7 +15,7 @@ namespace WorkManagementSystem.CLI
             //engine.Run();
             //Console.SetWindowSize(70, 70);
 
-           // Engine.Instance.Run();
+            Engine.Instance.Run();
 
             // Comments
             var magi = new Member("Magi Nikolova");

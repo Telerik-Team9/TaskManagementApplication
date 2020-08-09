@@ -10,27 +10,24 @@ namespace WorkManagementSystem.Core.Commands
 {
     public class CreatePersonCommand : Command
     {
-        public CreatePersonCommand(IList<string> commandParameters)
-            : base(commandParameters) { }
+        public CreatePersonCommand()
+        : base() { }
 
         public override string Execute()
         {
-            if (this.CommandParameters.Count != 1)
-            {
-                throw new ArgumentException("Invalid parameters count");
-            }
+            this.Writer.WriteLine("Please enter member's name and press \"Enter\"");
 
-            string personName = this.CommandParameters[0];
+            string personName = this.Reader.Read();
 
             if (this.Database.Members.Any(m => m.Name == personName))
             {
-                return $"{personName} already exists.";
+                throw new ArgumentException($"Member {personName} already exists.");
             }
 
             IMember currentMember = this.Factory.CreatePerson(personName);
             this.Database.Members.Add(currentMember);
 
-            return $"Member {currentMember.Name} has been created.";
+            return $"Member {currentMember.Name} has been created.{Environment.NewLine}" + currentMember.PrintInfo();
         }
     }
 }

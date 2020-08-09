@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
+using static System.Environment;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Contracts;
 
@@ -39,8 +41,6 @@ namespace WorkManagementSystem.Models
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "team name", 3, 15));
                 }
 
-                ValidateForSpecialChars(value);
-
                 this.name = value;
             }
         }
@@ -63,17 +63,31 @@ namespace WorkManagementSystem.Models
 
         public string PrintInfo()
         {
-            throw new NotImplementedException();
-        }
-        private void ValidateForSpecialChars(string name) // remove
-        {
-            foreach (char ch in name)
+            var sb = new StringBuilder();
+            sb.AppendLine($"Team name: {this.name}");
+            sb.AppendLine("Members:");
+
+            if (!this.Members.Any())
             {
-                if (!(char.IsLetter(ch) || char.IsWhiteSpace(ch)))
-                {
-                    throw new ArgumentException(GlobalConstants.InvalidUnitName);
-                }
+                sb.AppendLine("No members in the team.");
             }
-        }
+            else
+            {
+                sb.AppendLine(string.Join(NewLine, this.Members.Select(x => " -" + x.Name)));
+            }
+
+            sb.AppendLine("Boards:");
+
+            if (!this.Boards.Any())
+            {
+                sb.AppendLine("No boards in the team.");
+            }
+            else
+            {
+                sb.AppendLine(string.Join(NewLine, this.Boards.Select(x => " -" + x.Name)));
+            }
+
+            return sb.ToString().TrimEnd();
+        }       
     }
 }

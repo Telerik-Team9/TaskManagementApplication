@@ -13,22 +13,23 @@ namespace WorkManagementSystem.Models.Abstracts
     {
         private string title;
         private string description;
+        protected static int counter = 0;
 
         private IList<IComment> comments;
         private IList<string> historyLog;
 
         protected WorkItem(string title, string description)
         {
-            this.Id = Guid.NewGuid();
-
+            // this.Id = Guid.NewGuid();
+            this.Id = counter++;
             this.Title = title;
             this.Description = description;
-
             this.comments = new List<IComment>();
             this.historyLog = new List<string>();
         }
 
-        public Guid Id { get; }
+        public int Id { get; }
+        //   public Guid Id { get; }
 
         public string Title
         {
