@@ -5,6 +5,7 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
 {
     public abstract class Command : ICommand
     {
+        protected Command() { }
         protected Command(IList<string> commandParameters)
         {
             this.CommandParameters = new List<string>(commandParameters); 
@@ -25,6 +26,21 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
             get
             {
                 return Factories.Factory.Instance;
+            }
+        }
+
+        protected IReader Reader
+        {
+            get
+            {
+                return Readers.ConsoleReader.Instance;
+            }
+        }
+        protected IWriter Writer
+        {
+            get
+            {
+                return Writers.ConsoleWriter.Instance;
             }
         }
 

@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using WorkManagementSystem.Core.Contracts;
+﻿using WorkManagementSystem.Core.Contracts;
 
 namespace WorkManagementSystem.Core
 {
     public class CommandManager : ICommandManager
     {
-        public ICommand ParseCommand(string commandLine)
+        public ICommand ParseCommand(string commandName)
         {
-            throw new NotImplementedException();
+            return commandName.ToLower() switch
+            {
+                // "createmember" => new CreatePersonCommand()
+                /* "createteam" => new CreateTeamCommand(commandParameters),
+                 "showallpeople" => new ShowAllPeopleCommand(commandParameters),
+                 "createbug" => new CreateBugCommand(commandParameters)*/
+                // "createfeedback" => new CreateFeedbackCommand(),
+                //  _ => throw new InvalidOperationException("Command does not exist")
+            };
         }
     }
 }
