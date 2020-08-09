@@ -7,6 +7,8 @@ namespace WorkManagementSystem.Models
     {
         // TODO _ PRIOR TO INITIALISATION, A CONSTANT MUST BE PASSED TO THE CONSTRUCTOR
         // TODO SHould be internal?
+        private static string DateFormat = "[yyyy-MM-dd|HH:mm]";
+
         internal ActivityHistory(string activityMessage)
         {
             this.ActivityMessage = activityMessage;
@@ -19,7 +21,7 @@ namespace WorkManagementSystem.Models
 
         public string PrintInfo()
         {
-            throw new NotImplementedException();
+            return $"{this.ActivityTime.ToString(DateFormat)} | {this.ActivityMessage}";
         }
     }
 }

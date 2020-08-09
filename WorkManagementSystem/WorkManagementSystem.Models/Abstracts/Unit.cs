@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Models.Abstracts
 {
@@ -63,7 +66,35 @@ namespace WorkManagementSystem.Models.Abstracts
 
         public virtual string PrintInfo()
         {
-            throw new NotImplementedException();
+            var sb = new StringBuilder();
+
+            sb.AppendLine($"Name: {this.Name}");
+
+            // Append WorkItems
+            sb.AppendLine("WorkItems:");
+
+            if (this.WorkItems.Any())
+            {
+                sb.AppendLine(string.Join(NewLine, this.WorkItems.Select(x => " -" + x.GetWorkItemType() + ": " + x.PrintInfo())));
+            }
+            else
+            {
+                sb.AppendLine(" No workitems");
+            }
+
+            // Append History
+            sb.AppendLine("ActivityHistory:");
+
+            if (this.ActivityHistory.Any())
+            {
+                sb.AppendLine(string.Join(NewLine, this.ActivityHistory.Select(s => " -" + s.PrintInfo())));
+            }
+            else
+            {
+                sb.AppendLine(" No history");
+            }
+
+            return sb.ToString().TrimEnd();
         }
 
         protected abstract string AdditionalInfo();

@@ -43,6 +43,11 @@ namespace WorkManagementSystem.Models
             }
         }
 
+        public override string GetWorkItemType()
+        {
+            return "Feedback";
+        }
+
         public FeedbackStatus FeedbackStatus { get; }
 
         protected override string AdditionalInfo()

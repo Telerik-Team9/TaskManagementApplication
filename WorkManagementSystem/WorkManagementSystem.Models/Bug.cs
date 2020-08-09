@@ -54,6 +54,11 @@ namespace WorkManagementSystem.Models
 
         public IMember Assignee { get; private set; }
 
+        public override string GetWorkItemType()
+        {
+            return "Bug";
+        }
+
         protected override string AdditionalInfo()
         {
             var sb = new StringBuilder();

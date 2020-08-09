@@ -137,6 +137,13 @@ namespace WorkManagementSystem.Models.Abstracts
         /// <returns>A string with the formatted additional info.</returns>
         protected abstract string AdditionalInfo();
 
+        /// <summary>
+        /// Returns the type of the WorkItem.
+        /// </summary>
+        /// <returns>The type of the WorkItem.</returns>
+        public abstract string GetWorkItemType();
+
+
 
 
         // TODO: Remove AddComents and AddHistory!!! later

@@ -54,6 +54,11 @@ namespace WorkManagementSystem.Models
             }
         }
 
+        public override string GetWorkItemType()
+        {
+            return "Story";
+        }
+
         protected override string AdditionalInfo()
         {
             var sb = new StringBuilder();

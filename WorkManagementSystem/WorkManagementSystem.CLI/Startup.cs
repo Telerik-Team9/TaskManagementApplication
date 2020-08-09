@@ -11,11 +11,14 @@ namespace WorkManagementSystem.CLI
     {
         public static void Main(string[] args)
         {
-            //var engine = new Engine();
-            //engine.Run();
             //Console.SetWindowSize(70, 70);
 
-            Engine.Instance.Run();
+            //Engine.Instance.Run();
+
+            var ac = new ActivityHistory("CREATED A NEW AC");
+
+
+
 
             // Comments
             var magi = new Member("Magi Nikolova");
@@ -69,7 +72,7 @@ namespace WorkManagementSystem.CLI
 
 
 
-
+            
 
 
 
