@@ -12,14 +12,10 @@ namespace WorkManagementSystem.Core
     {
         private static Engine instance;
         private readonly ICommandManager commandManager;
-        private readonly IReader reader;
-        private readonly IWriter writer;
 
         private Engine()
         {
             this.commandManager = new CommandManager();
-            this.reader = new ConsoleReader();
-            this.writer = new ConsoleWriter();
         }
 
         public static IEngine Instance
@@ -34,31 +30,31 @@ namespace WorkManagementSystem.Core
                 return instance;
             }
         }
+        private static IReader Reader
+        {
+            get
+            {
+                return ConsoleReader.Instance;
+            }
+        }
+        private static IWriter Writer
+        {
+            get
+            {
+                return ConsoleWriter.Instance;
+            }
+        }
 
         public void Run()
         {
             while (true)
             {
-                /* Stopwatch sw = new Stopwatch();
-                 sw.Start();*/
-
-                var commandName = this.reader.Read();
+                var commandName = Reader.Read();
                 var result = this.Process(commandName);
                 this.Print(result);
 
-                Thread.Sleep(3000);
-                this.writer.Clear();
-                //   var result = this.Process(input);
-
-                /* if (input == "exit")
-                 {
-                     sw.Stop();
-                     TimeSpan ts = sw.Elapsed;
-                     string elapsedTime = String.Format
-                         ("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
-                     this.writer.WriteLine($"You have been using our application for {elapsedTime} :).");
-                     Environment.Exit(0);
-                 }*/
+                Thread.Sleep(6000);
+                Writer.Clear();
             }
         }
 
@@ -86,7 +82,7 @@ namespace WorkManagementSystem.Core
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(commandResult);
             sb.AppendLine("####################");
-            Console.WriteLine(sb.ToString().Trim());
+            Writer.WriteLine(sb.ToString().Trim());
         }
     }
 }

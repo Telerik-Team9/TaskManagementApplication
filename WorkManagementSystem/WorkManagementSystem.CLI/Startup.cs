@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Buffers;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using WorkManagementSystem.Core;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Common;
-using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.CLI
@@ -20,7 +15,7 @@ namespace WorkManagementSystem.CLI
             //engine.Run();
             //Console.SetWindowSize(70, 70);
 
-
+           // Engine.Instance.Run();
 
             // Comments
             var magi = new Member("Magi Nikolova");
@@ -39,7 +34,7 @@ namespace WorkManagementSystem.CLI
             var list = new List<Feedback>();
 
             var fb1 = new Feedback("my Title is long I promise", "a random fb, descr should be 10 symb", 8);
-            var fb2 = new Feedback("my Title2 it really is", "now thfffffffffffffdis is a test, kjdsfsddfdsfkjxhkjsidjssisnmmmmmmmmmmjksihsjkbgngngfnbfgnb fgnfnfnfghsukshkjsa siuhsja ssjhksh", 10);
+            var fb2 = new Feedback("my Title2 it really is", "now thfffffffffffffdis is a test, siuhsja ssjhksh", 10);
             var fb3 = new Feedback("mini title - obc not", "spi mi seeeeeeeeeeeeeeeee", 1);
             var fb4 = new Feedback("idk anymore, mini title #2 I guess", "ama i na men mi sa spi chast 2", 5);
             list.Add(fb1);
