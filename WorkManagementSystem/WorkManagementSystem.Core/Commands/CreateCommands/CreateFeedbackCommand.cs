@@ -20,6 +20,9 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         public override string Execute()
         {
             //List all boards
+            this.InstanceFactory.Writer.WriteLine(this.ListAllBoards());
+            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.ChooseBoardForWorkitem, "feedback"));
+
             this.InstanceFactory.Writer.Write(string.Format(CoreConstants.EnterBoardNameToAddWorkitemTo, "feedback"));
             string boardName = this.InstanceFactory.Reader.Read();
 

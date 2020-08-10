@@ -19,7 +19,10 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute() // Add check for ctor for Imember
         {
-            this.InstanceFactory.Writer.Write(string.Format(CoreConstants.EnterBoardNameToAddWorkitemTo, "bug")); //List all boards
+            this.InstanceFactory.Writer.WriteLine(this.ListAllBoards());
+            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.ChooseBoardForWorkitem, "bug"));
+
+            this.InstanceFactory.Writer.Write(string.Format(CoreConstants.EnterBoardNameToAddWorkitemTo, "bug"));
             string boardName = this.InstanceFactory.Reader.Read();
 
             if (!this.InstanceFactory.Database.Boards.Any(b => b.Name == boardName))

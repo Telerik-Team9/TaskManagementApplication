@@ -16,6 +16,8 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
+            this.InstanceFactory.Writer.WriteLine(this.ListAllBoards());
+            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.ChooseBoardForWorkitem, "story"));
 
             this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
 

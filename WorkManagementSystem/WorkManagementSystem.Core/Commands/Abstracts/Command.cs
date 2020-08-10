@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 
@@ -22,6 +25,22 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
             string description = this.InstanceFactory.Reader.Read();
 
             return (title, description);
+        }
+        protected string ListAllBoards()
+        {
+            if (!this.InstanceFactory.Database.Boards.Any())
+            {
+                throw new ArgumentException(CoreConstants.NoBoardsForWorkitemsExcMessage);
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var board in this.InstanceFactory.Database.Boards)
+            {
+                sb.AppendLine(board.Name);
+            }
+
+            return sb.ToString().Trim();
         }
 
         public abstract string Execute();

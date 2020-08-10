@@ -15,6 +15,8 @@ namespace WorkManagementSystem.Core.Common
         public const string EnterEnum = "{0} - Choose one of the following: ({1}) or leave this field empty.";
         public const string CreatedWorkItem = "{0} with title '{1}' was created.";
         public const string PressEnterForNewCommand = "Please press \"Enter\" to select a new command.";
+        public const string ChooseBoardForWorkitem = "Please choose one of the following boards to add {0}.";
+        public const string NoBoardsForWorkitemsExcMessage = "Cannot add workitem without any boards.";
 
         // Member
         public const string EnterMemberDetails = "Please enter member's name and press \"Enter\".";
@@ -26,7 +28,7 @@ namespace WorkManagementSystem.Core.Common
         public const string NoTeamsInDatabaseExcMessage = "There are currently no teams in the database.";
         public const string SelectTeamToAddBoardTo = "Please select a team to add a new board to:";
         public const string TeamDoesNotExistExcMessage = "The team {0} does not exist.";
-        
+
         // Board
         public const string EnterBoardName = "Please enter board name: ";
         public const string BoardAlreadyExistsExcMessage = "A board with name {0} already exists in team {1}";
