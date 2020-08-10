@@ -12,16 +12,10 @@ namespace WorkManagementSystem.Models
     {
         private int rating;
 
-        public Feedback(string title, string description, int rating)
+        public Feedback(string title, string description, int rating, FeedbackStatus status)
             : base(title, description)
         {
             this.Rating = rating;
-            this.FeedbackStatus = FeedbackStatus.New;
-        }
-
-        public Feedback(string title, string description, int rating, FeedbackStatus status)
-            : this(title, description, rating)
-        {
             this.FeedbackStatus = status;
         }
 

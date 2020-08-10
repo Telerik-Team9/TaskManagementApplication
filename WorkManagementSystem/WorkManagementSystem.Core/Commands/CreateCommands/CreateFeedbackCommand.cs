@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
@@ -9,38 +10,41 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
     class CreateFeedbackCommand : Command
     {
-        public CreateFeedbackCommand() { }
+        public CreateFeedbackCommand(IInstanceFactory instanceFactory)
+            : base(instanceFactory)
+        {
+        }
 
         public override string Execute()
         {
 
-            this.Writer.Write("Please select a board to add a feedback to: "); //List all boards
-            string boardName = this.Reader.Read();
+            this.InstanceFactory.Writer.Write("Please select a board to add a feedback to: "); //List all boards
+            string boardName = this.InstanceFactory.Reader.Read();
 
-            if (!this.Database.Boards.Any(b => b.Name == boardName))
+            if (!this.InstanceFactory.Database.Boards.Any(b => b.Name == boardName))
             {
                 throw new ArgumentException($"A board with name {boardName} does not exist in the database.");
             }
 
-            IBoard board = this.Database
+            IBoard board = this.InstanceFactory.Database
                 .Boards
                 .First(b => b.Name == boardName);
 
-            this.Writer.WriteLine("Please enter the following parameters to create a feedback:");
+            this.InstanceFactory.Writer.WriteLine("Please enter the following parameters to create a feedback:");
 
-            this.Writer.Write("Title: ");
-            string title = this.Reader.Read();
+            this.InstanceFactory.Writer.Write("Title: ");
+            string title = this.InstanceFactory.Reader.Read();
 
-            this.Writer.Write("Description: ");
-            string description = this.Reader.Read();
+            this.InstanceFactory.Writer.Write("Description: ");
+            string description = this.InstanceFactory.Reader.Read();
 
-            this.Writer.Write("Rating: ");
-            int rating = int.Parse(this.Reader.Read());
+            this.InstanceFactory.Writer.Write("Rating: ");
+            int rating = int.Parse(this.InstanceFactory.Reader.Read());
             IFeedback currentFeedback;
 
 
-            this.Writer.WriteLine("Status - Choose one of the following: (Done/New/Scheduled/Unscheduled) or leave this field empty.");
-            string statusAsStr = this.Reader.Read();
+            this.InstanceFactory.Writer.WriteLine("Status - Choose one of the following: (Done/New/Scheduled/Unscheduled) or leave this field empty.");
+            string statusAsStr = this.InstanceFactory.Reader.Read();
 
             FeedbackStatus status;
 
@@ -59,11 +63,11 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             {
                 status = FeedbackStatus.New;
             }
-            currentFeedback = this.Factory.CreateFeedback(title, description, rating, status);
+            currentFeedback = this.InstanceFactory.ModelsFactory.CreateFeedback(title, description, rating, status);
 
             board.AddWorkItem(currentFeedback);
 
-            this.Database.Feedbacks.Add(currentFeedback);
+            this.InstanceFactory.Database.Feedbacks.Add(currentFeedback);
 
             return $"Feedback with title '{title}' has been created.{Environment.NewLine}" + currentFeedback.PrintInfo();
         }

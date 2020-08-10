@@ -11,23 +11,12 @@ namespace WorkManagementSystem.Models
     {
         private IMember assignee;
 
-        public Story(string title, string description)
-            : base(title, description)
-        {
-        }
-
         public Story(string title, string description, Priority priority, StorySize size, StoryStatus status)
-            : this(title, description)
+            : base(title, description)
         {
             this.Priority = priority;
             this.Size = size;
-            this.Status = status; // remove parameter from ctor and assign default value - notDone, 
-        }
-
-        public Story(string title, string description, Priority priority, StorySize size, StoryStatus status, IMember assignee)
-            : this(title, description, priority, size, status)
-        {
-            this.Assignee = assignee;
+            this.Status = status;
         }
 
         public Priority Priority { get; private set; } // default - notDone, if assigned - inProgress; 

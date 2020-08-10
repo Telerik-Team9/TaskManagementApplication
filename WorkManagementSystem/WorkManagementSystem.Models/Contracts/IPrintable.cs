@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WorkManagementSystem.Models.Common
+namespace WorkManagementSystem.Models.Contracts
 {
     public interface IPrintable
     {

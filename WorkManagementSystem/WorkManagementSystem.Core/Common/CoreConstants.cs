@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static System.Environment;
 
 namespace WorkManagementSystem.Core.Common
 {
     public static class CoreConstants
     {
-
+        public const string EnterEnum = "{0} - Choose one of the following: ({1}) or leave this field empty.";
+        public const string CreatedWorkItem = "{0} with title '{1}' was created.";
+/*
         public static IList<string> memberProperties = new List<string>()
         {
             "Name"
@@ -40,6 +43,23 @@ namespace WorkManagementSystem.Core.Common
             "Status",
             "Priority",
             "Assignee"
-        };
+        };*/
+
+        public static string allCommands =
+            "Create commands:" + NewLine +
+            " createperson" + NewLine +
+            " createteam" + NewLine +
+            " createboardinateam" + NewLine +
+            " createbug" + NewLine +
+            " createfeedback" + NewLine +
+            " createstory" + NewLine +
+            "Show commands:" + NewLine +
+            " showallpeople" + NewLine + 
+            " showallteams" + NewLine +
+            "Add commands:" + NewLine +
+            " addpersontoateam" + NewLine +
+            "-----------------------------------------------------" + NewLine;
+    
+    
     }
 }

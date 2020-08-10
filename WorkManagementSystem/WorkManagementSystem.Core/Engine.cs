@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 using System.Threading;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Core.Readers;
 using WorkManagementSystem.Core.Writers;
@@ -10,38 +11,20 @@ namespace WorkManagementSystem.Core
 {
     public class Engine : IEngine
     {
-        private static Engine instance;
-        private readonly ICommandManager commandManager;
+        private IInstanceFactory instanceFactory;
 
-        private Engine()
+        public Engine(IInstanceFactory instanceFactory)
         {
-            this.commandManager = new CommandManager();
+            this.InstanceFactory = instanceFactory;
         }
 
-        public static IEngine Instance
+        public IInstanceFactory InstanceFactory
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Engine();
-                }
+            get => instanceFactory;
 
-                return instance;
-            }
-        }
-        private static IReader Reader
-        {
-            get
+            private set
             {
-                return ConsoleReader.Instance;
-            }
-        }
-        private static IWriter Writer
-        {
-            get
-            {
-                return ConsoleWriter.Instance;
+                this.instanceFactory = value;
             }
         }
 
@@ -49,12 +32,15 @@ namespace WorkManagementSystem.Core
         {
             while (true)
             {
-                var commandName = Reader.Read();
+                this.InstanceFactory.Writer.WriteLine(CoreConstants.allCommands);
+                this.InstanceFactory.Writer.WriteLine("Please select a command.");
+
+                var commandName = this.InstanceFactory.Reader.Read();
                 var result = this.Process(commandName);
                 this.Print(result);
 
                 Thread.Sleep(6000);
-                Writer.Clear();
+                this.InstanceFactory.Writer.Clear();
             }
         }
 
@@ -62,7 +48,7 @@ namespace WorkManagementSystem.Core
         {
             try
             {
-                ICommand command = this.commandManager.ParseCommand(commandName);
+                ICommand command = this.InstanceFactory.CommandManager.ParseCommand(commandName, this.InstanceFactory);
                 string result = command.Execute();
 
                 return result.Trim();
@@ -82,7 +68,7 @@ namespace WorkManagementSystem.Core
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(commandResult);
             sb.AppendLine("####################");
-            Writer.WriteLine(sb.ToString().Trim());
+            this.InstanceFactory.Writer.WriteLine(sb.ToString().Trim());
         }
     }
 }

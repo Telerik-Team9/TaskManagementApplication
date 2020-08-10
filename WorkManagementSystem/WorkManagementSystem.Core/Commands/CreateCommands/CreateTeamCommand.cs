@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
     public class CreateTeamCommand : Command
     {
-/*        public CreateTeamCommand(IList<string> commandParameters)
-            : base(commandParameters) { }*/
-
-        public CreateTeamCommand()
-           : base() { }
+        public CreateTeamCommand(IInstanceFactory instanceFactory)
+            : base(instanceFactory)
+        {
+        }
 
         public override string Execute()
         {
-            if (this.CommandParameters.Count != 1)
+            /*if (this.CommandParameters.Count != 1)
             {
                 return "Invalid parameters count.";
             }
@@ -30,7 +31,9 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             ITeam currentTeam = this.Factory.CreateTeam(teamName);
             this.Database.Teams.Add(currentTeam);
 
-            return $"Team {teamName} has been created.";
+            return $"Team {teamName} has been created.";*/
+
+            throw new NotImplementedException();
         }
     }
 }

@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Contracts;
 
 namespace WorkManagementSystem.Core.Commands.ShowCommands
 {
     public class ShowAllPeopleCommand : Command
     {
-/*        public ShowAllPeopleCommand(IList<string> commandParameters)
-            : base(commandParameters) { }*/
-
-        public ShowAllPeopleCommand()
-           : base() { }
+        public ShowAllPeopleCommand(IInstanceFactory instanceFactory)
+            : base(instanceFactory)
+        {
+        }
 
         public override string Execute()
         {
-            if (!this.Database.Members.Any())
+            if (!this.InstanceFactory.Database.Members.Any())
             {
                 return "There are currently no people on the list.";
             }
 
             StringBuilder sb = new StringBuilder();
 
-            foreach (var p in this.Database.Members)
+            foreach (var person in this.InstanceFactory.Database.Members)
             {
-                sb.AppendLine(p.PrintInfo());
+                sb.AppendLine(person.PrintInfo());
             }
 
             return sb.ToString().TrimEnd();

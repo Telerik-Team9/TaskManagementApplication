@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using WorkManagementSystem.Core;
+using WorkManagementSystem.Core.Contracts;
+using WorkManagementSystem.Core.Factories;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Contracts;
@@ -13,12 +15,15 @@ namespace WorkManagementSystem.CLI
         {
             //Console.SetWindowSize(70, 70);
 
-            Engine.Instance.Run();
+            IInstanceFactory instanceFactory = new InstanceFactory();
+
+            IEngine engine = new Engine(instanceFactory);
+            engine.Run();
 
 
 
 
-
+/*
             // Comments
             var magi = new Member("Magi Nikolova");
             var cmt1 = new Comment("komentar1", magi);
@@ -50,7 +55,7 @@ namespace WorkManagementSystem.CLI
 
             //var bs = BugSeverity.Critical;
 
-            var bug = new Bug("Titleeeeeee bug", "Descriptiooooon" /*severity = BugSeverity.Critical*/);
+            var bug = new Bug("Titleeeeeee bug", "Descriptiooooon" *//*severity = BugSeverity.Critical*//*);
             bug.AddComments(comments);
             bug.AddHistory(hist);
             Console.WriteLine("THIS IS BUG INFO: " + bug.PrintInfo());
@@ -70,8 +75,8 @@ namespace WorkManagementSystem.CLI
             Console.WriteLine("-----------------------------");
 
 
+*/
 
-            
 
 
 
@@ -85,7 +90,7 @@ namespace WorkManagementSystem.CLI
                   Tuple.Create(4, "Aldous", "Huxley"),
                 };*/
 
-
+/*
             // Way 1
             Console.WriteLine(list.ToStringTable(
               new[] { "Title", "Description", "Rating*" },
@@ -101,7 +106,7 @@ namespace WorkManagementSystem.CLI
 
             Console.WriteLine(arr.ToStringTable());
 
-
+*/
 
 
 

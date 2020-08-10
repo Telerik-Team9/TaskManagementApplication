@@ -11,33 +11,16 @@ namespace WorkManagementSystem.Models
 {
     public class Bug : WorkItem, IBug
     {
-        private IList<string> stepsToReproduce;
-
-        public Bug(string title, string description)
-            : base(title, description)
-        {
-            this.stepsToReproduce = new List<string>();
-        }
+        private IList<string> stepsToReproduce = new List<string>();
 
         public Bug(string title, string description, Priority priority, BugSeverity severity, IList<string> stepsToReproduce)
-            : this(title, description)
+            : base(title, description)
         {
             this.Priority = priority;
             this.Severity = severity;
             this.Status = BugStatus.Active;
             this.stepsToReproduce = stepsToReproduce;
         }
-
-        public Bug(string title, string description, Priority priority = Priority.High, BugSeverity severity = BugSeverity.Minor, BugStatus status = BugStatus.Active, IMember assignee = null)
-            : this(title, description)
-        {
-            this.Assignee = assignee;
-            this.Priority = priority;
-            this.Severity = severity;
-            this.Status = status;
-            this.Assignee = assignee;
-        }
-
 
         public IReadOnlyCollection<string> StepsToReproduce
         {
