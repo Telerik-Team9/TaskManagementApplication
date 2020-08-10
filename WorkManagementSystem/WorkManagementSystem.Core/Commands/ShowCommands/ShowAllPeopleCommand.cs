@@ -18,25 +18,17 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
         {
             if (!this.Database.Members.Any())
             {
-                return "There are currently no members on the list.";
+                return "There are currently no people on the list.";
             }
 
             StringBuilder sb = new StringBuilder();
 
             foreach (var p in this.Database.Members)
             {
-                sb.AppendLine("Member: " + p.Name);
-
-                foreach (var item in p.WorkItems)
-                {
-                    sb.AppendLine("Workitems:");
-                    sb.AppendLine(" - Item ID: " + item.Id + " | Title:" + item.Title);
-                }
+                sb.AppendLine(p.PrintInfo());
             }
 
-            return sb
-                .ToString()
-                .Trim();
+            return sb.ToString().TrimEnd();
         }
     }
 }

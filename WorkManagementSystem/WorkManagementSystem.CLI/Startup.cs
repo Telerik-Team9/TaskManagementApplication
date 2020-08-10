@@ -15,7 +15,7 @@ namespace WorkManagementSystem.CLI
 
             //Engine.Instance.Run();
 
-            var ac = new ActivityHistory("CREATED A NEW AC");
+            //var ac = new ActivityHistory("CREATED A NEW AC");
 
 
 

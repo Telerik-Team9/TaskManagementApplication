@@ -12,8 +12,8 @@ namespace WorkManagementSystem.Models.Abstracts
     public abstract class Unit : IUnit
     {
         private string name;
-        private IList<IWorkItem> workItems;
-        private IList<IActivityHistory> activityHistory;
+        protected IList<IWorkItem> workItems;
+        protected IList<IActivityHistory> activityHistory;
 
         protected Unit(string name)
         {
@@ -79,7 +79,7 @@ namespace WorkManagementSystem.Models.Abstracts
             }
             else
             {
-                sb.AppendLine(" No workitems");
+                sb.AppendLine(" -No workitems have been added yet.");
             }
 
             // Append History
@@ -91,7 +91,7 @@ namespace WorkManagementSystem.Models.Abstracts
             }
             else
             {
-                sb.AppendLine(" No history");
+                sb.AppendLine(" -No history is present yet.");
             }
 
             return sb.ToString().TrimEnd();

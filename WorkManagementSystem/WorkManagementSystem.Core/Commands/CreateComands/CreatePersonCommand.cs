@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Input;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Models.Contracts;
 

@@ -14,7 +14,19 @@ namespace WorkManagementSystem.Core.Commands.CreateComands
         public override string Execute()
         {
 
-            this.Writer.WriteLine("Please enter the following parameters:");
+            this.Writer.Write("Please select a board to add a feedback to: "); //List all boards
+            string boardName = this.Reader.Read();
+
+            if (!this.Database.Boards.Any(b => b.Name == boardName))
+            {
+                throw new ArgumentException($"A board with name {boardName} does not exist in the database.");
+            }
+
+            IBoard board = this.Database
+                .Boards
+                .First(b => b.Name == boardName);
+
+            this.Writer.WriteLine("Please enter the following parameters to create a feedback:");
 
             this.Writer.Write("Title: ");
             string title = this.Reader.Read();
@@ -27,10 +39,7 @@ namespace WorkManagementSystem.Core.Commands.CreateComands
             IFeedback currentFeedback;
 
 
-            this.Writer
-                .WriteLine
-                ("Status - Choose one of the following: " +
-                "(Done/New/Scheduled/Unscheduled) or leave this field empty.");
+            this.Writer.WriteLine("Status - Choose one of the following: (Done/New/Scheduled/Unscheduled) or leave this field empty.");
             string statusAsStr = this.Reader.Read();
 
             FeedbackStatus status;
@@ -51,7 +60,9 @@ namespace WorkManagementSystem.Core.Commands.CreateComands
                 status = FeedbackStatus.New;
             }
             currentFeedback = this.Factory.CreateFeedback(title, description, rating, status);
-                       
+
+            board.AddWorkItem(currentFeedback);
+
             this.Database.Feedbacks.Add(currentFeedback);
 
             return $"Feedback with title '{title}' has been created.{Environment.NewLine}" + currentFeedback.PrintInfo();

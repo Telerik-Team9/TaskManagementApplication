@@ -88,6 +88,26 @@ namespace WorkManagementSystem.Models
             }
 
             return sb.ToString().TrimEnd();
-        }       
+        }
+
+        public void AddBoard(IBoard board)
+        {
+            if (board == null)
+            {
+                throw new ArgumentException("The board you tried to enter is invalid.");
+            }
+
+            this.boards.Add(board);
+        }
+
+        public void AddPerson(IMember person)
+        {
+            if (person == null)
+            {
+                throw new ArgumentException("The person you tried to enter is invalid.");
+            }
+
+            this.members.Add(person);
+        }
     }
 }

@@ -113,7 +113,7 @@ namespace WorkManagementSystem.Models.Abstracts
             }
             else
             {
-                sb.AppendLine(" No comments");
+                sb.AppendLine(" -No comments have been added yet.");
             }
 
             // Append History
@@ -125,7 +125,7 @@ namespace WorkManagementSystem.Models.Abstracts
             }
             else
             {
-                sb.AppendLine(" No history");
+                sb.AppendLine(" -No history is present yet.");
             }
 
             return sb.ToString().TrimEnd();
