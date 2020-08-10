@@ -36,7 +36,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 .Teams
                 .First(t => t.Name == teamName);
 
-            this.Writer.Write(CoreConstants.EnterBoardName);
+            this.Writer.Write(string.Format(CoreConstants.EnterUnitName, "board"));
             string boardName = this.Reader.Read();
 
             if (currentTeam.Boards.Any(b => b.Name == boardName))

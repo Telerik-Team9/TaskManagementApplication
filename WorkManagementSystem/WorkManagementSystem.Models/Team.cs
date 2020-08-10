@@ -69,7 +69,7 @@ namespace WorkManagementSystem.Models
 
             if (!this.Members.Any())
             {
-                sb.AppendLine("No members in the team.");
+                sb.AppendLine(" No members in the team.");
             }
             else
             {
@@ -80,7 +80,7 @@ namespace WorkManagementSystem.Models
 
             if (!this.Boards.Any())
             {
-                sb.AppendLine("No boards in the team.");
+                sb.AppendLine(" No boards in the team.");
             }
             else
             {

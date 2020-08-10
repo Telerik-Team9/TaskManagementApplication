@@ -19,22 +19,25 @@ namespace WorkManagementSystem.Core.Common
         public const string NoBoardsForWorkitemsExcMessage = "Cannot add workitem without any boards.";
 
         // Member
-        public const string EnterMemberDetails = "Please enter member's name and press \"Enter\".";
         public const string MemberAlreadyExistsExcMessage = "Member {0} already exists.";
         public const string CreatedMember = "Member {0} has been created.";
         public const string MemberDoesNotExistExcMessage = "A person with name {0} does not exist in the database.";
 
+        // Unit
+        public const string EnterUnitName = "Please enter {0}'s name and press \"Enter\".";
+        public const string CreatedUnit = "{0} with name '{1}' was created.";
+
         // Team
+        public const string TeamAlreadyExistsExcMessage = "Team {0} already exists.";
         public const string NoTeamsInDatabaseExcMessage = "There are currently no teams in the database.";
         public const string SelectTeamToAddBoardTo = "Please select a team to add a new board to:";
         public const string TeamDoesNotExistExcMessage = "The team {0} does not exist.";
 
         // Board
-        public const string EnterBoardName = "Please enter board name: ";
+        //public const string EnterBoardName = "Please enter board name: ";
         public const string BoardAlreadyExistsExcMessage = "A board with name {0} already exists in team {1}";
         public const string BoardDoesNotExistInTheDatabase = "A board with name {0} does not exist in the database.";
         public const string CreatedBoard = "A board with name '{0}' has been added to {1} team.";
-
 
         // Person
         public const string SelectTeamToAddPersonTo = "Please select a team to add a new person to:";

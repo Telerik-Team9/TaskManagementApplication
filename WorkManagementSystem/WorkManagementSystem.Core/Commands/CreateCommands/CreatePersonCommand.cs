@@ -4,6 +4,7 @@ using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
@@ -16,7 +17,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
-            this.Writer.WriteLine(CoreConstants.EnterMemberDetails);
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterUnitName, "person"));
 
             string personName = this.Reader.Read();
 
@@ -32,7 +33,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             currMember.AddActivityLog(activity);
 
             return activity
-                + Environment.NewLine
+                + NewLine
                 + currMember.PrintInfo();
         }
     }
