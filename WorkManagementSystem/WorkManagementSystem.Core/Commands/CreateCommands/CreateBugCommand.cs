@@ -9,8 +9,8 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
     public class CreateBugCommand : Command
     {
-        public CreateBugCommand(IList<string> commandParameters)
-            : base(commandParameters) { }
+/*        public CreateBugCommand(IList<string> commandParameters)
+            : base(commandParameters) { }*/
 
         public CreateBugCommand()
             : base() { }

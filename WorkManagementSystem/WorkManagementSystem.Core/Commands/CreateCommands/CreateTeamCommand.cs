@@ -7,8 +7,8 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
     public class CreateTeamCommand : Command
     {
-        public CreateTeamCommand(IList<string> commandParameters)
-            : base(commandParameters) { }
+/*        public CreateTeamCommand(IList<string> commandParameters)
+            : base(commandParameters) { }*/
 
         public CreateTeamCommand()
            : base() { }

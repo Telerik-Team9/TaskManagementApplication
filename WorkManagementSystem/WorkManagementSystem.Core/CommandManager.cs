@@ -1,6 +1,6 @@
 ﻿using System;
-using WorkManagementSystem.Core.Commands;
-using WorkManagementSystem.Core.Commands.CreateComands;
+using WorkManagementSystem.Core.Commands.CreateCommands;
+using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Contracts;
 
 namespace WorkManagementSystem.Core
@@ -11,14 +11,15 @@ namespace WorkManagementSystem.Core
         {
             return commandName.ToLower() switch
             {
-                 "createperson" => new CreatePersonCommand(),
+                 "createbug" => new CreateBugCommand(),
                  "createfeedback" => new CreateFeedbackCommand(),
+                 "createperson" => new CreatePersonCommand(),
+                 "createstory" => new CreateStoryCommand(),
+                 "createteam" => new CreateTeamCommand(),
+                 
+                 "showallpeople" => new ShowAllPeopleCommand(),
 
-                /* "createteam" => new CreateTeamCommand(commandParameters),
-                 "showallpeople" => new ShowAllPeopleCommand(commandParameters),
-                 "createbug" => new CreateBugCommand(commandParameters)*/
-                // "createfeedback" => new CreateFeedbackCommand(),
-                  _ => throw new InvalidOperationException("Command does not exist")
+                _ => throw new InvalidOperationException("Command does not exist")
             };
         }
     }

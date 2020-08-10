@@ -4,16 +4,17 @@ using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
-namespace WorkManagementSystem.Core.Commands.CreateComands
+namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
     class CreateFeedbackCommand : Command
     {
-        public CreateFeedbackCommand() { }
+        public CreateFeedbackCommand()
+            : base() { }
 
         public override string Execute()
         {
-
             this.Writer.WriteLine("Please enter the following parameters:");
 
             this.Writer.Write("Title: ");
@@ -27,9 +28,7 @@ namespace WorkManagementSystem.Core.Commands.CreateComands
             IFeedback currentFeedback;
 
 
-            this.Writer
-                .WriteLine
-                ("Status - Choose one of the following: " +
+            this.Writer.WriteLine("Status - Choose one of the following: " +
                 "(Done/New/Scheduled/Unscheduled) or leave this field empty.");
             string statusAsStr = this.Reader.Read();
 
@@ -51,10 +50,10 @@ namespace WorkManagementSystem.Core.Commands.CreateComands
                 status = FeedbackStatus.New;
             }
             currentFeedback = this.Factory.CreateFeedback(title, description, rating, status);
-                       
+
             this.Database.Feedbacks.Add(currentFeedback);
 
-            return $"Feedback with title '{title}' has been created.{Environment.NewLine}" + currentFeedback.PrintInfo();
+            return $"Feedback with title '{title}' has been created.{NewLine}" + currentFeedback.PrintInfo();
         }
     }
 }

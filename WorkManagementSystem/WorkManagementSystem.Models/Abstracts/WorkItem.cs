@@ -20,12 +20,13 @@ namespace WorkManagementSystem.Models.Abstracts
 
         protected WorkItem(string title, string description)
         {
-            // this.Id = Guid.NewGuid();
-            this.Id = counter++;
             this.Title = title;
             this.Description = description;
             this.comments = new List<IComment>();
             this.historyLog = new List<string>();
+
+            // this.Id = Guid.NewGuid();
+            this.Id = counter++;
         }
 
         public int Id { get; }

@@ -8,8 +8,8 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 {
     public class ShowAllPeopleCommand : Command
     {
-        public ShowAllPeopleCommand(IList<string> commandParameters)
-            : base(commandParameters) { }
+/*        public ShowAllPeopleCommand(IList<string> commandParameters)
+            : base(commandParameters) { }*/
 
         public ShowAllPeopleCommand()
            : base() { }

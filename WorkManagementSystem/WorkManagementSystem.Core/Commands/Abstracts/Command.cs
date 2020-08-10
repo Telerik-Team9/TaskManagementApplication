@@ -5,11 +5,14 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
 {
     public abstract class Command : ICommand
     {
-        protected Command() { }
-        protected Command(IList<string> commandParameters)
+        protected Command()
         {
-            this.CommandParameters = new List<string>(commandParameters); 
         }
+
+        /*        protected Command(IList<string> commandParameters)
+                {
+                    this.CommandParameters = new List<string>(commandParameters); 
+                }*/
 
         protected IList<string> CommandParameters { get; }
 
