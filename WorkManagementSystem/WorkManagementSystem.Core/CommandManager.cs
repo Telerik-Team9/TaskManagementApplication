@@ -18,6 +18,7 @@ namespace WorkManagementSystem.Core
                  "createteam" => new CreateTeamCommand(instanceFactory),
                  
                  "showallpeople" => new ShowAllPeopleCommand(instanceFactory),
+                 "showallteams" => new ShowAllTeamsCommand(instanceFactory),
 
                 _ => throw new InvalidOperationException("Command does not exist")
             };

@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 
 namespace WorkManagementSystem.Core.Commands.ShowCommands
@@ -16,7 +18,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
         {
             if (!this.InstanceFactory.Database.Teams.Any())
             {
-                return "There are currently no teams on the list.";
+                throw new ArgumentException(CoreConstants.NoTeamsInDatabaseExcMessage);
             }
 
             StringBuilder sb = new StringBuilder();
