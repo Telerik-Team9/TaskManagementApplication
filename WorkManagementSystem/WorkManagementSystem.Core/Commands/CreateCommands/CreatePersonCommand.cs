@@ -3,7 +3,7 @@ using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Models.Contracts;
 
-namespace WorkManagementSystem.Core.Commands
+namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
     public class CreatePersonCommand : Command
     {

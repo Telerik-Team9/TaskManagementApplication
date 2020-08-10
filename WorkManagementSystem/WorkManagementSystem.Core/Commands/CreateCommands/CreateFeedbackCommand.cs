@@ -5,7 +5,7 @@ using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
-namespace WorkManagementSystem.Core.Commands.CreateComands
+namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
     class CreateFeedbackCommand : Command
     {

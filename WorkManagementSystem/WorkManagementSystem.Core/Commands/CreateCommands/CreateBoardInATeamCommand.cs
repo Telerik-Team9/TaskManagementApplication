@@ -4,7 +4,7 @@ using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Models.Contracts;
 
-namespace WorkManagementSystem.Core.Commands.CreateComands
+namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
     public class CreateBoardInATeamCommand : Command
     {
