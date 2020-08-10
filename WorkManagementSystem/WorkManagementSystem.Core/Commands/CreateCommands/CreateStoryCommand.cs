@@ -16,21 +16,15 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
-            this.InstanceFactory.Writer.WriteLine("Please enter the following parameters:");
-
-            this.InstanceFactory.Writer.Write("Title: ");
-            string title = this.InstanceFactory.Reader.Read();
-
-            this.InstanceFactory.Writer.Write("Description: ");
-            string description = this.InstanceFactory.Reader.Read();
-
+            (string title, string description) = ParseBaseWorkItemParameters();
             (Priority priority, StorySize size, StoryStatus status) = ParseEnums();
 
             var currStory = this.InstanceFactory.ModelsFactory.CreateStory(title, description, priority, size, status);
 
             this.InstanceFactory.Database.Stories.Add(currStory);
 
-            return string.Format(CoreConstants.CreatedWorkItem, "Story", currStory.Title) + NewLine + currStory.PrintInfo();
+            return string.Format(CoreConstants.CreatedWorkItem, "Story", currStory.Title)
+                + NewLine + currStory.PrintInfo();
         }
 
         private (Priority, StorySize, StoryStatus) ParseEnums()
@@ -63,7 +57,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new Exception("Invalid size");
             }
 
-            // Parse Size
+            // Parse Status
             this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Status", "NotDone/InProgress/Done"));
             string statusAsStr = this.InstanceFactory.Reader.Read();
             StoryStatus status;

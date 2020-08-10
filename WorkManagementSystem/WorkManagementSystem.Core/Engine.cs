@@ -11,36 +11,32 @@ namespace WorkManagementSystem.Core
 {
     public class Engine : IEngine
     {
-        private IInstanceFactory instanceFactory;
-
         public Engine(IInstanceFactory instanceFactory)
         {
             this.InstanceFactory = instanceFactory;
         }
 
-        public IInstanceFactory InstanceFactory
-        {
-            get => instanceFactory;
+        public IInstanceFactory InstanceFactory { get; }
 
-            private set
-            {
-                this.instanceFactory = value;
-            }
-        }
+        public IReader Reader { get => this.InstanceFactory.Reader; }
+
+        public IWriter Writer { get => this.InstanceFactory.Writer; }
+
 
         public void Run()
         {
             while (true)
             {
-                this.InstanceFactory.Writer.WriteLine(CoreConstants.allCommands);
-                this.InstanceFactory.Writer.WriteLine("Please select a command.");
+                //Thread.Sleep(3000);
+                this.Writer.WriteLine(CoreConstants.allCommands);
 
-                var commandName = this.InstanceFactory.Reader.Read();
+                var commandName = this.Reader.Read();
                 var result = this.Process(commandName);
                 this.Print(result);
 
-                Thread.Sleep(3000);
-                this.InstanceFactory.Writer.Clear();
+                this.Writer.WriteLine(CoreConstants.PressEnterForNewCommand);
+                this.Reader.Read();
+                this.Writer.Clear();
             }
         }
 
