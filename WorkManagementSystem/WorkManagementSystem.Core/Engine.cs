@@ -63,8 +63,8 @@ namespace WorkManagementSystem.Core
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(commandResult);
-            sb.AppendLine("####################");
-            this.InstanceFactory.Writer.WriteLine(sb.ToString().Trim());
+            sb.AppendLine("*****************************");
+            this.InstanceFactory.Writer.WriteLine(sb.ToString());
         }
     }
 }

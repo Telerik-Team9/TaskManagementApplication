@@ -26,6 +26,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
             foreach (var person in this.InstanceFactory.Database.Members)
             {
                 sb.AppendLine(person.PrintInfo());
+                sb.AppendLine(Environment.NewLine);
             }
 
             return sb.ToString().TrimEnd();

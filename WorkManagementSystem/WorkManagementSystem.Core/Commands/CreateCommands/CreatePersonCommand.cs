@@ -25,12 +25,15 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new ArgumentException(string.Format(CoreConstants.MemberAlreadyExistsExcMessage, personName));
             }
 
-            IMember currentMember = this.InstanceFactory.ModelsFactory.CreatePerson(personName);
-            this.InstanceFactory.Database.Members.Add(currentMember);
+            IMember currMember = this.InstanceFactory.ModelsFactory.CreatePerson(personName);
+            this.InstanceFactory.Database.Members.Add(currMember);
 
-            return string.Format(CoreConstants.CreatedMember, personName)
+            string activity = string.Format(CoreConstants.CreatedMember, personName);
+            currMember.AddActivityLog(activity);
+
+            return activity
                 + Environment.NewLine
-                + currentMember.PrintInfo();
+                + currMember.PrintInfo();
         }
     }
 }

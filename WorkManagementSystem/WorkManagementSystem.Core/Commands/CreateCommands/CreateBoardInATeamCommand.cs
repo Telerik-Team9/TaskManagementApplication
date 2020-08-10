@@ -45,14 +45,17 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new ArgumentException(string.Format(CoreConstants.BoardAlreadyExistsExcMessage, boardName, teamName));
             }
 
-            IBoard board = this.InstanceFactory.ModelsFactory.CreateBoard(boardName);
-            currentTeam.AddBoard(board);
+            IBoard currBoard = this.InstanceFactory.ModelsFactory.CreateBoard(boardName);
+            currentTeam.AddBoard(currBoard);
 
-            this.InstanceFactory.Database.Boards.Add(board);
+            this.InstanceFactory.Database.Boards.Add(currBoard);
 
-            return string.Format(CoreConstants.CreatedBoard, boardName, teamName)
+            string activity = string.Format(CoreConstants.CreatedBoard, boardName, teamName);
+            currBoard.AddActivityLog(activity);
+
+            return activity
                 + Environment.NewLine
-                + board.PrintInfo();
+                + currBoard.PrintInfo();
         }
 
         private string ListAllTeams()

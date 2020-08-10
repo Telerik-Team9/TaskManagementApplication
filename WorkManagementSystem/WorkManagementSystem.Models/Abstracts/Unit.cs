@@ -64,6 +64,11 @@ namespace WorkManagementSystem.Models.Abstracts
             }
         }
 
+        public void AddActivityLog(string activity)
+        {
+            this.activityHistory.Add(new ActivityHistory(activity));
+        }
+
         public virtual string PrintInfo()
         {
             var sb = new StringBuilder();
