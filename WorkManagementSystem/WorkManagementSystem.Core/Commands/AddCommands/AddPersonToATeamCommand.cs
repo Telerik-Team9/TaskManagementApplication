@@ -22,10 +22,10 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
                 throw new ArgumentException(CoreConstants.NoTeamsInDatabaseExcMessage);
             }
 
-            this.InstanceFactory.Writer.WriteLine(this.ListAllTeams()); // show all teams// TODO TEST
-            this.InstanceFactory.Writer.Write(CoreConstants.SelectTeamToAddPersonTo);
+            this.Writer.WriteLine(this.ListAllTeams()); // show all teams// TODO TEST
+            this.Writer.Write(CoreConstants.SelectTeamToAddPersonTo);
 
-            string teamName = this.InstanceFactory.Reader.Read();
+            string teamName = this.Reader.Read();
 
             if (!this.InstanceFactory.Database.Teams.Any(t => t.Name == teamName))
             {
@@ -35,7 +35,7 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
             ITeam currentTeam = this.InstanceFactory.Database
                 .Teams
                 .First(t => t.Name == teamName);
-            string personName = this.InstanceFactory.Reader.Read();
+            string personName = this.Reader.Read();
 
             if (!this.InstanceFactory.Database.Members.Any(p => p.Name == personName))
             {

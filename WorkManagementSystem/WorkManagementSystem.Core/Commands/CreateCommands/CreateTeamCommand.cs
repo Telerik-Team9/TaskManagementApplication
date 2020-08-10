@@ -16,23 +16,17 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
-            /*if (this.CommandParameters.Count != 1)
-            {
-                return "Invalid parameters count.";
-            }
+            /*this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
 
-            string teamName = this.CommandParameters[0];
+            (string title, string description) = ParseBaseWorkItemParameters();
+            (Priority priority, StorySize size, StoryStatus status) = ParseEnums();
 
-            if (this.Database.Teams.Any(t => t.Name == teamName))
-            {
-                return $"Team {teamName} already exists.";
-            }
+            var currStory = this.InstanceFactory.ModelsFactory.CreateStory(title, description, priority, size, status);
 
-            ITeam currentTeam = this.Factory.CreateTeam(teamName);
-            this.Database.Teams.Add(currentTeam);
+            this.InstanceFactory.Database.Stories.Add(currStory);
 
-            return $"Team {teamName} has been created.";*/
-
+            return string.Format(CoreConstants.CreatedWorkItem, "Story", currStory.Title)
+                + NewLine + currStory.PrintInfo();*/
             throw new NotImplementedException();
         }
     }

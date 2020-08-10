@@ -16,9 +16,9 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
-            this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterMemberDetails);
+            this.Writer.WriteLine(CoreConstants.EnterMemberDetails);
 
-            string personName = this.InstanceFactory.Reader.Read();
+            string personName = this.Reader.Read();
 
             if (this.InstanceFactory.Database.Members.Any(m => m.Name == personName))
             {

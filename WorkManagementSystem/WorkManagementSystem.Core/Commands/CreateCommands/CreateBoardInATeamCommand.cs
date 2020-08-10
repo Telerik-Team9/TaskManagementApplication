@@ -17,16 +17,15 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
-
             if (!this.InstanceFactory.Database.Teams.Any())
             {
                 throw new ArgumentException(CoreConstants.NoTeamsInDatabaseExcMessage);
             }
 
-            this.InstanceFactory.Writer.Write(CoreConstants.SelectTeamToAddBoardTo); // show all teams// TODO TEST
-            this.InstanceFactory.Writer.WriteLine(this.ListAllTeams());
+            this.Writer.Write(CoreConstants.SelectTeamToAddBoardTo); // show all teams// TODO TEST
+            this.Writer.WriteLine(this.ListAllTeams());
 
-            string teamName = this.InstanceFactory.Reader.Read();
+            string teamName = this.Reader.Read();
 
             if (!this.InstanceFactory.Database.Teams.Any(t => t.Name == teamName))
             {
@@ -37,8 +36,8 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 .Teams
                 .First(t => t.Name == teamName);
 
-            this.InstanceFactory.Writer.Write(CoreConstants.EnterBoardName);
-            string boardName = this.InstanceFactory.Reader.Read();
+            this.Writer.Write(CoreConstants.EnterBoardName);
+            string boardName = this.Reader.Read();
 
             if (currentTeam.Boards.Any(b => b.Name == boardName))
             {

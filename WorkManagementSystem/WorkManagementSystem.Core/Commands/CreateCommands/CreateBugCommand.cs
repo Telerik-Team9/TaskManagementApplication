@@ -19,11 +19,10 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute() // Add check for ctor for Imember
         {
-            this.InstanceFactory.Writer.WriteLine(this.ListAllBoards());
-            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.ChooseBoardForWorkitem, "bug"));
+            this.Writer.WriteLine(this.ListAllBoards());
+            this.Writer.WriteLine(string.Format(CoreConstants.ChooseBoardForWorkitem, "bug"));
 
-            this.InstanceFactory.Writer.Write(string.Format(CoreConstants.EnterBoardNameToAddWorkitemTo, "bug"));
-            string boardName = this.InstanceFactory.Reader.Read();
+            string boardName = this.Reader.Read();
 
             if (!this.InstanceFactory.Database.Boards.Any(b => b.Name == boardName))
             {
@@ -34,13 +33,13 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 .Boards
                 .First(b => b.Name == boardName);
 
-            this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
+            this.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
 
             (string title, string description) = ParseBaseWorkItemParameters();
             (Priority priority, BugSeverity severity) = this.ParseEnums();
 
-            this.InstanceFactory.Writer.WriteLine("Please enter the steps to reproduce of the bug, splliting them by '-'.");
-            string stepsAsStr = this.InstanceFactory.Reader.Read();
+            this.Writer.WriteLine("Please enter the steps to reproduce of the bug, splliting them by '-'.");
+            string stepsAsStr = this.Reader.Read();
 
             List<string> steps = stepsAsStr
                 .Split("-", StringSplitOptions.RemoveEmptyEntries)
@@ -59,8 +58,8 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         private (Priority, BugSeverity) ParseEnums()
         {
             // Parse Priority
-            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
-            string priorityAsStr = this.InstanceFactory.Reader.Read();
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
+            string priorityAsStr = this.Reader.Read();
             Priority priority;
 
             if (string.IsNullOrWhiteSpace(priorityAsStr))
@@ -73,8 +72,8 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             }
 
             // Parse Severity
-            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Severity", "Critical/Major/Minor"));
-            string severityAsStr = this.InstanceFactory.Reader.Read();
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Severity", "Critical/Major/Minor"));
+            string severityAsStr = this.Reader.Read();
             BugSeverity severity;
 
             if (string.IsNullOrWhiteSpace(severityAsStr))

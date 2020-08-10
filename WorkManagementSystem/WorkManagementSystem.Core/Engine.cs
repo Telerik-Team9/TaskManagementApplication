@@ -22,7 +22,6 @@ namespace WorkManagementSystem.Core
 
         public IWriter Writer { get => this.InstanceFactory.Writer; }
 
-
         public void Run()
         {
             while (true)

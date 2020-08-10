@@ -16,13 +16,17 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
 
         protected IInstanceFactory InstanceFactory { get; }
 
+        public IReader Reader { get => this.InstanceFactory.Reader; }
+
+        public IWriter Writer { get => this.InstanceFactory.Writer; }
+
         protected (string, string) ParseBaseWorkItemParameters()
         {
-            this.InstanceFactory.Writer.Write("Title: ");
-            string title = this.InstanceFactory.Reader.Read();
+            this.Writer.Write("Title: ");
+            string title = this.Reader.Read();
 
-            this.InstanceFactory.Writer.Write("Description: ");
-            string description = this.InstanceFactory.Reader.Read();
+            this.Writer.Write("Description: ");
+            string description = this.Reader.Read();
 
             return (title, description);
         }
