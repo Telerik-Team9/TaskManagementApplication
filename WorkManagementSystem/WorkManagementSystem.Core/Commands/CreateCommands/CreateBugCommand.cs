@@ -33,12 +33,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
 
-            this.InstanceFactory.Writer.Write(CoreConstants.Title);
-            string title = this.InstanceFactory.Reader.Read();
-
-            this.InstanceFactory.Writer.Write(CoreConstants.Description);
-            string description = this.InstanceFactory.Reader.Read();
-
+            (string title, string description) = ParseBaseWorkItemParameters();
             (Priority priority, BugSeverity severity) = this.ParseEnums();
 
             this.InstanceFactory.Writer.WriteLine("Please enter the steps to reproduce of the bug, splliting them by '-'.");

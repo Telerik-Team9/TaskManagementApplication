@@ -16,6 +16,9 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
+
+            this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
+
             (string title, string description) = ParseBaseWorkItemParameters();
             (Priority priority, StorySize size, StoryStatus status) = ParseEnums();
 

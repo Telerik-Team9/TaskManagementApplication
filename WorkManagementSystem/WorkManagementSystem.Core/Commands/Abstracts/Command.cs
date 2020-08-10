@@ -15,8 +15,6 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
 
         protected (string, string) ParseBaseWorkItemParameters()
         {
-            this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
-
             this.InstanceFactory.Writer.Write("Title: ");
             string title = this.InstanceFactory.Reader.Read();
 
