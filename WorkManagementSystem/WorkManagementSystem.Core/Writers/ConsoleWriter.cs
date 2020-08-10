@@ -5,7 +5,7 @@ using WorkManagementSystem.Core.Contracts;
 
 namespace WorkManagementSystem.Core.Writers
 {
-    class ConsoleWriter : IWriter
+   public class ConsoleWriter : IWriter
     {
 
         private static ConsoleWriter instance = null;

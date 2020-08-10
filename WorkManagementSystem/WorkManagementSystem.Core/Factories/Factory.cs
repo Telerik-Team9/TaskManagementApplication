@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models;
@@ -37,9 +38,9 @@ namespace WorkManagementSystem.Core.Factories
             return new Bug(title, description);
         }
 
-        public IBug CreateBug(string title, string description, Priority priority, BugSeverity severity, BugStatus status)
+        public IBug CreateBug(string title, string description, Priority priority, BugSeverity severity, IList<string> stepsToReproduce)
         {
-            return new Bug(title, description, priority, severity, status);
+            return new Bug(title, description, priority, severity, stepsToReproduce);
         }
 
         public IBug CreateBug(string title, string description, Priority priority, BugSeverity severity, BugStatus status, IMember assignee)

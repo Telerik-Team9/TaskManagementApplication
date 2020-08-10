@@ -10,5 +10,7 @@ namespace WorkManagementSystem.Models.Contracts
         public string Name { get; }
         public IReadOnlyCollection<IMember> Members { get; }
         public IReadOnlyCollection<IBoard> Boards { get; }
+        public void AddBoard(IBoard board);
+        public void AddPerson(IMember person);
     }
 }

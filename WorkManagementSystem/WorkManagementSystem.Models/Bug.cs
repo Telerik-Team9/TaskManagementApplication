@@ -13,18 +13,19 @@ namespace WorkManagementSystem.Models
     {
         private IList<string> stepsToReproduce;
 
-        private Bug(string title, string description)
+        public Bug(string title, string description)
             : base(title, description)
         {
             this.stepsToReproduce = new List<string>();
         }
 
-        public Bug(string title, string description, Priority priority, BugSeverity severity, BugStatus status)
+        public Bug(string title, string description, Priority priority, BugSeverity severity, IList<string> stepsToReproduce)
             : this(title, description)
         {
             this.Priority = priority;
             this.Severity = severity;
-            this.Status = status; // default when creating - Active?
+            this.Status = BugStatus.Active;
+            this.stepsToReproduce = stepsToReproduce;
         }
 
         public Bug(string title, string description, Priority priority = Priority.High, BugSeverity severity = BugSeverity.Minor, BugStatus status = BugStatus.Active, IMember assignee = null)

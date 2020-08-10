@@ -1,4 +1,5 @@
-﻿using WorkManagementSystem.Models.Common.Enums;
+﻿using System.Collections.Generic;
+using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core.Contracts
@@ -14,7 +15,7 @@ namespace WorkManagementSystem.Core.Contracts
         //Bug constructor overloadings - parse enums from string?
         IBug CreateBug(string title, string description);
 
-        IBug CreateBug(string title, string description, Priority priority, BugSeverity severity, BugStatus status);
+        IBug CreateBug(string title, string description, Priority priority, BugSeverity severity, IList<string> stepsToReproduce);
 
         IBug CreateBug(string title, string description, Priority priority, BugSeverity severity, BugStatus status, IMember assignee);
         //Story constructor overloadings - parse enums from string?
