@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 
@@ -15,19 +16,21 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
-            this.InstanceFactory.Writer.WriteLine("Please enter member's name and press \"Enter\"");
+            this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterMemberDetails);
 
             string personName = this.InstanceFactory.Reader.Read();
 
             if (this.InstanceFactory.Database.Members.Any(m => m.Name == personName))
             {
-                throw new ArgumentException($"Member {personName} already exists.");
+                throw new ArgumentException(string.Format(CoreConstants.MemberAlreadyExistsExcMessage, personName));
             }
 
             IMember currentMember = this.InstanceFactory.ModelsFactory.CreatePerson(personName);
             this.InstanceFactory.Database.Members.Add(currentMember);
 
-            return $"Member {currentMember.Name} has been created.{Environment.NewLine}" + currentMember.PrintInfo();
+            return string.Format(CoreConstants.CreatedMember, personName)
+                + Environment.NewLine
+                + currentMember.PrintInfo();
         }
     }
 }

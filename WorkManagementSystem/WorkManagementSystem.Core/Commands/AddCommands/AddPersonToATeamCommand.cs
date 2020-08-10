@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 
@@ -18,17 +19,17 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
         {
             if (!this.InstanceFactory.Database.Teams.Any())
             {
-                throw new ArgumentException("There are currently no teams in the database.");
+                throw new ArgumentException(CoreConstants.NoTeamsInDatabaseExcMessage);
             }
 
-            this.InstanceFactory.Writer.Write("Please select a team to add a new person to: "); // show all teams// TODO TEST
-            this.InstanceFactory.Writer.WriteLine(this.ListAllTeams());
+            this.InstanceFactory.Writer.WriteLine(this.ListAllTeams()); // show all teams// TODO TEST
+            this.InstanceFactory.Writer.Write(CoreConstants.SelectTeamToAddPersonTo);
 
             string teamName = this.InstanceFactory.Reader.Read();
 
             if (!this.InstanceFactory.Database.Teams.Any(t => t.Name == teamName))
             {
-                throw new ArgumentException($"The team {teamName} does not exist.");
+                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
             }
 
             ITeam currentTeam = this.InstanceFactory.Database
@@ -38,12 +39,12 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
             if (!this.InstanceFactory.Database.Members.Any(p => p.Name == personName))
             {
-                throw new ArgumentException($"A person with name {personName} does not exist in the database.");
+                throw new ArgumentException(string.Format(CoreConstants.MemberDoesNotExistExcMessage, personName));
             }
 
             if (!currentTeam.Members.Any(p => p.Name == personName))
             {
-                throw new ArgumentException($"{personName} is already in {teamName} team.");
+                throw new ArgumentException(string.Format(CoreConstants.PersonIsAlreadyOnTheTeamExcMessage, personName, teamName));
             }
 
             IMember member = this.InstanceFactory.Database
@@ -52,7 +53,7 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
             currentTeam.AddPerson(member);
 
-            return $"{personName} has been added to {teamName} team.";
+            return string.Format(CoreConstants.PersonAddedToATeam, personName, teamName);
 
         }
         private string ListAllTeams()

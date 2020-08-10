@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 
@@ -19,29 +20,29 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             if (!this.InstanceFactory.Database.Teams.Any())
             {
-                throw new ArgumentException("There are currently no teams in the database.");
+                throw new ArgumentException(CoreConstants.NoTeamsInDatabaseExcMessage);
             }
 
-            this.InstanceFactory.Writer.Write("Please select a team to add a new board to: "); // show all teams// TODO TEST
+            this.InstanceFactory.Writer.Write(CoreConstants.SelectTeamToAddBoardTo); // show all teams// TODO TEST
             this.InstanceFactory.Writer.WriteLine(this.ListAllTeams());
 
             string teamName = this.InstanceFactory.Reader.Read();
 
             if (!this.InstanceFactory.Database.Teams.Any(t => t.Name == teamName))
             {
-                throw new ArgumentException($"The team {teamName} does not exist.");
+                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
             }
 
             ITeam currentTeam = this.InstanceFactory.Database
                 .Teams
                 .First(t => t.Name == teamName);
 
-            this.InstanceFactory.Writer.Write("Please enter board name:");
+            this.InstanceFactory.Writer.Write(CoreConstants.EnterBoardName);
             string boardName = this.InstanceFactory.Reader.Read();
 
             if (currentTeam.Boards.Any(b => b.Name == boardName))
             {
-                throw new ArgumentException($"A board with name {boardName} already exists in team {teamName}");
+                throw new ArgumentException(string.Format(CoreConstants.BoardAlreadyExistsExcMessage, boardName, teamName));
             }
 
             IBoard board = this.InstanceFactory.ModelsFactory.CreateBoard(boardName);
@@ -49,7 +50,9 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             this.InstanceFactory.Database.Boards.Add(board);
 
-            return $"A board with name '{boardName}' has been added to {teamName} team.";
+            return string.Format(CoreConstants.CreatedBoard, boardName, teamName)
+                + Environment.NewLine
+                + board.PrintInfo();
         }
 
         private string ListAllTeams()

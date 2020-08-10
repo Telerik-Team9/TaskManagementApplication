@@ -39,7 +39,7 @@ namespace WorkManagementSystem.Core
                 var result = this.Process(commandName);
                 this.Print(result);
 
-                Thread.Sleep(6000);
+                Thread.Sleep(3000);
                 this.InstanceFactory.Writer.Clear();
             }
         }
