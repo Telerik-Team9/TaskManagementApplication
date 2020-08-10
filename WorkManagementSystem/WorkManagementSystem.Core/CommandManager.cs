@@ -1,4 +1,5 @@
 ﻿using System;
+using WorkManagementSystem.Core.Commands.AddCommands;
 using WorkManagementSystem.Core.Commands.CreateCommands;
 using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Contracts;
@@ -11,14 +12,19 @@ namespace WorkManagementSystem.Core
         {
             return commandName.ToLower() switch
             {
-                 "createbug" => new CreateBugCommand(instanceFactory),
-                 "createfeedback" => new CreateFeedbackCommand(instanceFactory),
-                 "createperson" => new CreatePersonCommand(instanceFactory),
-                 "createstory" => new CreateStoryCommand(instanceFactory),
-                 "createteam" => new CreateTeamCommand(instanceFactory),
-                 
-                 "showallpeople" => new ShowAllPeopleCommand(instanceFactory),
-                 "showallteams" => new ShowAllTeamsCommand(instanceFactory),
+                "createboardinteam" => new CreateBoardInATeamCommand(instanceFactory),
+                "createbug" => new CreateBugCommand(instanceFactory),
+                "createfeedback" => new CreateFeedbackCommand(instanceFactory),
+                "createperson" => new CreatePersonCommand(instanceFactory),
+                "createstory" => new CreateStoryCommand(instanceFactory),
+                "createteam" => new CreateTeamCommand(instanceFactory),
+
+                "showallpeople" => new ShowAllPeopleCommand(instanceFactory),
+                "showallteams" => new ShowAllTeamsCommand(instanceFactory),
+                "showallteammembers" => new ShowAllTeamMembersCommand(instanceFactory),
+                "showallteamboards" => new ShowAllTeamBoardsCommand(instanceFactory),
+
+                "addpersontoteam" => new AddPersonToATeamCommand(instanceFactory),
 
                 _ => throw new InvalidOperationException("Command does not exist")
             };

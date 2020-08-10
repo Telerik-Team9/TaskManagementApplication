@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Models.Common
 {
@@ -95,5 +96,25 @@ namespace WorkManagementSystem.Models.Common
 
             return maxColumnsWidth;
         }
+
+/*        public static string DrawMemberTable(IEnumerable<IMember> members)
+        {
+            //string allWorkitems = string.Join("; ", members.ToList()
+            var workitemNames = new List<string>();
+
+            foreach (var name in workitemNames)
+            {
+
+            }
+
+
+
+
+            string memberTable = members.ToStringTable(
+              new[] { "Name", "WorkItems", "Activity" },
+              m => m.Name, m => string.Join("; ", m.WorkItems.ToList()));
+
+            return "";
+        }*/
     }
 }

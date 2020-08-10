@@ -23,7 +23,7 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
             }
 
             this.Writer.WriteLine(this.ListAllTeams()); // show all teams// TODO TEST
-            this.Writer.Write(CoreConstants.SelectTeamToAddPersonTo);
+            this.Writer.WriteLine(CoreConstants.SelectTeamToAddPersonTo);
 
             string teamName = this.Reader.Read();
 
@@ -42,7 +42,8 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
                 throw new ArgumentException(string.Format(CoreConstants.MemberDoesNotExistExcMessage, personName));
             }
 
-            if (!currentTeam.Members.Any(p => p.Name == personName))
+            // Check / debug
+            if (currentTeam.Members.Any(p => p.Name == personName))
             {
                 throw new ArgumentException(string.Format(CoreConstants.PersonIsAlreadyOnTheTeamExcMessage, personName, teamName));
             }
