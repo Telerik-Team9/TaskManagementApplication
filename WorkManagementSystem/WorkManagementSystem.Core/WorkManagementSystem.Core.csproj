@@ -9,4 +9,8 @@
     <ProjectReference Include="..\WorkManagementSystem.Models\WorkManagementSystem.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Commands\ListCommands\" />
+  </ItemGroup>
+
 </Project>

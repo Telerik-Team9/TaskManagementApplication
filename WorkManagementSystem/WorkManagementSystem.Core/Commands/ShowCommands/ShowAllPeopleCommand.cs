@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.ShowCommands
 {
@@ -25,8 +26,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 
             foreach (var person in this.InstanceFactory.Database.Members)
             {
-                sb.AppendLine(person.PrintInfo());
-                sb.AppendLine(Environment.NewLine);
+                sb.AppendLine(person.PrintInfo() + NewLine);
             }
 
             return sb.ToString().TrimEnd();

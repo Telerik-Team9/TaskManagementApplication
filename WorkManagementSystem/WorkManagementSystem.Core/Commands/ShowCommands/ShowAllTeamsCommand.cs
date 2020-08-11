@@ -4,6 +4,7 @@ using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.ShowCommands
 {
@@ -18,15 +19,14 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
         {
             if (!this.InstanceFactory.Database.Teams.Any())
             {
-                throw new ArgumentException(CoreConstants.NoTeamsInDatabaseExcMessage);
+                throw new ArgumentException("There are no teams.");
             }
 
             StringBuilder sb = new StringBuilder();
 
             foreach (var team in this.InstanceFactory.Database.Teams)
             {
-                // sb.AppendLine(t.Name);
-                sb.AppendLine(team.PrintInfo());
+                sb.AppendLine(team.PrintInfo() + NewLine);
             }
 
             return sb.ToString().TrimEnd();

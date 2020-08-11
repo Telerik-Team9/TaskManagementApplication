@@ -12,7 +12,7 @@ namespace WorkManagementSystem.Core
         {
             return commandName.ToLower() switch
             {
-                "createboardinteam" => new CreateBoardInATeamCommand(instanceFactory),
+                "createboardinteam" => new CreateBoardInTeamCommand(instanceFactory),
                 "createbug" => new CreateBugCommand(instanceFactory),
                 "createfeedback" => new CreateFeedbackCommand(instanceFactory),
                 "createperson" => new CreatePersonCommand(instanceFactory),
@@ -24,7 +24,7 @@ namespace WorkManagementSystem.Core
                 "showallteammembers" => new ShowAllTeamMembersCommand(instanceFactory),
                 "showallteamboards" => new ShowAllTeamBoardsCommand(instanceFactory),
 
-                "addpersontoteam" => new AddPersonToATeamCommand(instanceFactory),
+                "addpersontoteam" => new AddPersonToTeamCommand(instanceFactory),
 
                 _ => throw new InvalidOperationException("Command does not exist")
             };

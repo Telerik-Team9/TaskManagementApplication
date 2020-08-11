@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
@@ -19,8 +21,21 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute() // Add check for ctor for Imember
         {
-            this.Writer.WriteLine(this.ListAllBoards());
-            this.Writer.WriteLine(string.Format(CoreConstants.ChooseBoardForWorkitem, "bug"));
+            IBoard currBoard = ChooseBoard();
+            return CreateBugInBoard(currBoard);
+        }
+
+        private IBoard ChooseBoard()
+        {
+            if (!this.InstanceFactory.Database.Boards.Any())
+            {
+                throw new ArgumentException("There are no boards.");
+            }
+
+            var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
+            this.Writer.WriteLine(showAllTeamsCommand.Execute());
+
+            this.Writer.WriteLine(NewLine + string.Format(CoreConstants.ChooseBoardForWorkitem, "bug"));
 
             string boardName = this.Reader.Read();
 
@@ -29,10 +44,15 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new ArgumentException(string.Format(CoreConstants.BoardDoesNotExistInTheDatabase, boardName));
             }
 
-            IBoard board = this.InstanceFactory.Database
+            IBoard currBoard = this.InstanceFactory.Database
                 .Boards
                 .First(b => b.Name == boardName);
 
+            return currBoard;
+        }
+
+        private string CreateBugInBoard(IBoard currBoard)
+        {
             this.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
 
             (string title, string description) = ParseBaseWorkItemParameters();
@@ -45,16 +65,16 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 .Split("-", StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
 
-            IBug currentBug = this.InstanceFactory.ModelsFactory.CreateBug(title, description, priority, severity, steps);
+            IBug currtBug = this.InstanceFactory.ModelsFactory.CreateBug(title, description, priority, severity, steps);
 
-            board.AddWorkItem(currentBug);
+            currBoard.AddWorkItem(currtBug);
 
-            this.InstanceFactory.Database.Bugs.Add(currentBug);
+            this.InstanceFactory.Database.Bugs.Add(currtBug);
 
-            return string.Format(CoreConstants.CreatedWorkItem, "Bug")
-                + Environment.NewLine
-                + currentBug.PrintInfo();
+            return string.Format(CoreConstants.CreatedWorkItem, "Bug", currtBug.Title) + NewLine
+                + currtBug.PrintInfo();
         }
+
         private (Priority, BugSeverity) ParseEnums()
         {
             // Parse Priority
