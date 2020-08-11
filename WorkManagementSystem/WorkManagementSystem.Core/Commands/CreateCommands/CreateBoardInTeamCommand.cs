@@ -26,7 +26,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         private ITeam ChooseTeam()
         {
             var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
-            this.Writer.Write(showAllTeamsCommand.Execute());
+            this.Writer.WriteLine(showAllTeamsCommand.Execute());
 
             this.Writer.WriteLine("Please enter the team's name to add the board to.");
             string teamName = this.Reader.Read();

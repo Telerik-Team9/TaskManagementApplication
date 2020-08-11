@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Common.Enums;
+using WorkManagementSystem.Models.Contracts;
 using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.CreateCommands
@@ -16,20 +19,68 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         public override string Execute()
         {
-            this.InstanceFactory.Writer.WriteLine(this.ListAllBoards());
-            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.ChooseBoardForWorkitem, "story"));
+            IBoard currBoard = ChooseBoard();
+            return CreateStoryInBoard(currBoard);
+        }
 
-            this.InstanceFactory.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
+        private IBoard ChooseBoard()
+        {
+            if (!this.InstanceFactory.Database.Boards.Any())
+            {
+                throw new ArgumentException("There are no boards.");
+            }
 
+            var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
+            this.Writer.WriteLine(showAllTeamsCommand.Execute());
+
+            //list teams
+
+            this.Writer.WriteLine("Please select a team from the list above.");
+            string teamName = this.Reader.Read();
+
+            if (!this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
+            {
+                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
+            }
+            //extract team
+            ITeam currTeam = this.InstanceFactory.Database
+                .Teams
+                .First(t => t.Name == teamName);
+
+            this.Writer.WriteLine(NewLine + string.Format(CoreConstants.ChooseBoardForWorkitem, "story"));
+
+            string boardName = this.Reader.Read();
+
+            if (!this.InstanceFactory.Database.Boards.Any(b => b.Name == boardName))
+            {
+                throw new ArgumentException(string.Format(CoreConstants.BoardDoesNotExistInTheDatabase, boardName));
+            }
+
+            //return board in a team
+
+            IBoard teamBoard = currTeam
+                .Boards
+                .FirstOrDefault(b => b.Name == boardName);
+
+            return teamBoard;
+        }
+
+        private string CreateStoryInBoard(IBoard currBoard)
+        {
             (string title, string description) = ParseBaseWorkItemParameters();
             (Priority priority, StorySize size, StoryStatus status) = ParseEnums();
 
-            var currStory = this.InstanceFactory.ModelsFactory.CreateStory(title, description, priority, size, status);
+
+            IStory currStory = this.InstanceFactory.ModelsFactory.CreateStory(title, description, priority, size, status);
 
             this.InstanceFactory.Database.Stories.Add(currStory);
+            currBoard.AddWorkItem(currStory);
 
-            return string.Format(CoreConstants.CreatedWorkItem, "Story", currStory.Title)
-                + NewLine + currStory.PrintInfo();
+            string activity = string.Format(CoreConstants.CreatedWorkItem, "Story", currStory.Title);
+            currStory.AddHistory(activity);
+
+            return activity + NewLine
+                + currStory.PrintInfo();
         }
 
         private (Priority, StorySize, StoryStatus) ParseEnums()

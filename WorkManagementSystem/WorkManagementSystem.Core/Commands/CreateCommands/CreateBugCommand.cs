@@ -35,6 +35,20 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
             this.Writer.WriteLine(showAllTeamsCommand.Execute());
 
+            //list teams
+
+            this.Writer.WriteLine("Please select a team from the list above.");
+            string teamName = this.Reader.Read();
+
+            if (!this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
+            {
+                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
+            }
+            //extract team
+            ITeam currTeam = this.InstanceFactory.Database
+                .Teams
+                .First(t => t.Name == teamName);
+
             this.Writer.WriteLine(NewLine + string.Format(CoreConstants.ChooseBoardForWorkitem, "bug"));
 
             string boardName = this.Reader.Read();
@@ -44,17 +58,17 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new ArgumentException(string.Format(CoreConstants.BoardDoesNotExistInTheDatabase, boardName));
             }
 
-            IBoard currBoard = this.InstanceFactory.Database
-                .Boards
-                .First(b => b.Name == boardName);
+            //return board in a team
 
-            return currBoard;
+            IBoard teamBoard = currTeam
+                .Boards
+                .FirstOrDefault(b => b.Name == boardName);
+
+            return teamBoard;
         }
 
         private string CreateBugInBoard(IBoard currBoard)
         {
-            this.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
-
             (string title, string description) = ParseBaseWorkItemParameters();
             (Priority priority, BugSeverity severity) = this.ParseEnums();
 
@@ -67,11 +81,13 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             IBug currtBug = this.InstanceFactory.ModelsFactory.CreateBug(title, description, priority, severity, steps);
 
+            this.InstanceFactory.Database.Bugs.Add(currtBug);
             currBoard.AddWorkItem(currtBug);
 
-            this.InstanceFactory.Database.Bugs.Add(currtBug);
+            string activity = string.Format(CoreConstants.CreatedWorkItem, "Bug", currtBug.Title);
+            currtBug.AddHistory(activity);
 
-            return string.Format(CoreConstants.CreatedWorkItem, "Bug", currtBug.Title) + NewLine
+            return activity + NewLine
                 + currtBug.PrintInfo();
         }
 

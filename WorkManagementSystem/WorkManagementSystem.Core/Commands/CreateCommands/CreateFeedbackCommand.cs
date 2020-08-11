@@ -24,22 +24,6 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             IBoard currBoard = ChooseBoard();
             return CreateFeedbackInBoard(currBoard);
 
-            /*//List all boards
-            this.Writer.WriteLine(this.ListAllBoards());
-            this.Writer.WriteLine(string.Format(CoreConstants.ChooseBoardForWorkitem, "feedback"));
-
-            string boardName = this.Reader.Read();
-
-            if (!this.InstanceFactory.Database.Boards.Any(b => b.Name == boardName))
-            {
-                throw new ArgumentException(string.Format(CoreConstants.BoardDoesNotExistInTheDatabase, boardName));
-            }
-
-            IBoard board = this.InstanceFactory.Database
-                .Boards
-                .First(b => b.Name == boardName);*/
-
-
         }
 
         private IBoard ChooseBoard()
@@ -51,8 +35,22 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
             this.Writer.WriteLine(showAllTeamsCommand.Execute());
+            //list teams
 
-            this.Writer.WriteLine(NewLine + string.Format(CoreConstants.ChooseBoardForWorkitem, "bug"));
+            this.Writer.WriteLine("Please select a team from the list above.");
+            string teamName = this.Reader.Read();
+
+            if (!this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
+            {
+                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
+            }
+            //extract team
+            ITeam currTeam = this.InstanceFactory.Database
+                .Teams
+                .First(t => t.Name == teamName);
+
+
+            this.Writer.WriteLine(NewLine + string.Format(CoreConstants.ChooseBoardForWorkitem, "feedback"));
 
             string boardName = this.Reader.Read();
 
@@ -61,17 +59,17 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new ArgumentException(string.Format(CoreConstants.BoardDoesNotExistInTheDatabase, boardName));
             }
 
-            IBoard currBoard = this.InstanceFactory.Database
-                .Boards
-                .First(b => b.Name == boardName);
+            //return board in a team
 
-            return currBoard;
+            IBoard teamBoard = currTeam
+                .Boards
+                .FirstOrDefault(b => b.Name == boardName);
+            
+            return teamBoard;
         }
 
         private string CreateFeedbackInBoard(IBoard currBoard)
         {
-            this.Writer.WriteLine(CoreConstants.EnterFollowingParameters);
-
             (string title, string description) = ParseBaseWorkItemParameters();
 
             this.Writer.Write(CoreConstants.Rating);
@@ -80,11 +78,14 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             IFeedback currFeedback = this.InstanceFactory.ModelsFactory.CreateFeedback(title, description, rating, status);
 
+            this.InstanceFactory.Database.Feedbacks.Add(currFeedback);
             currBoard.AddWorkItem(currFeedback);
 
-            this.InstanceFactory.Database.Feedbacks.Add(currFeedback);
 
-            return string.Format(CoreConstants.CreatedWorkItem, "Feedback", title) + NewLine
+            string activity = string.Format(CoreConstants.CreatedWorkItem, "Feedback", currFeedback.Title);
+            currFeedback.AddHistory(activity);
+
+            return activity + NewLine
                 + currFeedback.PrintInfo();
         }
 

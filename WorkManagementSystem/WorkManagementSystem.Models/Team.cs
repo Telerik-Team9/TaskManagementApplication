@@ -87,6 +87,7 @@ namespace WorkManagementSystem.Models
                 sb.AppendLine(string.Join(NewLine, this.Boards.Select(x => " -" + x.Name)));
             }
 
+            sb.AppendLine("========================================================");
             return sb.ToString().TrimEnd();
         }
 

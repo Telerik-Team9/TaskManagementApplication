@@ -6,6 +6,7 @@ using System.Text;
 using WorkManagementSystem.Models.Abstracts;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Models
 {
@@ -49,7 +50,9 @@ namespace WorkManagementSystem.Models
 
             sb.AppendLine($"Priority: { this.Priority}")
                 .AppendLine($"Severity: {this.Severity}")
-                .AppendLine($"Status: {this.Status}");
+                .AppendLine($"Status: {this.Status}")
+                .AppendLine($"Steps to reproduce: ")
+                .AppendLine(string.Join($"{NewLine}", this.StepsToReproduce));
 
             // Append Assignee
             if (this.Assignee != null)

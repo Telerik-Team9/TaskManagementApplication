@@ -85,17 +85,20 @@ namespace WorkManagementSystem.Core.Common
 
         public static string allCommands =
             "Create commands:" + NewLine +
-            " createperson" + NewLine +
-            " createteam" + NewLine +
-            " createboardinateam" + NewLine +
-            " createbug" + NewLine +
-            " createfeedback" + NewLine +
-            " createstory" + NewLine +
+            "  createperson" + NewLine +
+            "  createteam" + NewLine +
+            "  createboardinteam" + NewLine +
+            "  createbug" + NewLine +
+            "  createfeedback" + NewLine +
+            "  createstory" + NewLine +
             "Show commands:" + NewLine +
-            " showallpeople" + NewLine +
-            " showallteams" + NewLine +
+            "  showallpeople" + NewLine +
+            "  showallteamboards" + NewLine +
+            "  showallteammember" + NewLine +
+            "  showallteams" + NewLine +
             "Add commands:" + NewLine +
-            " addpersontoateam" + NewLine +
+            "  addcommenttoworkitem" + NewLine +
+            "  addpersontoteam" + NewLine +
             "-----------------------------------------------------" + NewLine;
 
 

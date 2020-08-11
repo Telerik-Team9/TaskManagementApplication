@@ -25,12 +25,10 @@ namespace WorkManagementSystem.Models.Abstracts
             this.comments = new List<IComment>();
             this.historyLog = new List<string>();
 
-            // this.Id = Guid.NewGuid();
             this.Id = counter++;
         }
 
         public int Id { get; }
-        //   public Guid Id { get; }
 
         public string Title
         {
@@ -128,7 +126,7 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 sb.AppendLine(" -No history is present yet.");
             }
-
+            sb.AppendLine("========================================================");
             return sb.ToString().TrimEnd();
         }
 
@@ -144,18 +142,15 @@ namespace WorkManagementSystem.Models.Abstracts
         /// <returns>The type of the WorkItem.</returns>
         public abstract string GetWorkItemType();
 
-
-
-
         // TODO: Remove AddComents and AddHistory!!! later
         public void AddComments(List<IComment> comments)
         {
             this.comments = comments;
         }
 
-        public void AddHistory(List<string> sr)
+        public void AddHistory(string activity)
         {
-            this.historyLog = sr;
+            this.historyLog.Add(activity);
         }
 
     }

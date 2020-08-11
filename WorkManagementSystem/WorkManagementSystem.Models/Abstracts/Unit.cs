@@ -99,6 +99,7 @@ namespace WorkManagementSystem.Models.Abstracts
                 sb.AppendLine(" -No history is present yet.");
             }
 
+            sb.AppendLine("========================================================");
             return sb.ToString().TrimEnd();
         }
 
@@ -110,7 +111,7 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 if (!(char.IsLetter(ch) || char.IsWhiteSpace(ch)))
                 {
-                    throw new ArgumentException(GlobalConstants.InvalidUnitName, "member");
+                    throw new ArgumentException(string.Format(GlobalConstants.InvalidUnitName, this.GetType().Name));
                 }
             }
         }

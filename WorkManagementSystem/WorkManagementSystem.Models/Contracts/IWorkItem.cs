@@ -7,7 +7,6 @@ namespace WorkManagementSystem.Models.Contracts
 {
     public interface IWorkItem : IPrintable
     {
-       // public Guid Id { get; }
         public int Id { get; }
 
         public string Title { get; }
@@ -17,6 +16,8 @@ namespace WorkManagementSystem.Models.Contracts
         public IReadOnlyCollection<IComment> Comments { get; }
 
         public IReadOnlyCollection<string> HistoryLog { get; } //ActivityHistory instead of string?
+
+        public void AddHistory(string activity);
 
         public string GetWorkItemType();
     }

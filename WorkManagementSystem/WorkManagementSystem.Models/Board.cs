@@ -30,8 +30,6 @@ namespace WorkManagementSystem.Models
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "name", 5, 10));
                 }
 
-                ValidateForSpecialChars(value);
-
                 base.Name = value;
             }
         }
