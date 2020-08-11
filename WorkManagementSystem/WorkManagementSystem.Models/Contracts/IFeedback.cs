@@ -8,5 +8,9 @@ namespace WorkManagementSystem.Models.Contracts
         int Rating { get; }
 
         public FeedbackStatus FeedbackStatus { get; }
+
+        public void ChangeRating(int rating);
+
+        public void ChangeStatus(FeedbackStatus status);
     }
 }

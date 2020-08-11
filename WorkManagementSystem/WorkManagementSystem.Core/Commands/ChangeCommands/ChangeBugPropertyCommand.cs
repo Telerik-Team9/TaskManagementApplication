@@ -45,6 +45,11 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
                 bug.ChangeStatus(status);
             }
 
+            else
+            {
+                throw new ArgumentException("Invalid value entered.");
+            }
+
             return $"Bug {propertyToChange} set to {newValue}";
         }
 

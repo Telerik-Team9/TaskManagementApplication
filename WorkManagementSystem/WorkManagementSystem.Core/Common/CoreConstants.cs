@@ -101,6 +101,7 @@ namespace WorkManagementSystem.Core.Common
             "  addpersontoteam" + NewLine +
             "Change commands:" + NewLine +
             "  changebugproperty" + NewLine +
+            "  changefeedbackproperty" + NewLine +
             "-----------------------------------------------------" + NewLine;
 
 

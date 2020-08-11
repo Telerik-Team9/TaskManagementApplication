@@ -42,12 +42,36 @@ namespace WorkManagementSystem.Models
             return "Feedback";
         }
 
-        public FeedbackStatus FeedbackStatus { get; }
+        public FeedbackStatus FeedbackStatus { get; private set; }
 
         protected override string AdditionalInfo()
         {
             return $"Rating: {this.Rating}{NewLine}" +
                 $"Status: {this.FeedbackStatus}";
+        }
+
+        public void ChangeRating(int newRating)
+        {
+            if (this.Rating == newRating)
+            {
+                throw new ArgumentException($"Rating is already {this.Rating}");
+            }
+
+            int oldRating = this.Rating;
+            this.Rating = newRating;
+            this.historyLog.Add($"Rating changed from {oldRating} to {newRating}.");
+        }
+
+        public void ChangeStatus(FeedbackStatus newStatus)
+        {
+            if (this.FeedbackStatus == newStatus)
+            {
+                throw new ArgumentException($"Status is already {this.FeedbackStatus}");
+            }
+
+            FeedbackStatus oldStatus = this.FeedbackStatus;
+            this.FeedbackStatus = newStatus;
+            this.historyLog.Add($"Rating changed from {oldStatus} to {newStatus}.");
         }
     }
 }
