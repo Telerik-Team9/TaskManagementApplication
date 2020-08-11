@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +16,12 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute()    
         {
-            /*this.Writer.WriteLine(this.ListAllWorkItems()); // TODO: Rewrite, so that it uses listclasses
+            IWorkItem currWorkItem = ChooseWorkItem();
+            return AddCommentToWorkItem(currWorkItem);
+
+            *//*this.Writer.WriteLine(this.ListAllWorkItems()); // TODO: Rewrite, so that it uses listclasses
 
             this.Writer.WriteLine("Do you wish to add a comment to a Bug, Story or Feedback?");
             string workitemType = this.Reader.Read();
@@ -70,48 +73,98 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
             currentTeam.AddPerson(member);
 
-            return string.Format(CoreConstants.PersonAddedToATeam, personName, teamName);*/
+            return string.Format(CoreConstants.PersonAddedToATeam, personName, teamName);*//*
             throw new NotImplementedException();
 
         }
 
-/*        private string ListAllWorkItems()
+        private IWorkItem ChooseWorkItem()
         {
-            StringBuilder sb = new StringBuilder();
+            *//*var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
+            this.Writer.WriteLine(showAllTeamsCommand.Execute());
 
-            sb.AppendLine("Bugs: ");
-            foreach (var t in this.InstanceFactory.Database.Bugs)
+            this.Writer.WriteLine("Please enter the team's name to add the person to.");
+            string teamName = this.Reader.Read();
+
+            if (!this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
             {
-                sb.AppendLine(t.Title);
+                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
             }
 
-            sb.AppendLine("Feedbacks: ");
-            foreach (var t in this.InstanceFactory.Database.Feedbacks)
-            {
-                sb.AppendLine(t.Title);
-            }
+            ITeam currTeam = this.InstanceFactory.Database
+                .Teams
+                .First(t => t.Name == teamName);
 
-            sb.AppendLine("Stories: ");
-            foreach (var t in this.InstanceFactory.Database.Stories)
-            {
-                sb.AppendLine(t.Title);
-            }
+            return currTeam;*//*
+        }
 
-            return sb.ToString().TrimEnd();
-        }*/
-
-/*        private string AddCommentToBug()
+        private string AddCommentToWorkItem(IWorkItem currWorkItem)
         {
-            if (!this.InstanceFactory.Database.Bugs.Any())
+            *//*this.Writer.WriteLine(string.Format("Please enter person's name:"));
+            string personName = this.Reader.Read();
+
+            if (!this.InstanceFactory.Database.Members.Any(p => p.Name == personName))
             {
-                throw new ArgumentException("There are no bugs to add a comment to.");
+                throw new ArgumentException(string.Format(CoreConstants.MemberDoesNotExistExcMessage, personName));
             }
 
-            this.Writer.WriteLine("Enter the Bug's title, to which you wish to add a comment: "); // TODO: Rewrite, so that it uses listclasses
-            string bugTitle = this.Reader.Read();
+            // Check / debug
+            if (currTeam.Members.Any(p => p.Name == personName))
+            {
+                throw new ArgumentException(string.Format(CoreConstants.PersonIsAlreadyOnTheTeamExcMessage, personName, currTeam.Name));
+            }
+
+            IMember member = this.InstanceFactory.Database.Members
+                .First(p => p.Name == personName);
+
+            currTeam.AddPerson(member);
+
+            return string.Format(CoreConstants.PersonAddedToATeam, personName, currTeam.Name);*//*
+        }
 
 
 
-        }*/
+
+
+
+        *//*        private string ListAllWorkItems()
+                {
+                    StringBuilder sb = new StringBuilder();
+
+                    sb.AppendLine("Bugs: ");
+                    foreach (var t in this.InstanceFactory.Database.Bugs)
+                    {
+                        sb.AppendLine(t.Title);
+                    }
+
+                    sb.AppendLine("Feedbacks: ");
+                    foreach (var t in this.InstanceFactory.Database.Feedbacks)
+                    {
+                        sb.AppendLine(t.Title);
+                    }
+
+                    sb.AppendLine("Stories: ");
+                    foreach (var t in this.InstanceFactory.Database.Stories)
+                    {
+                        sb.AppendLine(t.Title);
+                    }
+
+                    return sb.ToString().TrimEnd();
+                }*/
+
+        /*        private string AddCommentToBug()
+                {
+                    if (!this.InstanceFactory.Database.Bugs.Any())
+                    {
+                        throw new ArgumentException("There are no bugs to add a comment to.");
+                    }
+
+                    this.Writer.WriteLine("Enter the Bug's title, to which you wish to add a comment: "); // TODO: Rewrite, so that it uses listclasses
+                    string bugTitle = this.Reader.Read();
+
+
+
+                }*//*
     }
 }
+*/
