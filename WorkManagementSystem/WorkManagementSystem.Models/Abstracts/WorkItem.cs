@@ -15,8 +15,8 @@ namespace WorkManagementSystem.Models.Abstracts
         private string description;
         protected static int counter = 0;
 
-        private IList<IComment> comments;
-        private IList<string> historyLog;
+        protected IList<IComment> comments;
+        protected IList<string> historyLog;
 
         protected WorkItem(string title, string description)
         {

@@ -14,5 +14,11 @@ namespace WorkManagementSystem.Models.Contracts
         public BugStatus Status { get; }
 
         public IMember Assignee { get; }
+
+        public void ChangePriority(Priority newPriority);
+
+        public void ChangeSeverity(BugSeverity newSeverity);
+
+        public void ChangeStatus(BugStatus newStatus);
     }
 }

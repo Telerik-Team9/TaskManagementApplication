@@ -39,6 +39,45 @@ namespace WorkManagementSystem.Models
 
         public IMember Assignee { get; private set; }
 
+        public void ChangePriority(Priority newPriority)
+        {
+            if (this.Priority == newPriority)
+            {
+                throw new ArgumentException($"Priority is already on {this.Priority}.");
+            }
+
+            Priority oldPriority = this.Priority;
+            this.Priority = newPriority;
+
+            this.historyLog.Add($"Priority changed from {oldPriority} to {newPriority}.");
+        }
+
+        public void ChangeSeverity(BugSeverity newSeverity)
+        {
+            if (this.Severity == newSeverity)
+            {
+                throw new ArgumentException($"Severity is already on {this.Severity}.");
+            }
+
+            BugSeverity oldSeverity = this.Severity;
+            this.Severity = newSeverity;
+
+            this.historyLog.Add($"Severity changed from {oldSeverity} to {newSeverity}.");
+        }
+
+        public void ChangeStatus(BugStatus newStatus)
+        {
+            if (this.Status == newStatus)
+            {
+                throw new ArgumentException($"Status is already on {this.Status}.");
+            }
+
+            BugStatus oldStatus = this.Status;
+            this.Status = newStatus;
+
+            this.historyLog.Add($"Status changed from {oldStatus} to {newStatus}.");
+        }
+
         public override string GetWorkItemType()
         {
             return "Bug";

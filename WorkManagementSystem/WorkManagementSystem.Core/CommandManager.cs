@@ -1,5 +1,6 @@
 ﻿using System;
 using WorkManagementSystem.Core.Commands.AddCommands;
+using WorkManagementSystem.Core.Commands.ChangeCommands;
 using WorkManagementSystem.Core.Commands.CreateCommands;
 using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Contracts;
@@ -25,6 +26,8 @@ namespace WorkManagementSystem.Core
                 "showallteamboards" => new ShowAllTeamBoardsCommand(instanceFactory),
 
                 "addpersontoteam" => new AddPersonToTeamCommand(instanceFactory),
+
+                "changebugproperty" => new ChangeBugPropertyCommand(instanceFactory),
 
                 _ => throw new InvalidOperationException("Command does not exist")
             };

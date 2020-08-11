@@ -99,6 +99,8 @@ namespace WorkManagementSystem.Core.Common
             "Add commands:" + NewLine +
             "  addcommenttoworkitem" + NewLine +
             "  addpersontoteam" + NewLine +
+            "Change commands:" + NewLine +
+            "  changebugproperty" + NewLine +
             "-----------------------------------------------------" + NewLine;
 
 
