@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using WorkManagementSystem.Core.Contracts;
+using WorkManagementSystem.Models.Abstracts;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core
@@ -77,6 +78,28 @@ namespace WorkManagementSystem.Core
             {
                 return this.feedbacks;
             }
+        }
+
+        public IList<IWorkItem> ListAllWorkitems()
+        {
+            IList<IWorkItem> workItems = new List<IWorkItem>();
+
+            foreach (var bug in this.Bugs)
+            {
+                workItems.Add(bug);
+            }
+
+            foreach (var story in this.Stories)
+            {
+                workItems.Add(story);
+            }
+
+            foreach (var feedback in this.Feedbacks)
+            {
+                workItems.Add(feedback);
+            }
+
+            return workItems;
         }
     }
 }

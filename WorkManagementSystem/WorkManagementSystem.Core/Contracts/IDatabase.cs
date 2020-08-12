@@ -17,5 +17,7 @@ namespace WorkManagementSystem.Core.Contracts
         public IList<IStory> Stories { get; }
 
         public IList<IFeedback> Feedbacks { get; }
+
+        public IList<IWorkItem> ListAllWorkitems();
     }
 }

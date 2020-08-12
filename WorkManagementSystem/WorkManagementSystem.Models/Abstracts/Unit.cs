@@ -76,6 +76,18 @@ namespace WorkManagementSystem.Models.Abstracts
             this.activityHistory.Add(new ActivityHistory($"WorkItem with title {newWorkItem.Title} added."));
         }
 
+        public void RemoveWorkitem(IWorkItem newWorkItem)
+        {
+            if (!this.WorkItems.Contains(newWorkItem))
+            {
+                throw new ArgumentException("This workitem does not exist.");
+            }
+
+            this.workItems.Remove(newWorkItem);
+
+            this.activityHistory.Add(new ActivityHistory($"WorkItem with title {newWorkItem.Title} removed."));
+        }
+
         public void AddActivityLog(string activity)
         {
             this.activityHistory.Add(new ActivityHistory(activity));

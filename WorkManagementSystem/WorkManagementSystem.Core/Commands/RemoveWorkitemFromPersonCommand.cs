@@ -6,27 +6,26 @@ using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 
-namespace WorkManagementSystem.Core.Commands.AddCommands
+namespace WorkManagementSystem.Core.Commands
 {
-    public class AddWorkItemToPersonCommand : Command
+    public class RemoveWorkitemFromPersonCommand : Command
     {
-        public AddWorkItemToPersonCommand(IInstanceFactory instanceFactory)
-            : base(instanceFactory)
+        public RemoveWorkitemFromPersonCommand(IInstanceFactory instanceFactory) : base(instanceFactory)
         {
         }
 
         public override string Execute()
         {
-            IMember currPerson = ChoosePerson();
-            return AddWorkItemToPerson(currPerson);
-        }
+            IMember member = this.ChoosePerson();
+            return this.RemoveWorkitemFromPerson(member);
 
+        }
         private IMember ChoosePerson()
         {
             var showAllPeopleCommand = new ShowAllPeopleCommand(this.InstanceFactory);
             this.Writer.WriteLine(showAllPeopleCommand.Execute());
 
-            this.Writer.WriteLine("Please enter the person's name you wish to assign a workitem to.");
+            this.Writer.WriteLine("Please enter the person's name you wish to unassign a workitem from.");
             string personName = this.Reader.Read();
 
             if (!this.InstanceFactory.Database.Members.Any(person => person.Name == personName))
@@ -41,7 +40,7 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
             return currPerson;
         }
 
-        private string AddWorkItemToPerson(IMember currPerson)
+        private string RemoveWorkitemFromPerson(IMember currPerson)
         {
             // TODO - not working - fix it!
             /* var workitems = new List<IWorkItem>();
@@ -49,12 +48,12 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
                  .Concat(this.InstanceFactory.Database.Feedbacks)
                  .Concat(this.InstanceFactory.Database.Stories);*/
 
-
             IList<IWorkItem> workItems = this.InstanceFactory
                 .Database
                 .ListAllWorkitems();
 
             //lisr all workitems
+
 
             foreach (var item in workItems)
             {
@@ -62,20 +61,21 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
             }
 
             this.Writer.Write(string.Format("Enter workitem's id: "));
-            int workItemId = Convert.ToInt32(this.Reader.Read());
+            int workItemId = int.Parse(this.Reader.Read());
 
             if (!workItems.Any(workitem => workitem.Id == workItemId))
             {
-                throw new ArgumentException("No workitem with this id");
+                throw new ArgumentException($"No workitem with id {workItemId}");
             }
 
             IWorkItem currWorkItem = workItems
                 .First(workitem => workitem.Id == workItemId);
 
-            currPerson.AddWorkItem(currWorkItem);
-            currWorkItem.AddHistory($"Assigned to {currPerson.Name}");
+            currPerson.RemoveWorkitem(currWorkItem);
+            currWorkItem.AddHistory($"Unassigned from {currPerson.Name}");
 
-            return $"WorkItem {currWorkItem.Title} assigned to {currPerson.Name}.";
+
+            return $"WorkItem {currWorkItem.Title} unassigned from {currPerson.Name}.";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using WorkManagementSystem.Core.Commands;
 using WorkManagementSystem.Core.Commands.AddCommands;
 using WorkManagementSystem.Core.Commands.ChangeCommands;
 using WorkManagementSystem.Core.Commands.CreateCommands;
@@ -27,6 +28,8 @@ namespace WorkManagementSystem.Core
 
                 "addpersontoteam" => new AddPersonToTeamCommand(instanceFactory),
                 "addworkitemtoperson" => new AddWorkItemToPersonCommand(instanceFactory),
+
+                "removeworkitemfromperson" => new RemoveWorkitemFromPersonCommand(instanceFactory),
 
                 "changebugproperty" => new ChangeBugPropertyCommand(instanceFactory),
                 "changefeedbackproperty" => new ChangeFeedbackPropertyCommand(instanceFactory),
