@@ -64,7 +64,7 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
 
             return sb.ToString().Trim();
         }
-
+       
         public abstract string Execute();
     }
 }
