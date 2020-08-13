@@ -41,8 +41,6 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
                 .Teams
                 .First(team => team.Name == teamName);
 
-            this.Writer.WriteLine("\nSelect a board to see activity:");
-
             string boardName = parameters[1];
 
             if (!this.InstanceFactory.Database.Boards.Any(board => board.Name == boardName))
@@ -56,7 +54,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 
             return currBoard;
         }
-        protected string ListAllTeamBoards()
+        private string ListAllTeamBoards()
         {
             if (!this.InstanceFactory.Database.Teams.Any())
             {
