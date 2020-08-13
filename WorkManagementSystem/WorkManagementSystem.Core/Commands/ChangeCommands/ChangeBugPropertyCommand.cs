@@ -10,7 +10,8 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 {
     public class ChangeBugPropertyCommand : Command
     {
-        public ChangeBugPropertyCommand(IInstanceFactory instanceFactory) : base(instanceFactory)
+        public ChangeBugPropertyCommand(IInstanceFactory instanceFactory) 
+            : base(instanceFactory)
         {
         }
 

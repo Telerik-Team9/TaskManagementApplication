@@ -46,6 +46,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
             return $"Feedback {propertyToChange} set to {newValue}";
         }
+
         private IFeedback ChooseFeedback()
         {
             this.Writer.WriteLine(this.ListAllFeedbacks());
@@ -65,6 +66,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
             return currFeedback;
         }
+
         private string ListAllFeedbacks()
         {
             if (!this.InstanceFactory.Database.Feedbacks.Any())
@@ -82,6 +84,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
             return sb.ToString().TrimEnd();
         }
+
         private string ValidatePropertyType(string value)
         {
             return value.ToLower() switch

@@ -21,7 +21,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
             {
                 throw new ArgumentException("There are no teams.");
             }
-
+            
             StringBuilder sb = new StringBuilder();
 
             foreach (var team in this.InstanceFactory.Database.Teams)

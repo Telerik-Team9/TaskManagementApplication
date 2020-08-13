@@ -102,6 +102,7 @@ namespace WorkManagementSystem.Core.Common
             "Change commands:" + NewLine +
             "  changebugproperty" + NewLine +
             "  changefeedbackproperty" + NewLine +
+            "  changestoryproperty" + NewLine +
             "-----------------------------------------------------" + NewLine;
 
 

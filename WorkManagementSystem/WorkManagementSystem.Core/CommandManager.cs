@@ -33,6 +33,7 @@ namespace WorkManagementSystem.Core
 
                 "changebugproperty" => new ChangeBugPropertyCommand(instanceFactory),
                 "changefeedbackproperty" => new ChangeFeedbackPropertyCommand(instanceFactory),
+                "changestoryproperty" => new ChangeStoryPropertyCommand(instanceFactory),
 
                 _ => throw new InvalidOperationException("Command does not exist")
             };

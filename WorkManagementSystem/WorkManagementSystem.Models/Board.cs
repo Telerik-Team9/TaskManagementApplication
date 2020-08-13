@@ -34,15 +34,6 @@ namespace WorkManagementSystem.Models
             }
         }
 
-        public void AddWorkItem(IWorkItem workItem)
-        {
-            if (workItem == null)
-            {
-                throw new ArgumentException("The workitem you tried to enter is invalid.");
-            }
-            this.workItems.Add(workItem);
-        }
-
         protected override string AdditionalInfo()
         {
             throw new NotImplementedException();

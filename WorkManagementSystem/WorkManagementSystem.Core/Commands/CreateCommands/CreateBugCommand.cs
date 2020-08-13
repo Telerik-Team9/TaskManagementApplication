@@ -79,16 +79,16 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 .Split("-", StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
 
-            IBug currtBug = this.InstanceFactory.ModelsFactory.CreateBug(title, description, priority, severity, steps);
+            IBug currBug = this.InstanceFactory.ModelsFactory.CreateBug(title, description, priority, severity, steps);
 
-            this.InstanceFactory.Database.Bugs.Add(currtBug);
-            currBoard.AddWorkItem(currtBug);
+            this.InstanceFactory.Database.Bugs.Add(currBug);
+            currBoard.AddWorkItem(currBug);
 
-            string activity = string.Format(CoreConstants.CreatedWorkItem, "Bug", currtBug.Title);
-            currtBug.AddHistory(activity);
+            string activity = string.Format(CoreConstants.CreatedWorkItem, "Bug", currBug.Title);
+            currBug.AddHistory(activity);
 
             return activity + NewLine
-                + currtBug.PrintInfo();
+                + currBug.PrintInfo();
         }
 
         private (Priority, BugSeverity) ParseEnums()

@@ -70,10 +70,10 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 throw new ArgumentException("This workitem already exists.");
             }
-
             this.workItems.Add(newWorkItem);
 
-            this.activityHistory.Add(new ActivityHistory($"WorkItem with title {newWorkItem.Title} added."));
+            var newActivity = new ActivityHistory($"{newWorkItem.GetWorkItemType()} with title {newWorkItem.Title} was added.");
+            this.activityHistory.Add(newActivity);
         }
 
         public void RemoveWorkitem(IWorkItem newWorkItem)

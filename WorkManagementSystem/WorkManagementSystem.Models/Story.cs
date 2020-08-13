@@ -43,6 +43,45 @@ namespace WorkManagementSystem.Models
             }
         }
 
+        public void ChangePriority(Priority newPriority)
+        {
+            if (this.Priority == newPriority)
+            {
+                throw new ArgumentException($"Priority is already on {this.Priority}.");
+            }
+
+            Priority oldPriority = this.Priority;
+            this.Priority = newPriority;
+
+            this.historyLog.Add($"Priority changed from {oldPriority} to {newPriority}.");
+        }
+
+        public void ChangeSize(StorySize newSize)
+        {
+            if (this.Size == newSize)
+            {
+                throw new ArgumentException($"Severity is already on {this.Size}.");
+            }
+
+            StorySize oldSize = this.Size;
+            this.Size = newSize;
+
+            this.historyLog.Add($"Severity changed from {oldSize} to {newSize}.");
+        }
+
+        public void ChangeStatus(StoryStatus newStatus)
+        {
+            if (this.Status == newStatus)
+            {
+                throw new ArgumentException($"Status is already on {this.Status}.");
+            }
+
+            StoryStatus oldStatus = this.Status;
+            this.Status = newStatus;
+
+            this.historyLog.Add($"Status changed from {oldStatus} to {newStatus}.");
+        }
+
         public override string GetWorkItemType()
         {
             return "Story";
