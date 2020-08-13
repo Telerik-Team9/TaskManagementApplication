@@ -14,6 +14,7 @@ namespace WorkManagementSystem.Models
         private string name;
         private readonly IList<IMember> members;
         private readonly IList<IBoard> boards;
+        private readonly IList<IActivityHistory> activityHistory;
 
         public Team(string name)
         {
@@ -21,6 +22,9 @@ namespace WorkManagementSystem.Models
 
             this.members = new List<IMember>();
             this.boards = new List<IBoard>();
+
+            this.activityHistory = new List<IActivityHistory>();
+            activityHistory.Add(new ActivityHistory($"Team {this.Name} was created."));
         }
 
         public string Name
@@ -61,6 +65,14 @@ namespace WorkManagementSystem.Models
             }
         }
 
+        public IReadOnlyCollection<IActivityHistory> ActivityHistory
+        {
+            get
+            {
+                return new ReadOnlyCollection<IActivityHistory>(this.activityHistory);
+            }
+        }
+
         public string PrintInfo()
         {
             var sb = new StringBuilder();
@@ -87,6 +99,8 @@ namespace WorkManagementSystem.Models
                 sb.AppendLine(string.Join(NewLine, this.Boards.Select(x => " -" + x.Name)));
             }
 
+            sb.AppendLine(this.PrintActivityHistory());
+
             sb.AppendLine("========================================================");
             return sb.ToString().TrimEnd();
         }
@@ -99,6 +113,9 @@ namespace WorkManagementSystem.Models
             }
 
             this.boards.Add(board);
+
+            var newActivity = new ActivityHistory($"Board with title {board.Name} was added.");
+            this.activityHistory.Add(newActivity);
         }
 
         public void AddPerson(IMember person)
@@ -109,6 +126,27 @@ namespace WorkManagementSystem.Models
             }
 
             this.members.Add(person);
+
+            var newActivity = new ActivityHistory($"Person with name {person.Name} was added.");
+            this.activityHistory.Add(newActivity);
+        }
+
+        public string PrintActivityHistory()
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine("ActivityHistory:");
+
+            if (this.ActivityHistory.Any())
+            {
+                sb.AppendLine(string.Join(NewLine, this.ActivityHistory.Select(s => " -" + s.PrintInfo())));
+            }
+            else
+            {
+                sb.AppendLine(" -No history is present yet.");
+            }
+
+            return sb.ToString();
         }
     }
 }

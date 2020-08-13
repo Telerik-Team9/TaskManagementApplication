@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
+using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core.Commands.ShowCommands
 {
@@ -14,7 +17,28 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 
         public override string Execute()
         {
-            throw new NotImplementedException();
+            ITeam team = ChooseTeam();
+            return team.PrintActivityHistory();
+        }
+
+        private ITeam ChooseTeam()
+        {
+            var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
+            this.Writer.WriteLine(showAllTeamsCommand.Execute());
+
+            this.Writer.WriteLine("\nSelect team to see activity:");
+            string teamName = this.Reader.Read();
+
+            if (!this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
+            {
+                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
+            }
+
+            ITeam currTeam = this.InstanceFactory.Database
+                .Teams
+                .First(t => t.Name == teamName);
+
+            return currTeam;
         }
     }
 }
