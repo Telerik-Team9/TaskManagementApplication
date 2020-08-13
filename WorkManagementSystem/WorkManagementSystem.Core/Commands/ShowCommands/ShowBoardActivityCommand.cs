@@ -34,7 +34,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 
             if (!this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
             {
-                throw new ArgumentException("Invalid board enterd!");
+                throw new ArgumentException("Invalid team enterd!");
             }
 
             ITeam team = this.InstanceFactory.Database
