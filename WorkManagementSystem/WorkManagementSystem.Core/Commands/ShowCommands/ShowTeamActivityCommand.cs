@@ -23,8 +23,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 
         private ITeam ChooseTeam()
         {
-            var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
-            this.Writer.WriteLine(showAllTeamsCommand.Execute());
+            this.Writer.WriteLine(this.ListAllTeams());
 
             this.Writer.WriteLine("\nSelect team to see activity:");
             string teamName = this.Reader.Read();

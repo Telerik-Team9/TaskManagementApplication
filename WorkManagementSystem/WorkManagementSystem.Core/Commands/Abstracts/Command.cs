@@ -31,6 +31,23 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
             return (title, description);
         }
 
+        protected string ListAllTeams()
+        {
+            if (!this.InstanceFactory.Database.Teams.Any())
+            {
+                throw new ArgumentException("No teams in database.");
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var team in this.InstanceFactory.Database.Teams)
+            {
+                sb.AppendLine(team.Name);
+            }
+
+            return sb.ToString().Trim();
+        }
+
         protected string ListAllBoards()
         {
             if (!this.InstanceFactory.Database.Boards.Any())
