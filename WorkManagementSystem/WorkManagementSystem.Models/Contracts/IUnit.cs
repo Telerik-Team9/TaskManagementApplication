@@ -12,5 +12,9 @@ namespace WorkManagementSystem.Models.Contracts
         public IReadOnlyCollection<IActivityHistory> ActivityHistory { get; }
 
         public void AddActivityLog(string activity);
+
+        public string PrintWorkItems();
+
+        public string PrintActivityHistory();
     }
 }

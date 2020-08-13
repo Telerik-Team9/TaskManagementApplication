@@ -66,7 +66,7 @@ namespace WorkManagementSystem.Models
             StorySize oldSize = this.Size;
             this.Size = newSize;
 
-            this.historyLog.Add($"Severity changed from {oldSize} to {newSize}.");
+            this.historyLog.Add($"Size changed from {oldSize} to {newSize}.");
         }
 
         public void ChangeStatus(StoryStatus newStatus)

@@ -100,6 +100,20 @@ namespace WorkManagementSystem.Models.Abstracts
             sb.AppendLine($"Name: {this.Name}");
 
             // Append WorkItems
+            sb.AppendLine(this.PrintWorkItems());
+
+            sb.AppendLine(this.PrintActivityHistory());
+            // Append History
+
+
+            sb.AppendLine("========================================================");
+            return sb.ToString().TrimEnd();
+        }
+
+        public string PrintWorkItems()
+        {
+            var sb = new StringBuilder();
+
             sb.AppendLine("WorkItems:");
 
             if (this.WorkItems.Any())
@@ -111,7 +125,13 @@ namespace WorkManagementSystem.Models.Abstracts
                 sb.AppendLine(" -No workitems have been added yet.");
             }
 
-            // Append History
+            return sb.ToString();
+        }
+
+        public string PrintActivityHistory()
+        {
+            var sb = new StringBuilder();
+
             sb.AppendLine("ActivityHistory:");
 
             if (this.ActivityHistory.Any())
@@ -123,8 +143,7 @@ namespace WorkManagementSystem.Models.Abstracts
                 sb.AppendLine(" -No history is present yet.");
             }
 
-            sb.AppendLine("========================================================");
-            return sb.ToString().TrimEnd();
+            return sb.ToString();
         }
 
         protected abstract string AdditionalInfo();

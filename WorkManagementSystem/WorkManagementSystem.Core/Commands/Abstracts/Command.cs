@@ -30,11 +30,12 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
 
             return (title, description);
         }
+
         protected string ListAllBoards()
         {
             if (!this.InstanceFactory.Database.Boards.Any())
             {
-                throw new ArgumentException(CoreConstants.NoBoardsForWorkitemsExcMessage);
+                throw new ArgumentException("No boards in database.");
             }
 
             StringBuilder sb = new StringBuilder();
@@ -42,6 +43,23 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
             foreach (var board in this.InstanceFactory.Database.Boards)
             {
                 sb.AppendLine(board.Name);
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        protected string ListAllMembers()
+        {
+            if (!this.InstanceFactory.Database.Members.Any())
+            {
+                throw new ArgumentException("No members in database.");
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var member in this.InstanceFactory.Database.Members)
+            {
+                sb.AppendLine(member.Name);
             }
 
             return sb.ToString().Trim();
