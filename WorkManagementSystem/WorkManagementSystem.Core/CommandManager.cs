@@ -31,6 +31,7 @@ namespace WorkManagementSystem.Core
 
                 "addpersontoteam" => new AddPersonToTeamCommand(instanceFactory),
                 "addworkitemtoperson" => new AddWorkItemToPersonCommand(instanceFactory),
+                "addcommenttoworkitem" => new AddCommentToWorkItemCommand(instanceFactory),
 
                 "removeworkitemfromperson" => new RemoveWorkitemFromPersonCommand(instanceFactory),
 

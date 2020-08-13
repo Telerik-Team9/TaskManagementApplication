@@ -143,9 +143,12 @@ namespace WorkManagementSystem.Models.Abstracts
         public abstract string GetWorkItemType();
 
         // TODO: Remove AddComents and AddHistory!!! later
-        public void AddComments(List<IComment> comments)
+        public void AddComment(string message, IMember author)
         {
-            this.comments = comments;
+            var comment = new Comment(message, author);
+            this.comments.Add(comment);
+
+            this.historyLog.Add($"Comment from '{author.Name}' added.");
         }
 
         public void AddHistory(string activity)

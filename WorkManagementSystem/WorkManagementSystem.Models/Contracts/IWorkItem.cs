@@ -20,5 +20,7 @@ namespace WorkManagementSystem.Models.Contracts
         public void AddHistory(string activity);
 
         public string GetWorkItemType();
+
+        public void AddComment(string message, IMember author);
     }
 }

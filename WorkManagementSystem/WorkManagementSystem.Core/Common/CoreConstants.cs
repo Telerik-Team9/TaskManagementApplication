@@ -106,6 +106,8 @@ namespace WorkManagementSystem.Core.Common
             "  changebugproperty" + NewLine +
             "  changefeedbackproperty" + NewLine +
             "  changestoryproperty" + NewLine +
+            "Remove commands:" + NewLine +
+            "  removeworkitemfromperson" + NewLine +
             "-----------------------------------------------------" + NewLine;
 
 

@@ -81,7 +81,26 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
 
             return sb.ToString().Trim();
         }
-       
+
+        protected string ListAllWorkItems()
+        {
+            var workitems = this.InstanceFactory.Database.ListAllWorkitems();
+
+            if (!workitems.Any())
+            {
+                throw new ArgumentException("No workitems in database.");
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var workitem in workitems)
+            {
+                sb.AppendLine($"{workitem.GetWorkItemType()}: Id: {workitem.Id}|Title: {workitem.Title}");
+            }
+
+            return sb.ToString().Trim();
+        }
+
         public abstract string Execute();
     }
 }
