@@ -25,6 +25,7 @@ namespace WorkManagementSystem.Core
                 "showallteams" => new ShowAllTeamsCommand(instanceFactory),
                 "showallteammembers" => new ShowAllTeamMembersCommand(instanceFactory),
                 "showallteamboards" => new ShowAllTeamBoardsCommand(instanceFactory),
+                "showpersonsactivity" => new ShowPersonsActivityCommand(instanceFactory),
 
                 "addpersontoteam" => new AddPersonToTeamCommand(instanceFactory),
                 "addworkitemtoperson" => new AddWorkItemToPersonCommand(instanceFactory),

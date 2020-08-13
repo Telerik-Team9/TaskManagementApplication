@@ -44,6 +44,9 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
         private string AddPersonToTeam(ITeam currTeam)
         {
+            var showAllPeopele = new ShowAllPeopleCommand(this.InstanceFactory);
+            this.Writer.WriteLine(showAllPeopele.Execute());
+
             this.Writer.WriteLine(string.Format("Please enter person's name:"));
             string personName = this.Reader.Read();
 
@@ -63,7 +66,10 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
             currTeam.AddPerson(member);
 
-            return string.Format(CoreConstants.PersonAddedToATeam, personName, currTeam.Name);
+            string activity = string.Format(CoreConstants.PersonAddedToATeam, personName, currTeam.Name);
+            member.AddActivityLog(activity);
+
+            return activity;
         }
     }
 }
