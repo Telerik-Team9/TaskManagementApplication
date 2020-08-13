@@ -97,6 +97,7 @@ namespace WorkManagementSystem.Core.Common
             "  showallteammember" + NewLine +
             "  showallteams" + NewLine +
             "  showpersonsactivity" + NewLine +
+            "  showboardsactivity" + NewLine +
             "Add commands:" + NewLine +
             "  addcommenttoworkitem" + NewLine +
             "  addpersontoteam" + NewLine +
