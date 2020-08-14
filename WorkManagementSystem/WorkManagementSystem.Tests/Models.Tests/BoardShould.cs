@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using WorkManagementSystem.Models;
 
@@ -60,3 +60,4 @@ namespace WorkManagementSystem.Tests.ModelsTests
         //Add test for name uniqueness
     }
 }
+*/

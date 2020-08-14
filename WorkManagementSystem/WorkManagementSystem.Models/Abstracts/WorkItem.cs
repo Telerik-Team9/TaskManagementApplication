@@ -36,6 +36,7 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 return this.title;
             }
+
             protected set
             {
                 if (string.IsNullOrWhiteSpace(value))

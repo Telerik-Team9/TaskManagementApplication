@@ -32,7 +32,7 @@ namespace WorkManagementSystem.Models.Abstracts
 
             protected set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "name"));
                 }

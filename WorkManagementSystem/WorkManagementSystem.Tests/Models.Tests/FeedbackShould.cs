@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +7,7 @@ using WorkManagementSystem.Models;
 namespace WorkManagementSystem.Tests.ModelsTests
 {
     [TestClass]
-    public class BugShould
+    public class FeedbackShould
     {
         [TestMethod]
         public void ConstructorShould()
@@ -15,15 +15,18 @@ namespace WorkManagementSystem.Tests.ModelsTests
             //Arrange
             string expectedTitle = "This is a test title.";
             string expectedDescription = "This is a test desctiption.";
+            int expectedRating = 9;
 
             //Act
-            Bug bug = new Bug(expectedTitle, expectedDescription);
-            string actualTitle = bug.Title;
-            string actualDescription = bug.Description;
+            Feedback feedback = new Feedback(expectedTitle, expectedDescription,expectedRating);
+            string actualTitle = feedback.Title;
+            string actualDescription = feedback.Description;
+            int actualRating = feedback.Rating;
 
             //Assert
             Assert.AreEqual(expectedTitle, actualTitle);
             Assert.AreEqual(expectedDescription, actualDescription);
+            Assert.AreEqual(expectedRating, actualRating);
         }
 
         [TestMethod]
@@ -31,8 +34,9 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Bug bug = new Bug(null, new string('a', 11));
+                Feedback feedback = new Feedback(null, new string('a', 11), 1);
             });
+
         }
 
         [TestMethod]
@@ -40,7 +44,7 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Bug bug = new Bug(new string('a', 11), null);
+                Feedback feedback = new Feedback(new string('a', 11), null, 1);
             });
         }
 
@@ -49,7 +53,7 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Bug bug = new Bug(new string('a', 9), new string('b', 11));
+                Feedback feedback = new Feedback(new string('a', 9), new string('b', 11), 1);
             });
         }
 
@@ -58,7 +62,7 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Bug bug = new Bug(new string('a', 11), new string('b', 9));
+                Feedback feedback = new Feedback(new string('a', 11), new string('b', 9), 1);
             });
         }
 
@@ -67,7 +71,7 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Bug bug = new Bug(new string('a', 51), new string('b', 11));
+                Feedback feedback = new Feedback(new string('a', 51), new string('b', 11), 1);
             });
         }
 
@@ -76,8 +80,27 @@ namespace WorkManagementSystem.Tests.ModelsTests
         {
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                Bug bug = new Bug(new string('a', 11), new string('b', 501));
+                Feedback feedback = new Feedback(new string('a', 11), new string('b', 501), 1);
+            });
+        }
+
+        [TestMethod]
+        public void ShouldThrowExceptionWhenRatingIsSmaller()
+        {
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Feedback feedback = new Feedback(new string('a', 11), new string('b', 500), 0);
+            });
+        }
+
+        [TestMethod]
+        public void ShouldThrowExceptionWhenRatingIsBigger()
+        {
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Feedback feedback = new Feedback(new string('a', 11), new string('b', 500), 11);
             });
         }
     }
 }
+*/
