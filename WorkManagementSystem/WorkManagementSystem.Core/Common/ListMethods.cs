@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
@@ -19,30 +20,34 @@ namespace WorkManagementSystem.Core.Common
 
         public static string ListAllUnits(IInstanceFactory instances, Func<IUnit, string> criteria, string typeOfUnit)
         {
-            if (typeOfUnit == "member")
+            return typeOfUnit switch
             {
-                if (!instances.Database.Members.Any())
-                {
-                    throw new ArgumentException("No members in database.");
-                }
+                "member" => ListAllMembers(instances, criteria),
+                "board" => ListAllBoards(instances, criteria),
 
-                return string.Join(Environment.NewLine, instances.Database.Members.Select(criteria));
+                _ => throw new ArgumentException("Invalid unit.")
+            };
+        }
+
+        // TODO: CHoose board from a team, not from DB!!
+        private static string ListAllBoards(IInstanceFactory instances, Func<IUnit, string> criteria)
+        {
+            if (!instances.Database.Boards.Any())
+            {
+                throw new ArgumentException("No boards in database.");
             }
 
-            else if (typeOfUnit == "board")
-            {
-                if (!instances.Database.Boards.Any())
-                {
-                    throw new ArgumentException("No boards in database.");
-                }
+            return string.Join(Environment.NewLine, instances.Database.Boards.Select(criteria));
+        }
 
-                return string.Join(Environment.NewLine, instances.Database.Boards.Select(criteria));
+        private static string ListAllMembers(IInstanceFactory instances, Func<IUnit, string> criteria)
+        {
+            if (!instances.Database.Members.Any())
+            {
+                throw new ArgumentException("No members in database.");
             }
 
-            else
-            {
-                throw new ArgumentException("Invalid unit.");
-            }
+            return string.Join(Environment.NewLine, instances.Database.Members.Select(criteria));
         }
 
         public static string ListAllWorkItems(IInstanceFactory instances, Func<IWorkItem, string> criteria)

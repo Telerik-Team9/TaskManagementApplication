@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
-using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 using static System.Environment;
 

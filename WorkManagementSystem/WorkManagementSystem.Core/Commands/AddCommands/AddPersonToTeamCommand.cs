@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Common;
@@ -24,7 +23,7 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
         private string AddPersonToTeam(ITeam currTeam)
         {
-            var showAllPeopele = new ShowAllPeopleCommand(this.InstanceFactory);
+            var showAllPeopele = new ShowAllPeopleCommand(this.InstanceFactory);// TODO: Remove this shit
             this.Writer.WriteLine(showAllPeopele.Execute());
 
             this.Writer.WriteLine(string.Format("Please enter person's name:"));

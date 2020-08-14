@@ -24,14 +24,7 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
         private string AddWorkItemToPerson(IMember currPerson)
         {
-            // TODO - not working - fix it!
-            /* var workitems = new List<IWorkItem>();
-             workitems.Concat(this.InstanceFactory.Database.Bugs)
-                 .Concat(this.InstanceFactory.Database.Feedbacks)
-                 .Concat(this.InstanceFactory.Database.Stories);*/
-
-
-            IList<IWorkItem> workItems = this.InstanceFactory
+            IList<IWorkItem> workItems = this.InstanceFactory //TODO
                 .Database
                 .ListAllWorkitems();
 
