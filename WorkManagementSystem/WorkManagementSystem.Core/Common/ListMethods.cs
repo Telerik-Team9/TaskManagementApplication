@@ -61,5 +61,42 @@ namespace WorkManagementSystem.Core.Common
 
             return string.Join(Environment.NewLine, workitems.Select(criteria));
         }
+
+        public static string ListAllWorkItems(IInstanceFactory instances, Func<IWorkItem, string> criteria, string typeOfWorkItem)
+        {
+            if(typeOfWorkItem == "Bug")
+            {
+
+            }
+
+            else if (typeOfWorkItem == "Feedback")
+            {
+
+            }
+
+            else if (typeOfWorkItem == "Story")
+            {
+                return ListAllStories(instances, criteria);
+            }
+
+            else
+            {
+                throw new ArgumentException("Invalid workitem type.");
+            }
+
+            return "";
+        }
+
+        private static string ListAllStories(IInstanceFactory instances, Func<IWorkItem, string> criteria)
+        {
+            var stories = new List<IStory>(instances.Database.Stories);
+
+            if (!stories.Any())
+            {
+                throw new ArgumentException("No workitems in database.");
+            }
+
+            return string.Join(Environment.NewLine, stories.Select(criteria));
+        }
     }
 }

@@ -105,5 +105,25 @@ namespace WorkManagementSystem.Core.Common
 
             return currWorkItem;
         }
+
+        public static IStory ChooseStory(IInstanceFactory instances)
+        {
+            instances.Writer.WriteLine(ListMethods.ListAllWorkItems(instances, x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title, "Story"));
+
+            instances.Writer.Write("Type in the ID of the story you want to change: ");
+            string idAsStr = instances.Reader.Read();
+
+            if (!instances.Database.Stories.Any(b => b.Id == int.Parse(idAsStr)))
+            {
+                throw new ArgumentException("You have entered wrong ID.");
+            }
+
+            IStory currStory = instances
+                .Database
+                .Stories
+                .First(b => b.Id == int.Parse(idAsStr));
+
+            return currStory;
+        }
     }
 }

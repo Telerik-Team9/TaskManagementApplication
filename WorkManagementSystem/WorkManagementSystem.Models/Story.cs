@@ -60,7 +60,7 @@ namespace WorkManagementSystem.Models
         {
             if (this.Size == newSize)
             {
-                throw new ArgumentException($"Severity is already on {this.Size}.");
+                throw new ArgumentException($"Size is already on {this.Size}.");
             }
 
             StorySize oldSize = this.Size;
