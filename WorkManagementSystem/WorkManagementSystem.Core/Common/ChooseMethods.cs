@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 using static System.Environment;
@@ -88,6 +86,24 @@ namespace WorkManagementSystem.Core.Common
                 .FirstOrDefault(b => b.Name == boardName);
 
             return teamBoard;
+        }
+
+        public static IWorkItem ChooseWorkItem(IInstanceFactory instances)
+        {
+            instances.Writer.WriteLine(ListMethods.ListAllWorkItems(instances, x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title));
+
+            instances.Writer.WriteLine(NewLine + "Enter the workitem's id.");
+            string id = instances.Reader.Read();
+
+            if (!instances.Database.ListAllWorkitems().Any(w => w.Id == int.Parse(id)))
+            {
+                throw new ArgumentException("No Workitem with such Id.");
+            }
+
+            IWorkItem currWorkItem = instances.Database.ListAllWorkitems()
+                .First(w => w.Id == int.Parse(id));
+
+            return currWorkItem;
         }
     }
 }
