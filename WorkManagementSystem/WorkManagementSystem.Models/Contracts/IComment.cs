@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Dynamic;
-using WorkManagementSystem.Models.Common;
-
-namespace WorkManagementSystem.Models.Contracts
+﻿namespace WorkManagementSystem.Models.Contracts
 {
     public interface IComment : IPrintable
     {

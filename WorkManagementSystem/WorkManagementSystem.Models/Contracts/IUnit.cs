@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using WorkManagementSystem.Models.Common;
 
 namespace WorkManagementSystem.Models.Contracts
 {

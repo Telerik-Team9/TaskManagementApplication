@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using WorkManagementSystem.Core.Contracts;
 
 namespace WorkManagementSystem.Core.Readers

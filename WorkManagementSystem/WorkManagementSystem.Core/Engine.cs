@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
-using System.Threading;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
-using WorkManagementSystem.Core.Readers;
-using WorkManagementSystem.Core.Writers;
 
 namespace WorkManagementSystem.Core
 {

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
-using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using static System.Environment;
 
@@ -21,7 +20,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
             {
                 throw new ArgumentException("There are no teams.");
             }
-            
+
             StringBuilder sb = new StringBuilder();
 
             foreach (var team in this.InstanceFactory.Database.Teams)

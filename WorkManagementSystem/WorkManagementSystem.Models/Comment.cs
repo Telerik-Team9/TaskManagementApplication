@@ -11,7 +11,7 @@ namespace WorkManagementSystem.Models
         public Comment(string message, IMember author)
         {
             this.Message = message;
-            this.Author = author; 
+            this.Author = author;
         }
 
         public IMember Author { get; set; }

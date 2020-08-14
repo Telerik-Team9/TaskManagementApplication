@@ -1,5 +1,4 @@
-﻿using WorkManagementSystem.Models.Abstracts;
-using WorkManagementSystem.Models.Common.Enums;
+﻿using WorkManagementSystem.Models.Common.Enums;
 
 namespace WorkManagementSystem.Models.Contracts
 {

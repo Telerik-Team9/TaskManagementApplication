@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-using WorkManagementSystem.Models.Common.Enums;
+﻿using WorkManagementSystem.Models.Common.Enums;
 
 namespace WorkManagementSystem.Models.Contracts
 {

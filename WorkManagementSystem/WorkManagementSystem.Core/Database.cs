@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using WorkManagementSystem.Core.Contracts;
-using WorkManagementSystem.Models.Abstracts;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core

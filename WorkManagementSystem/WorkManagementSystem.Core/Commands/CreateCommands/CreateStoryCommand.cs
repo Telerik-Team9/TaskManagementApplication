@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
-using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Common.Enums;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Collections.Generic;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Common.Enums;

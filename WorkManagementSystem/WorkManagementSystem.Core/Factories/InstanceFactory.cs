@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Runtime.CompilerServices;
-using System.Text;
-using WorkManagementSystem.Core.Contracts;
+﻿using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Core.Readers;
 using WorkManagementSystem.Core.Writers;
 

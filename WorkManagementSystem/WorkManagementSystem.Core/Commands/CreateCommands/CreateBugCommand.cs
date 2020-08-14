@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
-using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Common.Enums;
@@ -19,7 +18,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         {
         }
 
-        public override string Execute() 
+        public override string Execute()
         {
             IBoard currBoard = ChooseMethods.ChooseBoard(this.InstanceFactory);
             return CreateBugInBoard(currBoard);

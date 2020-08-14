@@ -4,7 +4,6 @@ using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
-using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.AddCommands
 {

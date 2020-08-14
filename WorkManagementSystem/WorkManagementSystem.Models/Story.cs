@@ -23,7 +23,7 @@ namespace WorkManagementSystem.Models
 
         public StorySize Size { get; private set; } // 10-150 - small; 151 - 300 - medium; 301 - 500 - large; 
 
-        public StoryStatus Status { get; private set; } 
+        public StoryStatus Status { get; private set; }
 
         public IMember Assignee
         {

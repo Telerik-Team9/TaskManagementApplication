@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using WorkManagementSystem.Core.Common;
-using WorkManagementSystem.Core.Contracts;
+﻿using WorkManagementSystem.Core.Contracts;
 
 namespace WorkManagementSystem.Core.Commands.Abstracts
 {
