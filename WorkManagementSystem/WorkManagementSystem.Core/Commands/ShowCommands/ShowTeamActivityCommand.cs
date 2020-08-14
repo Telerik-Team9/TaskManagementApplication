@@ -17,27 +17,8 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 
         public override string Execute()
         {
-            ITeam team = ChooseTeam();
-            return team.PrintActivityHistory();
-        }
-
-        private ITeam ChooseTeam()
-        {
-            //this.Writer.WriteLine(this.ListAllTeams());
-
-            this.Writer.WriteLine("\nSelect team to see activity:");
-            string teamName = this.Reader.Read();
-
-            if (!this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
-            {
-                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
-            }
-
-            ITeam currTeam = this.InstanceFactory.Database
-                .Teams
-                .First(t => t.Name == teamName);
-
-            return currTeam;
+            ITeam currTeam = ChooseMethods.ChooseTeam(this.InstanceFactory);
+            return currTeam.PrintActivityHistory();
         }
     }
 }

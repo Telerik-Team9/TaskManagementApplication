@@ -18,28 +18,8 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 
         public override string Execute()
         {
-            ITeam currTeam = ChooseTeam();
+            ITeam currTeam = ChooseMethods.ChooseTeam(this.InstanceFactory);
             return ShowAllTeamBoards(currTeam);
-        }
-
-        private ITeam ChooseTeam()
-        {
-            var showAllTeamsCommand = new ShowAllTeamsCommand(this.InstanceFactory);
-            this.Writer.Write(showAllTeamsCommand.Execute());
-
-            this.Writer.WriteLine("Please enter the team's name to show all it's boards.");
-            string teamName = this.Reader.Read();
-
-            if (!this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
-            {
-                throw new ArgumentException(string.Format(CoreConstants.TeamDoesNotExistExcMessage, teamName));
-            }
-
-            ITeam currTeam = this.InstanceFactory.Database
-                .Teams
-                .First(t => t.Name == teamName);
-
-            return currTeam;
         }
 
         private string ShowAllTeamBoards(ITeam currTeam)
