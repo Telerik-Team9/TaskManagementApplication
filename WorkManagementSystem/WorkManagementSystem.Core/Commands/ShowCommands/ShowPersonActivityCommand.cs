@@ -23,7 +23,7 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
 
         private IMember ChoosePerson()
         {
-            this.Writer.WriteLine(this.ListAllMembers());
+            //this.Writer.WriteLine(this.ListAllMembers());
 
             this.Writer.WriteLine("\nSelect a person to see activity:");
             string personName = this.Reader.Read();

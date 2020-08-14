@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.AddCommands
 {
@@ -24,9 +23,9 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
         private IWorkItem ChooseWorkItem()
         {
-            this.Writer.WriteLine(this.ListAllWorkItems());
+            this.Writer.WriteLine(ListMethods.ListAllWorkItems(this.InstanceFactory, x => "Id: " + x.Id + " | Title: " + x.Title));
 
-            this.Writer.WriteLine("Please enter the workitem's id to add a comment to.");
+            this.Writer.WriteLine(NewLine + "Please enter the workitem's id to add a comment to.");
             string id = this.Reader.Read();
 
             if (!this.InstanceFactory.Database.ListAllWorkitems().Any(w => w.Id == int.Parse(id)))
