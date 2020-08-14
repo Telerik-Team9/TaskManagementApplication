@@ -90,7 +90,7 @@ namespace WorkManagementSystem.Models
                 .AppendLine($"Severity: {this.Severity}")
                 .AppendLine($"Status: {this.Status}")
                 .AppendLine($"Steps to reproduce: ")
-                .AppendLine(string.Join($"{NewLine}", this.StepsToReproduce));
+                .AppendLine(string.Join($"{NewLine}", this.StepsToReproduce)); //TODO: this might be a problem
 
             // Append Assignee
             if (this.Assignee != null)
