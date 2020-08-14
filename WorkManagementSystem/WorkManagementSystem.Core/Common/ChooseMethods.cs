@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Core.Common
 {
@@ -27,6 +27,25 @@ namespace WorkManagementSystem.Core.Common
                 .First(t => t.Name == teamName);
 
             return currTeam;
+        }
+
+        public static IMember ChoosePerson(IInstanceFactory instances)// AddWorkItemtoperson command
+        {
+            instances.Writer.WriteLine(ListMethods.ListAllUnits(instances, x => "Name: " + x.Name, "member"));
+
+            instances.Writer.WriteLine(NewLine +"Enter person's name.");
+            string personName = instances.Reader.Read();
+
+            if (!instances.Database.Members.Any(person => person.Name == personName))
+            {
+                throw new ArgumentException("Person does not exist.");
+            }
+
+            IMember currPerson = instances.Database
+                .Members
+                .First(person => person.Name == personName);
+
+            return currPerson;
         }
     }
 }

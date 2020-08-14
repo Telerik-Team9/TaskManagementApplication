@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
-using WorkManagementSystem.Core.Commands.ShowCommands;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 
@@ -16,44 +16,17 @@ namespace WorkManagementSystem.Core.Commands
 
         public override string Execute()
         {
-            IMember member = this.ChoosePerson();
+            IMember member = ChooseMethods.ChoosePerson(this.InstanceFactory);
             return this.RemoveWorkitemFromPerson(member);
 
         }
-        private IMember ChoosePerson()
-        {
-            var showAllPeopleCommand = new ShowAllPeopleCommand(this.InstanceFactory);
-            this.Writer.WriteLine(showAllPeopleCommand.Execute());
-
-            this.Writer.WriteLine("Please enter the person's name you wish to unassign a workitem from.");
-            string personName = this.Reader.Read();
-
-            if (!this.InstanceFactory.Database.Members.Any(person => person.Name == personName))
-            {
-                throw new ArgumentException("Person does not exist.");
-            }
-
-            IMember currPerson = this.InstanceFactory.Database
-                .Members
-                .First(person => person.Name == personName);
-
-            return currPerson;
-        }
-
         private string RemoveWorkitemFromPerson(IMember currPerson)
         {
-            // TODO - not working - fix it!
-            /* var workitems = new List<IWorkItem>();
-             workitems.Concat(this.InstanceFactory.Database.Bugs)
-                 .Concat(this.InstanceFactory.Database.Feedbacks)
-                 .Concat(this.InstanceFactory.Database.Stories);*/
-
             IList<IWorkItem> workItems = this.InstanceFactory
                 .Database
                 .ListAllWorkitems();
 
-            //lisr all workitems
-
+            //lisr all workitems //TODO
 
             foreach (var item in workItems)
             {
