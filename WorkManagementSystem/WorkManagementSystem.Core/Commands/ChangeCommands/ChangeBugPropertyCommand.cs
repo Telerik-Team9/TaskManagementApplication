@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
@@ -10,14 +9,14 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 {
     public class ChangeBugPropertyCommand : Command
     {
-        public ChangeBugPropertyCommand(IInstanceFactory instanceFactory) 
+        public ChangeBugPropertyCommand(IInstanceFactory instanceFactory)
             : base(instanceFactory)
         {
         }
 
         public override string Execute()
         {
-            IBug currBug = this.ChooseBug();
+            IBug currBug = ChooseMethods.ChooseBug(this.InstanceFactory);
             return this.AlterBug(currBug);
         }
 
@@ -54,44 +53,6 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
             return $"Bug {propertyToChange} set to {newValue}";
         }
 
-        private IBug ChooseBug()
-        {
-            this.Writer.WriteLine(this.ListAllBugs());
-
-            this.Writer.Write("Please type in the ID of the bug you want to change: ");
-            string idAsStr = this.Reader.Read();
-
-            if (!this.InstanceFactory.Database.Bugs.Any(b => b.Id == int.Parse(idAsStr)))
-            {
-                throw new ArgumentException("You have entered wrong ID.");
-            }
-
-            IBug currBug = this.InstanceFactory
-                .Database
-                .Bugs
-                .First(b => b.Id == int.Parse(idAsStr));
-
-            return currBug;
-        }
-
-        private string ListAllBugs()
-        {
-            if (!this.InstanceFactory.Database.Bugs.Any())
-            {
-                throw new ArgumentException("There are no bugs.");
-            }
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach (var bug in this.InstanceFactory.Database.Bugs)
-            {
-                sb.AppendLine($"ID: {bug.Id}|Title: {bug.Title}|Priority: {bug.Priority}|Severity: {bug.Severity}|Status: {bug.Status}");
-            }
-            sb.AppendLine("+++++++++++++++++++++++++++++");
-
-            return sb.ToString().TrimEnd();
-        }
-
         private string ValidatePropertyType(string value)
         {
             return value.ToLower() switch
@@ -103,19 +64,6 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
                 _ => throw new ArgumentException("Invalid property entered!")
             };
         }
-
-        //private T GetEnumFromString<T>(string value)
-        //    where T : struct, IConvertible
-        //{
-        //    if (!typeof(T).IsEnum)
-        //    {
-        //        throw new ArgumentException("Invalid property entered.");
-        //    }
-
-        //    T result = Enum.Parse<T>(value, ignoreCase: true);
-
-        //    return result;
-        //} // for refactoring
     }
 }
 

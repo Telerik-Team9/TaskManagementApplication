@@ -106,6 +106,7 @@ namespace WorkManagementSystem.Core.Common
             return currWorkItem;
         }
 
+        //Make Generic
         public static IStory ChooseStory(IInstanceFactory instances)
         {
             instances.Writer.WriteLine(ListMethods.ListAllWorkItems(instances, x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title, "Story"));
@@ -124,6 +125,46 @@ namespace WorkManagementSystem.Core.Common
                 .First(b => b.Id == int.Parse(idAsStr));
 
             return currStory;
+        }
+
+        public static IBug ChooseBug(IInstanceFactory instances)
+        {
+            instances.Writer.WriteLine(ListMethods.ListAllWorkItems(instances, x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title, "Bug"));
+
+            instances.Writer.Write("Type in the ID of the bug you want to change: ");
+            string idAsStr = instances.Reader.Read();
+
+            if (!instances.Database.Bugs.Any(b => b.Id == int.Parse(idAsStr)))
+            {
+                throw new ArgumentException("You have entered wrong ID.");
+            }
+
+            IBug currBug = instances
+                .Database
+                .Bugs
+                .First(b => b.Id == int.Parse(idAsStr));
+
+            return currBug;
+        }
+
+        public static IFeedback ChooseFeedback(IInstanceFactory instances)
+        {
+            instances.Writer.WriteLine(ListMethods.ListAllWorkItems(instances, x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title, "Feedback"));
+
+            instances.Writer.Write("Type in the ID of the feedback you want to change: ");
+            string idAsStr = instances.Reader.Read();
+
+            if (!instances.Database.Feedbacks.Any(b => b.Id == int.Parse(idAsStr)))
+            {
+                throw new ArgumentException("You have entered wrong ID.");
+            }
+
+            IFeedback currFeedback = instances
+                .Database
+                .Feedbacks
+                .First(b => b.Id == int.Parse(idAsStr));
+
+            return currFeedback;
         }
     }
 }

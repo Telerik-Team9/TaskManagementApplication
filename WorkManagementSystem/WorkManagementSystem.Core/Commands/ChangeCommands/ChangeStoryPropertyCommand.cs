@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
@@ -12,7 +9,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 {
     public class ChangeStoryPropertyCommand : Command
     {
-        public ChangeStoryPropertyCommand(IInstanceFactory instanceFactory) 
+        public ChangeStoryPropertyCommand(IInstanceFactory instanceFactory)
             : base(instanceFactory)
         {
         }

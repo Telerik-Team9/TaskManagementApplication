@@ -64,29 +64,16 @@ namespace WorkManagementSystem.Core.Common
 
         public static string ListAllWorkItems(IInstanceFactory instances, Func<IWorkItem, string> criteria, string typeOfWorkItem)
         {
-            if(typeOfWorkItem == "Bug")
+            return typeOfWorkItem switch
             {
+                "Bug" => ListAllBugs(instances, criteria),
+                "Feedback" => ListAllFeedbacks(instances, criteria),
+                "Stories" => ListAllStories(instances, criteria),
 
-            }
-
-            else if (typeOfWorkItem == "Feedback")
-            {
-
-            }
-
-            else if (typeOfWorkItem == "Story")
-            {
-                return ListAllStories(instances, criteria);
-            }
-
-            else
-            {
-                throw new ArgumentException("Invalid workitem type.");
-            }
-
-            return "";
+                _ => throw new ArgumentException("Invalid workitem type.")
+            };
         }
-
+        //Make this Generic
         private static string ListAllStories(IInstanceFactory instances, Func<IWorkItem, string> criteria)
         {
             var stories = new List<IStory>(instances.Database.Stories);
@@ -97,6 +84,42 @@ namespace WorkManagementSystem.Core.Common
             }
 
             return string.Join(Environment.NewLine, stories.Select(criteria));
+        }
+
+        private static string ListAllBugs(IInstanceFactory instances, Func<IWorkItem, string> criteria)
+        {
+            var bugs = new List<IBug>(instances.Database.Bugs);
+
+            if (!bugs.Any())
+            {
+                throw new ArgumentException("No workitems in database.");
+            }
+
+            return string.Join(Environment.NewLine, bugs.Select(criteria));
+        }
+
+        private static string ListAllFeedbacks(IInstanceFactory instances, Func<IWorkItem, string> criteria)
+        {
+            var feedbacks = new List<IFeedback>(instances.Database.Feedbacks);
+
+            if (!feedbacks.Any())
+            {
+                throw new ArgumentException("No workitems in database.");
+            }
+
+            return string.Join(Environment.NewLine, feedbacks.Select(criteria));
+        }
+
+        public static string ListAllWorksItems(IInstanceFactory instances, Func<IWorkItem, string> criteria, string typeOfWorkItem)
+        {
+            return typeOfWorkItem switch
+            {
+                "Bug" => ListAllBugs(instances, criteria),
+                "Feedback" => ListAllFeedbacks(instances, criteria),
+                "Stories" => ListAllStories(instances, criteria),
+
+                _ => throw new ArgumentException("Invalid workitem type.")
+            };
         }
     }
 }

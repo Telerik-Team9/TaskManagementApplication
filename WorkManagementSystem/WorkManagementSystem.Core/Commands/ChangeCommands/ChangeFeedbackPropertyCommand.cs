@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
+using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
@@ -16,7 +15,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
         public override string Execute()
         {
-            IFeedback currFeedback = this.ChooseFeedback();
+            IFeedback currFeedback = ChooseMethods.ChooseFeedback(this.InstanceFactory);
             return AlterFeedback(currFeedback);
         }
         private string AlterFeedback(IFeedback feedback)
@@ -45,44 +44,6 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
             }
 
             return $"Feedback {propertyToChange} set to {newValue}";
-        }
-
-        private IFeedback ChooseFeedback()
-        {
-            this.Writer.WriteLine(this.ListAllFeedbacks());
-
-            this.Writer.Write("Please type in the ID of the bug you want to change: ");
-            string idAsStr = this.Reader.Read();
-
-            if (!this.InstanceFactory.Database.Feedbacks.Any(b => b.Id == int.Parse(idAsStr)))
-            {
-                throw new ArgumentException("You have entered wrong ID.");
-            }
-
-            IFeedback currFeedback = this.InstanceFactory
-                .Database
-                .Feedbacks
-                .First(b => b.Id == int.Parse(idAsStr));
-
-            return currFeedback;
-        }
-
-        private string ListAllFeedbacks()
-        {
-            if (!this.InstanceFactory.Database.Feedbacks.Any())
-            {
-                throw new ArgumentException("There are no feedbacks.");
-            }
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach (var feedback in this.InstanceFactory.Database.Feedbacks)
-            {
-                sb.AppendLine($"ID: {feedback.Id}|Title: {feedback.Title}|Rating: {feedback.Rating}|Status: {feedback.FeedbackStatus}");
-            }
-            sb.AppendLine("++++++++++++++++++++++++++++++++++++++++++++");
-
-            return sb.ToString().TrimEnd();
         }
 
         private string ValidatePropertyType(string value)
