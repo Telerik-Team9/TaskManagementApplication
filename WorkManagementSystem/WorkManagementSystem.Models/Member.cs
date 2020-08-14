@@ -11,9 +11,5 @@ namespace WorkManagementSystem.Models
         {
         }
 
-        protected override string AdditionalInfo()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

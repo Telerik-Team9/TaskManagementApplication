@@ -104,6 +104,34 @@ namespace WorkManagementSystem.Models.Abstracts
                 .AppendLine($"{this.AdditionalInfo()}");
 
             // Append Comments
+            sb.AppendLine(this.PrintComments());
+            // Append History
+            sb.AppendLine(this.PrintHistory());
+
+            sb.AppendLine("========================================================");
+            return sb.ToString().TrimEnd();
+        }
+
+        private string PrintHistory()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("History:");
+
+            if (this.HistoryLog.Any())
+            {
+                sb.AppendLine(string.Join(NewLine, this.HistoryLog.Select(s => " -" + s)));
+            }
+            else
+            {
+                sb.AppendLine(" -No history is present yet.");
+            }
+
+            return sb.ToString().Trim();
+        }
+
+        private string PrintComments()
+        {
+            StringBuilder sb = new StringBuilder();
             sb.AppendLine("Comments:");
 
             if (this.Comments.Any())
@@ -115,19 +143,7 @@ namespace WorkManagementSystem.Models.Abstracts
                 sb.AppendLine(" -No comments have been added yet.");
             }
 
-            // Append History
-            sb.AppendLine("History:");
-
-            if (this.HistoryLog.Any())
-            {
-                sb.AppendLine(string.Join(NewLine, this.HistoryLog.Select(s => " -" + s)));
-            }
-            else
-            {
-                sb.AppendLine(" -No history is present yet.");
-            }
-            sb.AppendLine("========================================================");
-            return sb.ToString().TrimEnd();
+            return sb.ToString().Trim();
         }
 
         /// <summary>

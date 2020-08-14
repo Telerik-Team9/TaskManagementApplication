@@ -98,13 +98,10 @@ namespace WorkManagementSystem.Models.Abstracts
             var sb = new StringBuilder();
 
             sb.AppendLine($"Name: {this.Name}");
-
             // Append WorkItems
             sb.AppendLine(this.PrintWorkItems());
-
-            sb.AppendLine(this.PrintActivityHistory());
             // Append History
-
+            sb.AppendLine(this.PrintActivityHistory());
 
             sb.AppendLine("========================================================");
             return sb.ToString().TrimEnd();
@@ -145,8 +142,6 @@ namespace WorkManagementSystem.Models.Abstracts
 
             return sb.ToString();
         }
-
-        protected abstract string AdditionalInfo();
 
         protected void ValidateForSpecialChars(string name)
         {
