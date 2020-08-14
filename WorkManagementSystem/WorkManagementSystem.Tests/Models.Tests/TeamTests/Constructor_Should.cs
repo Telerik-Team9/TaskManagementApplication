@@ -35,7 +35,5 @@ namespace WorkManagementSystem.Tests.Models.Tests.TeamTests
             Assert.IsInstanceOfType(cut.Boards, typeof(IList<IBoard>));
             Assert.IsInstanceOfType(cut.ActivityHistory, typeof(IList<IActivityHistory>));
         }
-
-
     }
 }
