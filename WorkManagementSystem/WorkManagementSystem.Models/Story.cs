@@ -25,23 +25,7 @@ namespace WorkManagementSystem.Models
 
         public StoryStatus Status { get; private set; }
 
-        public IMember Assignee
-        {
-            get
-            {
-                return this.assignee;
-            }
-
-            private set
-            {
-                if (value == null)
-                {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "assignee"));
-                }
-
-                this.assignee = value;
-            }
-        }
+        public IMember Assignee { get; private set; }
 
         public void ChangePriority(Priority newPriority)
         {
@@ -123,7 +107,7 @@ namespace WorkManagementSystem.Models
         public void RemoveAssignee(IMember assignee)
         {
             this.Assignee = null;
-            this.historyLog.Add($"Story '{this.Title}' unassigned from {assignee.Name}.");
+            this.historyLog.Add($"Unassigned from {assignee.Name}.");
         }
     }
 }

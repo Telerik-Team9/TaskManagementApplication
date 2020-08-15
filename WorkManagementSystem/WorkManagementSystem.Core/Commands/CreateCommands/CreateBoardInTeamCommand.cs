@@ -37,6 +37,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             this.InstanceFactory.Database.Boards.Add(currBoard);
 
             string activity = string.Format(CoreConstants.CreatedBoard, boardName, currTeam.Name);
+
             currBoard.AddActivityLog(activity);
 
             return activity + NewLine
