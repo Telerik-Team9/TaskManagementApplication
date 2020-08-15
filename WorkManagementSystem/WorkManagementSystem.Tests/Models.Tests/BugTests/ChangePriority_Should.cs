@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Models;
@@ -69,7 +68,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
 
 
 
- //      this.historyLog.Add($"Priority changed from {oldPriority} to {newPriority}.");
+//      this.historyLog.Add($"Priority changed from {oldPriority} to {newPriority}.");
 
 
 /*public void ChangePriority(Priority newPriority)
