@@ -10,7 +10,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.FactoriesTests.ModelsFactoryTest
     public class CreateBug_Should
     {
         [TestMethod]
-        public void CreatePersonWhen_ValidValuesArePassed()
+        public void CreateBugWhen_ValidValuesArePassed()
         {
             //Arrange
             string title = new string('a', 11);

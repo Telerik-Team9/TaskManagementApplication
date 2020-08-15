@@ -9,7 +9,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.FactoriesTests.ModelsFactoryTest
     public class CreateBoard_Should
     {
         [TestMethod]
-        public void CreatePersonWhen_ValidValuesArePassed()
+        public void CreateBoardWhen_ValidValuesArePassed()
         {
             //Arrange
             string name = "FirstBoard";
