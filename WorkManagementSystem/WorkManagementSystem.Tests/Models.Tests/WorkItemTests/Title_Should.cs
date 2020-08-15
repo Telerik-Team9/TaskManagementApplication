@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿    using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using WorkManagementSystem.Models;
@@ -33,7 +33,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.WorkItemTests
         public void ThrowWhen_PassedValueIsShorter()
         {
             //Arrange
-            string name = new string('a', 2);
+            string name = new string('a', 9);
 
             //Assert
             Assert.ThrowsException<ArgumentException>(() =>
