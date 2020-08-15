@@ -21,7 +21,7 @@ namespace WorkManagementSystem.Models
 
         public Priority Priority { get; private set; } // default - notDone, if assigned - inProgress; 
 
-        public StorySize Size { get; private set; } // 10-150 - small; 151 - 300 - medium; 301 - 500 - large; 
+        public StorySize Size { get; private set; }
 
         public StoryStatus Status { get; private set; }
 
