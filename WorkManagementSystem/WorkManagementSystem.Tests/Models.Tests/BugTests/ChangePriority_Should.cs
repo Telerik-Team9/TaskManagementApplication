@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
@@ -12,11 +13,11 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
     public class ChangePriority_Should
     {
         [TestMethod]
-        public void AssignCorrectlyPriority()
+        public void ChangeCorrectlyPriority()
         {
             //Arrange
             Priority priority = Priority.High;
-            string title = new string('a', 15);
+            string title = new string('a', 10);
             string descr = new string('a', 55);
             IList<string> steps = new List<string>() { " ", " " };
             IBug bug = new Bug(title, descr, Priority.Low, default, steps);
@@ -26,6 +27,24 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
 
             //Assert
             Assert.AreEqual(bug.Priority, priority);
+        }
+
+        [TestMethod]
+        public void AddHistoryLogWhen_PriorityIsCorrectlyChanged()
+        {
+            //Arrange
+            Priority priority = Priority.High;
+            string title = new string('a', 10);
+            string descr = new string('a', 55);
+            IList<string> steps = new List<string>() { " ", " " };
+            IBug bug = new Bug(title, descr, Priority.Low, default, steps);
+            string expected = $"Priority changed from {bug.Priority} to {priority}.";
+
+            //Act
+            bug.ChangePriority(priority);
+
+            //Assert
+            Assert.IsTrue(bug.HistoryLog.Contains(expected));
         }
 
         [TestMethod]
@@ -46,6 +65,12 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
         }
     }
 }
+
+
+
+
+ //      this.historyLog.Add($"Priority changed from {oldPriority} to {newPriority}.");
+
 
 /*public void ChangePriority(Priority newPriority)
 {

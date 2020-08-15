@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Common.Enums;
@@ -26,6 +27,24 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
 
             //Assert
             Assert.AreEqual(bug.Status, status);
+        }
+
+        [TestMethod]
+        public void AddHistoryLogWhen_StatusIsCorrectlyChanged()
+        {
+            //Arrange
+            BugStatus status = BugStatus.Fixed;
+            string title = new string('a', 15);
+            string descr = new string('a', 55);
+            IList<string> steps = new List<string>() { " ", " " };
+            IBug bug = new Bug(title, descr, default, default, steps);
+            string expected = $"Status changed from {bug.Status} to {status}.";
+
+            //Act
+            bug.ChangeStatus(status);
+
+            //Assert
+            Assert.IsTrue(bug.HistoryLog.Contains(expected));
         }
 
         [TestMethod]

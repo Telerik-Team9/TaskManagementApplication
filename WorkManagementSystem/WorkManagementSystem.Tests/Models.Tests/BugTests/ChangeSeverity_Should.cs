@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Common.Enums;
@@ -26,6 +27,24 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
 
             //Assert
             Assert.AreEqual(bug.Severity, severity);
+        }
+
+        [TestMethod]
+        public void AddHistoryLogWhen_SeverityIsCorrectlyChanged()
+        {
+            //Arrange
+            BugSeverity severity = BugSeverity.Critical;
+            string title = new string('a', 15);
+            string descr = new string('a', 55);
+            IList<string> steps = new List<string>() { " ", " " };
+            IBug bug = new Bug(title, descr, default, BugSeverity.Major, steps);
+            string expected = $"Severity changed from {bug.Severity} to {severity}.";
+
+            //Act
+            bug.ChangeSeverity(severity);
+
+            //Assert
+            Assert.IsTrue(bug.HistoryLog.Contains(expected));
         }
 
         [TestMethod]

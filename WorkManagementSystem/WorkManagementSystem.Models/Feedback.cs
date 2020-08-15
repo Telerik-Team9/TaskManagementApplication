@@ -71,7 +71,7 @@ namespace WorkManagementSystem.Models
 
             FeedbackStatus oldStatus = this.FeedbackStatus;
             this.FeedbackStatus = newStatus;
-            this.historyLog.Add($"Rating changed from {oldStatus} to {newStatus}.");
+            this.historyLog.Add($"Status changed from {oldStatus} to {newStatus}.");
         }
     }
 }
