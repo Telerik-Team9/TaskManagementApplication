@@ -77,6 +77,19 @@ namespace WorkManagementSystem.Models
             this.historyLog.Add($"Status changed from {oldStatus} to {newStatus}.");
         }
 
+        public void ChangeAssignee(IMember newAssignee)
+        {
+            if (this.Assignee == newAssignee)
+            {
+                throw new ArgumentException($"Bug is already assigned to {this.Assignee.Name}.");
+            }
+
+            string oldAssignee = this.Assignee.Name;
+            this.Assignee = newAssignee;
+
+            this.historyLog.Add($"Assigned from {oldAssignee} to {newAssignee.Name}.");
+        }
+
         public override string GetWorkItemType()
         {
             return "Bug";

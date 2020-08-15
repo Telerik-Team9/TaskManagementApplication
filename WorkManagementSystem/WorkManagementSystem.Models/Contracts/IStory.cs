@@ -2,17 +2,11 @@
 
 namespace WorkManagementSystem.Models.Contracts
 {
-    public interface IStory : IWorkItem
+    public interface IStory : IWorkItem, IAssignable, IPrioritizable
     {
-        public Priority Priority { get; }
-
         public StorySize Size { get; }
 
         public StoryStatus Status { get; }
-
-        public IMember Assignee { get; }
-
-        public void ChangePriority(Priority newPriority);
 
         public void ChangeSize(StorySize newSize);
 
