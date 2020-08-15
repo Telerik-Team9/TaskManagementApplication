@@ -89,7 +89,6 @@ namespace WorkManagementSystem.Models
                 throw new ArgumentException($"Story is already assigned to {this.Assignee.Name}.");
             }
 
-            IMember oldAssignee = this.Assignee;
             this.Assignee = newAssignee;
 
             this.historyLog.Add($"Assigned to {newAssignee.Name}.");
