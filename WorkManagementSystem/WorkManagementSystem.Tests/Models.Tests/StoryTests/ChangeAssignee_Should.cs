@@ -1,12 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Contracts;
 using WorkManagementSystem.Tests.Fakes;
 
-namespace WorkManagementSystem.Tests.Models.Tests.BugTests
+namespace WorkManagementSystem.Tests.Models.Tests.StoryTests
 {
     [TestClass]
     public class ChangeAssignee_Should
@@ -17,15 +16,14 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
             //Arrange
             string title = new string('a', 10);
             string descr = new string('a', 55);
-            IList<string> steps = new List<string>() { " ", " " };
-            IBug bug = new Bug(title, descr, default, default, steps);
+            IStory story = new Story(title, descr, default, default, default);
             IMember member = new FakeMember();
 
             //Act
-            bug.ChangeAssignee(member);
+            story.ChangeAssignee(member);
 
             //Assert
-            Assert.IsTrue(bug.Assignee == member);
+            Assert.IsTrue(story.Assignee == member);
         }
 
         [TestMethod]
@@ -34,17 +32,15 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
             //Arrange
             string title = new string('a', 10);
             string descr = new string('a', 55);
-            IList<string> steps = new List<string>() { " ", " " };
-            IBug bug = new Bug(title, descr, default, default, steps);
+            IStory story = new Story(title, descr, default, default, default);
             IMember member = new FakeMember();
             string expected = $"Assigned to";
 
             //Act
-            bug.ChangeAssignee(member);
+            story.ChangeAssignee(member);
 
             //Assert
-            Assert.IsTrue(bug.HistoryLog.Skip(1).First().Contains(expected));
-
+            Assert.IsTrue(story.HistoryLog.Skip(1).First().Contains(expected));
         }
 
         [TestMethod]
@@ -53,17 +49,16 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
             //Arrange
             string title = new string('a', 10);
             string descr = new string('a', 55);
-            IList<string> steps = new List<string>() { " ", " " };
-            IBug bug = new Bug(title, descr, default, default, steps);
+            IStory story = new Story(title, descr, default, default, default);
             IMember member = new FakeMember();
 
             //Act
-            bug.ChangeAssignee(member);
+            story.ChangeAssignee(member);
 
             //Assert
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                bug.ChangeAssignee(member);
+                story.ChangeAssignee(member);
             });
         }
     }

@@ -1,13 +1,33 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Text;
+using WorkManagementSystem.Models;
+using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Tests.Models.Tests.WorkItemTests
 {
     [TestClass]
     public class PrintInfo_Should
     {
+        [TestMethod]
+        public void PrintValidInfo()
+        {
+            //Arrange
+            IBug bug = new Bug("TestBugTitle", "TestBugDescription", default, default, new List<string>());
+            string expectedId = $"Id: {bug.Id}";
+            string expectedTitle = $"Title: {bug.Title}";
+            string expectedDescription = $"Description: {bug.Description}";
+            string expectedComments = $"No comments have been added yet.";
+            string expectedHistory = $"Bug with title '{bug.Title}' was created.";
 
+            //Act
+            string actual = bug.PrintInfo();
+
+            //Assert
+            Assert.IsTrue(actual.Contains(expectedId));
+            Assert.IsTrue(actual.Contains(expectedTitle));
+            Assert.IsTrue(actual.Contains(expectedDescription));
+            Assert.IsTrue(actual.Contains(expectedComments));
+            Assert.IsTrue(actual.Contains(expectedHistory));
+        }
     }
 }
