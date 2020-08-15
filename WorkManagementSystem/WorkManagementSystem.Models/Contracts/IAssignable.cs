@@ -9,5 +9,7 @@ namespace WorkManagementSystem.Models.Contracts
         public IMember Assignee { get; }
 
         public void ChangeAssignee(IMember newAssignee);
+
+        public void RemoveAssignee(IMember assignee);
     }
 }

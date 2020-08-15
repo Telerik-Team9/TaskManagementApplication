@@ -92,7 +92,7 @@ namespace WorkManagementSystem.Models
             IMember oldAssignee = this.Assignee;
             this.Assignee = newAssignee;
 
-            this.historyLog.Add($"Assigned from {oldAssignee} to {newAssignee.Name}.");
+            this.historyLog.Add($"Assigned to {newAssignee.Name}.");
         }
 
         public override string GetWorkItemType()
@@ -119,6 +119,12 @@ namespace WorkManagementSystem.Models
             }
 
             return sb.ToString().TrimEnd();
+        }
+
+        public void RemoveAssignee(IMember assignee)
+        {
+            this.Assignee = null;
+            this.historyLog.Add($"Story '{this.Title}' unassigned from {assignee.Name}.");
         }
     }
 }

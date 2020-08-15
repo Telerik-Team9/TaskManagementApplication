@@ -14,8 +14,6 @@ namespace WorkManagementSystem.Models.Contracts
 
         public IReadOnlyCollection<string> HistoryLog { get; } //ActivityHistory instead of string?
 
-        public void AddHistory(string activity);
-
         public string GetWorkItemType();
 
         public void AddComment(string message, IMember author);

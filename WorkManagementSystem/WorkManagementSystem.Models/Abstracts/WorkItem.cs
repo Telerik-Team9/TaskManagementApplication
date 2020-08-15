@@ -23,7 +23,9 @@ namespace WorkManagementSystem.Models.Abstracts
             this.Title = title;
             this.Description = description;
             this.comments = new List<IComment>();
+
             this.historyLog = new List<string>();
+            this.historyLog.Add($"{this.GetWorkItemType()} with title '{this.Title}' was created.");
 
             this.Id = counter++;
         }
@@ -122,6 +124,7 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 sb.AppendLine(string.Join(NewLine, this.HistoryLog.Select(s => " -" + s)));
             }
+            //TODO: remove the else?
             else
             {
                 sb.AppendLine(" -No history is present yet.");
@@ -166,13 +169,6 @@ namespace WorkManagementSystem.Models.Abstracts
 
             this.historyLog.Add($"Comment from '{author.Name}' added.");
         }
-
-        // TODO: Remove AddHistory!!! later
-        public void AddHistory(string activity)
-        {
-            this.historyLog.Add(activity);
-        }
-
     }
 }
 
