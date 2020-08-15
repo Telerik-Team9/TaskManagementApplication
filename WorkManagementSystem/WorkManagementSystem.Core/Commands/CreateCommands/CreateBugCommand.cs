@@ -41,10 +41,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             this.InstanceFactory.Database.Bugs.Add(currBug);
             currBoard.AddWorkItem(currBug);
 
-            string activity = string.Format(CoreConstants.CreatedWorkItem, "Bug", currBug.Title);
-            currBug.AddHistory(activity);
-
-            return activity + NewLine
+            return currBug.HistoryLog.First() + NewLine
                 + currBug.PrintInfo();
         }
 

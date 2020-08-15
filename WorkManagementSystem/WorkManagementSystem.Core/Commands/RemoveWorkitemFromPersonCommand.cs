@@ -44,9 +44,20 @@ namespace WorkManagementSystem.Core.Commands
             IWorkItem currWorkItem = workItems
                 .First(workitem => workitem.Id == workItemId);
 
-            currPerson.RemoveWorkItem(currWorkItem);
-            currWorkItem.AddHistory($"Unassigned from {currPerson.Name}");
+            var bug = currWorkItem as IBug;
+            var story = currWorkItem as IStory;
 
+            if (bug != null)
+            {
+                bug.RemoveAssignee(currPerson);
+            }
+
+            if (story != null)
+            {
+                story.RemoveAssignee(currPerson);
+            }
+
+            currPerson.RemoveWorkItem(currWorkItem);
 
             return $"WorkItem {currWorkItem.Title} unassigned from {currPerson.Name}.";
         }

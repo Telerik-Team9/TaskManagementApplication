@@ -23,37 +23,44 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
         private string AddWorkItemToPerson(IMember currPerson)
         {
-            /*            IList<IWorkItem> workItems = this.InstanceFactory //TODO
-                            .Database
-                            .ListAllWorkitems()
-                            .Where(x=>x is IAssignable)
-                            .ToList();
+            IList<IWorkItem> workItems = this.InstanceFactory //TODO
+                .Database
+                .ListAllWorkitems();
 
-                        //lisr all workitems
+            //lisr all workitems
 
-                        foreach (var item in workItems)
-                        {
-                            this.Writer.WriteLine(item.PrintInfo());
-                        }
+            foreach (var item in workItems)
+            {
+                this.Writer.WriteLine(item.PrintInfo());
+            }
 
-                        this.Writer.Write(string.Format("Enter workitem's id: "));
-                        int workItemId = Convert.ToInt32(this.Reader.Read());
+            this.Writer.Write(string.Format("Enter workitem's id: "));
+            int workItemId = Convert.ToInt32(this.Reader.Read());
 
-                        if (!workItems.Any(workitem => workitem.Id == workItemId))
-                        {
-                            throw new ArgumentException("No workitem with this id");
-                        }
+            if (!workItems.Any(workitem => workitem.Id == workItemId))
+            {
+                throw new ArgumentException("No workitem with this id");
+            }
 
-                        IWorkItem currWorkItem = workItems
-                            .First(workitem => workitem.Id == workItemId);
+            IWorkItem currWorkItem = workItems
+                .First(workitem => workitem.Id == workItemId);
 
+            var bug = currWorkItem as IBug;
+            var story = currWorkItem as IStory;
 
-                        currPerson.AddWorkItem(currWorkItem);
-                        currWorkItem.ChangeAssignee()
-                        //currWorkItem.AddHistory($"Assigned to {currPerson.Name}");
-                        return "";
-                        //return $"WorkItem {currWorkItem.Title} assigned to {currPerson.Name}.";*/
-            return "";
+            if (bug != null)
+            {
+                bug.ChangeAssignee(currPerson);
+            }
+
+            if (story != null)
+            {
+                story.ChangeAssignee(currPerson);
+            }
+
+            currPerson.AddWorkItem(currWorkItem);
+            
+            return $"WorkItem {currWorkItem.Title} assigned to {currPerson.Name}.";
         }
     }
 }

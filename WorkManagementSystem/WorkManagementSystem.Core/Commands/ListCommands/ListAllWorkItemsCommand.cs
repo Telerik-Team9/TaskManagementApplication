@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -24,19 +24,19 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             var filterType = GetWorkItemType(type);
 
 
-            *//*            if (!this.InstanceFactory.Database.ListAllWorkitems().Any())
-                        {
-                            return "There are currently no people on the list.";
-                        }
+            if (!this.InstanceFactory.Database.ListAllWorkitems().Any())
+            {
+                return "There are currently no people on the list.";
+            }
 
-                        StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
-                        foreach (var person in this.InstanceFactory.Database.Members)
-                        {
-                            sb.AppendLine(person.PrintInfo() + NewLine);
-                        }
+            foreach (var person in this.InstanceFactory.Database.Members)
+            {
+                sb.AppendLine(person.PrintInfo() + NewLine);
+            }
 
-                        return sb.ToString().TrimEnd();*//*
+            return sb.ToString().TrimEnd();
 
             return "";
         }
@@ -48,4 +48,3 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             }
     }
 }
-*/

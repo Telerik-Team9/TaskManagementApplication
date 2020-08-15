@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
@@ -32,10 +33,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             this.InstanceFactory.Database.Stories.Add(currStory);
             currBoard.AddWorkItem(currStory);
 
-            string activity = string.Format(CoreConstants.CreatedWorkItem, "Story", currStory.Title);
-            currStory.AddHistory(activity);
-
-            return activity + NewLine
+            return currStory.HistoryLog.First() + NewLine
                 + currStory.PrintInfo();
         }
 

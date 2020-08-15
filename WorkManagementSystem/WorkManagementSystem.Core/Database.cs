@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 
@@ -15,22 +16,9 @@ namespace WorkManagementSystem.Core
         private readonly List<IStory> stories = new List<IStory>();
         private readonly List<IFeedback> feedbacks = new List<IFeedback>();
 
-        // add specific workitemlist
-        // remove IWorkitem list
-
-        private static IDatabase instance = null;
-
-        public static IDatabase Instance
+        public Database()
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Database();
-                }
-
-                return instance;
-            }
+            this.SeedData();
         }
 
         public IList<ITeam> Teams
@@ -40,6 +28,7 @@ namespace WorkManagementSystem.Core
                 return this.teams;
             }
         }
+
         public IList<IMember> Members
         {
             get
@@ -47,6 +36,7 @@ namespace WorkManagementSystem.Core
                 return this.members;
             }
         }
+
         public IList<IBoard> Boards
         {
             get
@@ -62,6 +52,7 @@ namespace WorkManagementSystem.Core
                 return this.bugs;
             }
         }
+
         public IList<IStory> Stories
         {
             get
@@ -69,6 +60,7 @@ namespace WorkManagementSystem.Core
                 return this.stories;
             }
         }
+
         public IList<IFeedback> Feedbacks
         {
             get
@@ -97,6 +89,13 @@ namespace WorkManagementSystem.Core
             }
 
             return workItems;
+        }
+
+        private void SeedData()
+        {
+            //ITeam team9 = new Team();
+
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
@@ -36,11 +37,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             this.InstanceFactory.Database.Feedbacks.Add(currFeedback);
             currBoard.AddWorkItem(currFeedback);
 
-
-            string activity = string.Format(CoreConstants.CreatedWorkItem, "Feedback", currFeedback.Title);
-            currFeedback.AddHistory(activity);
-
-            return activity + NewLine
+            return currFeedback.HistoryLog.First() + NewLine
                 + currFeedback.PrintInfo();
         }
 
