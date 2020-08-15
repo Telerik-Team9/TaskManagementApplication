@@ -2,8 +2,6 @@
 {
     public interface IMember : IUnit
     {
-        public void AddWorkItem(IWorkItem currWorkItem);
-
-        public void RemoveWorkitem(IWorkItem currWorkItem);
+        public void RemoveWorkItem(IWorkItem currWorkItem);
     }
 }

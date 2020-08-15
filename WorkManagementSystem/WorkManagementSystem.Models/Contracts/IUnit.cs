@@ -12,6 +12,8 @@ namespace WorkManagementSystem.Models.Contracts
 
         public void AddActivityLog(string activity);
 
+        public void AddWorkItem(IWorkItem workItem);
+
         public string PrintWorkItems();
 
         public string PrintActivityHistory();

@@ -76,7 +76,7 @@ namespace WorkManagementSystem.Models.Abstracts
             this.activityHistory.Add(newActivity);
         }
 
-        public void RemoveWorkitem(IWorkItem newWorkItem)
+        public void RemoveWorkItem(IWorkItem newWorkItem)
         {
             if (!this.WorkItems.Contains(newWorkItem))
             {

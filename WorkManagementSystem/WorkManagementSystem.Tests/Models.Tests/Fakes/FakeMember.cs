@@ -38,7 +38,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.Fakes
             throw new NotImplementedException();
         }
 
-        public void RemoveWorkitem(IWorkItem currWorkItem)
+        public void RemoveWorkItem(IWorkItem currWorkItem)
         {
             throw new NotImplementedException();
         }
