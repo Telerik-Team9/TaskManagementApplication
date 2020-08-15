@@ -73,7 +73,7 @@ namespace WorkManagementSystem.Core.Common
                 _ => throw new ArgumentException("Invalid workitem type.")
             };
         }
-        //Make this Generic
+       
         private static string ListAllStories(IInstanceFactory instances, Func<IWorkItem, string> criteria)
         {
             var stories = new List<IStory>(instances.Database.Stories);
@@ -110,16 +110,5 @@ namespace WorkManagementSystem.Core.Common
             return string.Join(Environment.NewLine, feedbacks.Select(criteria));
         }
 
-        public static string ListAllWorksItems(IInstanceFactory instances, Func<IWorkItem, string> criteria, string typeOfWorkItem)
-        {
-            return typeOfWorkItem switch
-            {
-                "Bug" => ListAllBugs(instances, criteria),
-                "Feedback" => ListAllFeedbacks(instances, criteria),
-                "Stories" => ListAllStories(instances, criteria),
-
-                _ => throw new ArgumentException("Invalid workitem type.")
-            };
-        }
     }
 }

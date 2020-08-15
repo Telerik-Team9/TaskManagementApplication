@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WorkManagementSystem.Core.Contracts;
+using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core
@@ -93,9 +94,34 @@ namespace WorkManagementSystem.Core
 
         private void SeedData()
         {
-            //ITeam team9 = new Team();
+            ITeam team9 = new Team("Team9");
+            ITeam team10 = new Team("Team10");
+            this.Teams.Add(team9);
+            this.Teams.Add(team10);
 
-            throw new NotImplementedException();
+            IBoard firstBoard = new Board("FIRSTBRD");
+            IBoard secondBoard = new Board("SECONDBRD");
+            team9.AddBoard(firstBoard);
+            team10.AddBoard(secondBoard);
+            firstBoard.AddActivityLog("A board with name 'FIRSTBRD' was added to team 'Team9'.");
+            secondBoard.AddActivityLog("A board with name 'SECONDBRD' was added to team 'Team10'.");
+            this.Boards.Add(firstBoard);
+            this.Boards.Add(secondBoard);
+
+            IMember maggie = new Member("Maggie");
+            IMember ali = new Member("Aliii");
+            this.Members.Add(maggie);
+            this.Members.Add(ali);
+
+            IBug bug = new Bug("SeedDataBug", "SeedDataDescriptionBug", default, default, new List<string>());
+            IFeedback feedback = new Feedback("SeedDataFeedback", "SeedDataDescriptionFeedback", 2, default);
+            IStory story = new Story("SeedDataStory", "SeedDataDescriptionStory", default, default, default);
+            firstBoard.AddWorkItem(bug);
+            firstBoard.AddWorkItem(feedback);
+            secondBoard.AddWorkItem(story);
+            this.Bugs.Add(bug);
+            this.Feedbacks.Add(feedback);
+            this.Stories.Add(story);
         }
     }
 }

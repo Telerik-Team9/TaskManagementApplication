@@ -108,6 +108,8 @@ namespace WorkManagementSystem.Core.Common
             "  changestoryproperty" + NewLine +
             "Remove commands:" + NewLine +
             "  removeworkitemfromperson" + NewLine +
+            "List commands:" + NewLine +
+            "  listworkitems" + NewLine +
             "-----------------------------------------------------" + NewLine;
 
 
