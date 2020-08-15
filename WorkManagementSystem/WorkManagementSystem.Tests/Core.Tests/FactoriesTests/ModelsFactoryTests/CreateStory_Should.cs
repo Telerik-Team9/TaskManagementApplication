@@ -6,10 +6,10 @@ using WorkManagementSystem.Models.Contracts;
 namespace WorkManagementSystem.Tests.Core.Tests.FactoriesTests.ModelsFactoryTests
 {
     [TestClass]
-    public class CreateFeedback_Should
+    public class CreateStory_Should
     {
         [TestMethod]
-        public void CreateFeedbackWhen_ValidValuesArePassed()
+        public void CreateStoryWhen_ValidValuesArePassed()
         {
             //Arrange
             string title = new string('a', 11);
@@ -17,12 +17,12 @@ namespace WorkManagementSystem.Tests.Core.Tests.FactoriesTests.ModelsFactoryTest
             IModelsFactory factory = new ModelsFactory();
 
             //Act
-            IFeedback feedback = factory.CreateFeedback(title, descr, 5, default);
+            IStory story = factory.CreateStory(title, descr, default, default, default);
 
             //Assert
-            Assert.AreEqual(title, feedback.Title);
-            Assert.AreEqual(descr, feedback.Description);
-            Assert.IsInstanceOfType(feedback, typeof(IFeedback));
+            Assert.AreEqual(title, story.Title);
+            Assert.AreEqual(descr, story.Description);
+            Assert.IsInstanceOfType(story, typeof(IStory));
         }
     }
 }
