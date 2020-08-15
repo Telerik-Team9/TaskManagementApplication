@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using WorkManagementSystem.Models.Contracts;
 
-namespace WorkManagementSystem.Tests.Models.Tests.Fakes
+namespace WorkManagementSystem.Tests.Fakes
 {
     public class FakeMember : IMember
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Contracts;
-using WorkManagementSystem.Tests.Models.Tests.Fakes;
+using WorkManagementSystem.Tests.Fakes;
 
 namespace WorkManagementSystem.Tests.Models.Tests.BugTests
 {
