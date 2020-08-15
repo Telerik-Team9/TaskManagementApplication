@@ -29,7 +29,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
         }
 
         [TestMethod]
-        public void AddHistoryWhen_AssigneeChangedCorreclty()
+        public void AddHistoryWhen_AssigneeChangedCorrectly()
         {
             //Arrange
             string title = new string('a', 10);

@@ -20,6 +20,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.CommentTests
 
             //Assert
             Assert.AreEqual(message, comment.Message);
+            Assert.AreEqual(member, comment.Author);
             Assert.IsInstanceOfType(comment, typeof(IComment));
         }
     }

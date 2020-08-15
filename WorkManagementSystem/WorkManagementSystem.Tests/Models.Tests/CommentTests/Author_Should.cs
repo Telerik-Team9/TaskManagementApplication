@@ -6,7 +6,7 @@ using WorkManagementSystem.Tests.Fakes;
 namespace WorkManagementSystem.Tests.Models.Tests.CommentTests
 {
     [TestClass]
-    public class AuthorShould
+    public class Author_Should
     {
         [TestMethod]
         public void InitalizeCorrectlyWhen_ValidValuesArePassed()
@@ -19,6 +19,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.CommentTests
             IComment comment = new Comment(message, member);
 
             //Assert
+            Assert.AreEqual(comment.Author, member);
             Assert.IsInstanceOfType(comment.Author, typeof(IMember));
         }
     }
