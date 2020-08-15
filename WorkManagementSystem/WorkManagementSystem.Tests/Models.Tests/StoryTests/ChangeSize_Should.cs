@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Common.Enums;
@@ -18,16 +19,31 @@ namespace WorkManagementSystem.Tests.Models.Tests.StoryTests
             //Arrange
             string title = new string('a', 15);
             string descr = new string('a', 55);
-            Priority priority = Priority.High;
             StorySize newSize = StorySize.Medium;
-            StoryStatus status = StoryStatus.Done;
+            IStory story = new Story(title, descr, default, StorySize.Small, default);
 
             //Act
-            IStory story = new Story(title, descr, priority, StorySize.Small, status);
             story.ChangeSize(newSize);
 
             //Assert
-            Assert.AreEqual(status, story.Status);
+            Assert.AreEqual(story.Size, newSize);
+        }
+
+        [TestMethod]
+        public void AddHistoryLogWhen_SizeIsCorrectlyChanged()
+        {
+            //Arrange
+            string title = new string('a', 15);
+            string descr = new string('a', 55);
+            StorySize newSize = StorySize.Medium;
+            IStory story = new Story(title, descr, default, StorySize.Small, default);
+            string expected = $"Size changed from {story.Size} to {newSize}.";
+
+            //Act
+            story.ChangeSize(newSize);
+
+            //Assert
+            Assert.IsTrue(story.HistoryLog.Contains(expected));
         }
 
         [TestMethod]

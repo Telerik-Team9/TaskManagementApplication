@@ -27,7 +27,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.FeedbackTests
         }
 
         [TestMethod]
-        public void AddHistoryLogWhen_RatingIsCorrectlyChanged()
+        public void AddHistoryLogWhen_StatusIsCorrectlyChanged()
         {
             //Arrange
             string title = new string('a', 15);
