@@ -3,7 +3,7 @@ using System;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Contracts;
 
-namespace WorkManagementSystem.Tests.Models.Tests.UnitTests
+namespace WorkManagementSystem.Tests.Models.Tests.BugTests
 {
     [TestClass]
     public class BoardName_Property_Should
