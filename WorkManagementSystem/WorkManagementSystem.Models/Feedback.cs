@@ -16,7 +16,7 @@ namespace WorkManagementSystem.Models
             : base(title, description)
         {
             this.Rating = rating;
-            this.FeedbackStatus = status;
+            this.Status = status;
         }
 
         public int Rating
@@ -42,12 +42,12 @@ namespace WorkManagementSystem.Models
             return "Feedback";
         }
 
-        public FeedbackStatus FeedbackStatus { get; private set; }
+        public FeedbackStatus Status { get; private set; }
 
         protected override string AdditionalInfo()
         {
             return $"Rating: {this.Rating}{NewLine}" +
-                $"Status: {this.FeedbackStatus}";
+                $"Status: {this.Status}";
         }
 
         public void ChangeRating(int newRating)
@@ -64,13 +64,13 @@ namespace WorkManagementSystem.Models
 
         public void ChangeStatus(FeedbackStatus newStatus)
         {
-            if (this.FeedbackStatus == newStatus)
+            if (this.Status == newStatus)
             {
-                throw new ArgumentException($"Status is already {this.FeedbackStatus}");
+                throw new ArgumentException($"Status is already {this.Status}");
             }
 
-            FeedbackStatus oldStatus = this.FeedbackStatus;
-            this.FeedbackStatus = newStatus;
+            FeedbackStatus oldStatus = this.Status;
+            this.Status = newStatus;
             this.historyLog.Add($"Status changed from {oldStatus} to {newStatus}.");
         }
     }

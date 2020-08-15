@@ -6,7 +6,7 @@ namespace WorkManagementSystem.Models.Contracts
     {
         int Rating { get; }
 
-        public FeedbackStatus FeedbackStatus { get; }
+        public FeedbackStatus Status { get; }
 
         public void ChangeRating(int rating);
 

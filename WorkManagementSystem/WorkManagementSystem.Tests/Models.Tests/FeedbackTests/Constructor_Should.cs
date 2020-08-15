@@ -21,7 +21,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.FeedbackTests
             Assert.AreEqual(title, feedback.Title);
             Assert.AreEqual(descr, feedback.Description);
             Assert.AreEqual(rating, feedback.Rating);
-            Assert.AreEqual(status, feedback.FeedbackStatus);
+            Assert.AreEqual(status, feedback.Status);
             Assert.IsInstanceOfType(feedback, typeof(IFeedback));
         }
     }

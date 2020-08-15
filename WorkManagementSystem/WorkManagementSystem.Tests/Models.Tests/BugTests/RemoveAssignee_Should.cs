@@ -41,7 +41,6 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
 
             //Assert
             Assert.IsTrue(bug.HistoryLog.Skip(1).First().Contains(expected));
-
         }
     }
 }

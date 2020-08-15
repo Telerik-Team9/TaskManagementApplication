@@ -20,7 +20,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
         }
         private string AlterFeedback(IFeedback feedback)
         {
-            this.Writer.WriteLine($"Rating: {feedback.Rating}|Status: {feedback.FeedbackStatus}\n");
+            this.Writer.WriteLine($"Rating: {feedback.Rating}|Status: {feedback.Status}\n");
             this.Writer.WriteLine("Choose which property you wish to change: (rating/status)");
 
             string propertyToChange = this.Reader.Read();

@@ -23,7 +23,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.FeedbackTests
             feedback.ChangeStatus(newStatus);
 
             //Assert
-            Assert.AreEqual(newStatus, feedback.FeedbackStatus);
+            Assert.AreEqual(newStatus, feedback.Status);
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.FeedbackTests
             string descr = new string('a', 55);
             FeedbackStatus newStatus = FeedbackStatus.Done;
             IFeedback feedback = new Feedback(title, descr, 5, FeedbackStatus.New);
-            string expected = $"Status changed from {feedback.FeedbackStatus} to {newStatus}.";
+            string expected = $"Status changed from {feedback.Status} to {newStatus}.";
 
             //Act
             feedback.ChangeStatus(newStatus);
