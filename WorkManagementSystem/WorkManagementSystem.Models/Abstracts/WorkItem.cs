@@ -159,7 +159,6 @@ namespace WorkManagementSystem.Models.Abstracts
         /// <returns>The type of the WorkItem.</returns>
         public abstract string GetWorkItemType();
 
-        // TODO: Remove AddComents and AddHistory!!! later
         public void AddComment(string message, IMember author)
         {
             var comment = new Comment(message, author);
@@ -168,6 +167,7 @@ namespace WorkManagementSystem.Models.Abstracts
             this.historyLog.Add($"Comment from '{author.Name}' added.");
         }
 
+        // TODO: Remove AddHistory!!! later
         public void AddHistory(string activity)
         {
             this.historyLog.Add(activity);
