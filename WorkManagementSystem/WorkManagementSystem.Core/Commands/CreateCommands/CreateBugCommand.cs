@@ -18,20 +18,21 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
         {
-            IBoard currBoard = ChooseMethods.ChooseBoard(this.InstanceFactory);
-            return CreateBugInBoard(currBoard);
+            ITeam currTeam = this.InstanceFactory.Database.Teams.First(t => t.Name == parameters[0]);
+            IBoard currBoard = this.InstanceFactory.Database.Boards.First(b => b.Name == parameters[1]);
+
+            string title = parameters[2];
+            string description = parameters[3];
+            (Priority priority, BugSeverity severity) = ParseEnums(parameters[4], parameters[5]);
+            string stepsAsStr = parameters[6];
+
+            return CreateBugInBoard(currBoard, title, description, priority, severity, stepsAsStr);
         }
 
-        private string CreateBugInBoard(IBoard currBoard)
+        private string CreateBugInBoard(IBoard currBoard, string title, string description, Priority priority, BugSeverity severity, string stepsAsStr)
         {
-            (string title, string description) = ParseBaseWorkItemParameters();
-            (Priority priority, BugSeverity severity) = this.ParseEnums();
-
-            this.Writer.WriteLine("Please enter the steps to reproduce of the bug, splliting them by '-'.");
-            string stepsAsStr = this.Reader.Read();
-
             List<string> steps = stepsAsStr
                 .Split("-", StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
@@ -45,11 +46,11 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 + currBug.PrintInfo();
         }
 
-        private (Priority, BugSeverity) ParseEnums()
+        private (Priority, BugSeverity) ParseEnums(string priorityAsStr, string severityAsStr)
         {
-            // Parse Priority
+            /*// Parse Priority
             this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
-            string priorityAsStr = this.Reader.Read();
+            string priorityAsStr = this.Reader.Read();*/
             Priority priority;
 
             if (string.IsNullOrWhiteSpace(priorityAsStr))
@@ -61,9 +62,9 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new InvalidEnumArgumentException("Invalid priority");
             }
 
-            // Parse Severity
+            /*// Parse Severity
             this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Severity", "Critical/Major/Minor"));
-            string severityAsStr = this.Reader.Read();
+            string severityAsStr = this.Reader.Read();*/
             BugSeverity severity;
 
             if (string.IsNullOrWhiteSpace(severityAsStr))
@@ -75,6 +76,35 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new Exception("Invalid severity");
             }
             return (priority, severity);
+        }
+
+        public override IList<string> GetUserInput()
+        {
+            (IBoard currBoard, ITeam currTeam) = ChooseMethods.ChooseBoard(this.InstanceFactory);
+
+            (string title, string description) = ParseBaseWorkItemParameters();
+
+            // Get Priority
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
+            string priorityAsStr = this.Reader.Read();
+
+            // Get Severity
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Severity", "Critical/Major/Minor"));
+            string severityAsStr = this.Reader.Read();
+
+            this.Writer.WriteLine("Enter the steps to reproduce of the bug, splliting them by '-'.");
+            string stepsAsStr = this.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currTeam.Name);
+            parameters.Add(currBoard.Name);
+            parameters.Add(title);
+            parameters.Add(description);
+            parameters.Add(priorityAsStr);
+            parameters.Add(severityAsStr);
+            parameters.Add(stepsAsStr);
+
+            return parameters;
         }
     }
 }

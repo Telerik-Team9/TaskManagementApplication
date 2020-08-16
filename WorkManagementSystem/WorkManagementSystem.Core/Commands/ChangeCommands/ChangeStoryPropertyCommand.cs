@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
@@ -14,22 +16,15 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
         {
-            IStory currStory = ChooseMethods.ChooseStory(this.InstanceFactory);
-            return this.AlterStory(currStory);
+            IStory currStory = this.InstanceFactory.Database.Stories.First(s => s.Id == int.Parse(parameters[0]));
+
+            return this.AlterStory(currStory, parameters[1], parameters[2]);
         }
 
-        private string AlterStory(IStory story)
+        private string AlterStory(IStory story, string newValue, string propertyToChange)
         {
-            //this.Writer.WriteLine($"Priority: {bug.Priority}|Severity: {bug.Severity}|Status: {bug.Status}\n");
-            this.Writer.WriteLine("Choose which property you wish to change: (priority/size/status)");
-
-            string propertyToChange = this.Reader.Read();
-            this.Writer.WriteLine(ValidatePropertyType(propertyToChange));
-
-            string newValue = this.Reader.Read();
-
             if (Enum.TryParse(newValue, ignoreCase: true, out Priority priority))
             {
                 story.ChangePriority(priority);
@@ -63,6 +58,25 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
                 _ => throw new ArgumentException("Invalid property entered!")
             };
+        }
+
+        public override IList<string> GetUserInput()
+        {
+            IStory currStory = ChooseMethods.ChooseStory(this.InstanceFactory);
+
+            this.Writer.WriteLine("Choose which property you wish to change: (priority/size/status)");
+
+            string propertyToChange = this.Reader.Read();
+            this.Writer.WriteLine(ValidatePropertyType(propertyToChange));
+
+            string newValue = this.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currStory.Id.ToString());
+            parameters.Add(newValue);
+            parameters.Add(propertyToChange);
+
+            return parameters;
         }
     }
 }

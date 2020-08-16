@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
@@ -17,21 +18,21 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
         {
-            IBoard currBoard = ChooseMethods.ChooseBoard(this.InstanceFactory);
-            return CreateFeedbackInBoard(currBoard);
+            ITeam currTeam = this.InstanceFactory.Database.Teams.First(t => t.Name == parameters[0]);
+            IBoard currBoard = this.InstanceFactory.Database.Boards.First(b => b.Name == parameters[1]);
 
+            string title = parameters[2];
+            string description = parameters[3];
+            int rating = int.Parse(parameters[4]);
+            FeedbackStatus status = ParseEnums(parameters[5]);
+
+            return CreateFeedbackInBoard(currBoard, title, description, rating, status);
         }
 
-        private string CreateFeedbackInBoard(IBoard currBoard)
+        private string CreateFeedbackInBoard(IBoard currBoard, string title, string description, int rating, FeedbackStatus status)
         {
-            (string title, string description) = ParseBaseWorkItemParameters();
-
-            this.Writer.Write(CoreConstants.Rating);
-            int rating = int.Parse(this.Reader.Read());
-            FeedbackStatus status = this.ParseEnums();
-
             IFeedback currFeedback = this.InstanceFactory.ModelsFactory.CreateFeedback(title, description, rating, status);
 
             this.InstanceFactory.Database.Feedbacks.Add(currFeedback);
@@ -41,12 +42,8 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 + currFeedback.PrintInfo();
         }
 
-        private FeedbackStatus ParseEnums()
+        private FeedbackStatus ParseEnums(string statusAsStr)
         {
-            // Parse Status
-            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Status", "(Done/New/Scheduled/Unscheduled)"));
-            string statusAsStr = this.Reader.Read();
-
             FeedbackStatus status;
 
             if (string.IsNullOrWhiteSpace(statusAsStr))
@@ -59,6 +56,29 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             }
 
             return status;
+        }
+
+        public override IList<string> GetUserInput()
+        {
+            (IBoard currBoard, ITeam currTeam) = ChooseMethods.ChooseBoard(this.InstanceFactory);
+
+            (string title, string description) = ParseBaseWorkItemParameters();
+
+            this.Writer.Write(CoreConstants.Rating);
+            string rating = this.Reader.Read();
+
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Status", "(Done/New/Scheduled/Unscheduled)"));
+            string statusAsStr = this.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currTeam.Name);
+            parameters.Add(currBoard.Name);
+            parameters.Add(title);
+            parameters.Add(description);
+            parameters.Add(rating);
+            parameters.Add(statusAsStr);
+
+            return parameters;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
                .Database
                .ListAllWorkitems();
 
-            if (!workItems.Any(workitem => workitem.Id == int.Parse(workItemId))
+            if (!workItems.Any(workitem => workitem.Id == int.Parse(workItemId)))
             {
                 throw new ArgumentException("No workitem with this id");
             }

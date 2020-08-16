@@ -47,7 +47,7 @@ namespace WorkManagementSystem.Core.Common
             return currPerson;
         }
 
-        public static IBoard ChooseBoard(IInstanceFactory instances)
+        public static (IBoard, ITeam) ChooseBoard(IInstanceFactory instances)
         {
             if (!instances.Database.Boards.Any())
             {
@@ -87,7 +87,7 @@ namespace WorkManagementSystem.Core.Common
                 .Boards
                 .FirstOrDefault(b => b.Name == boardName);
 
-            return teamBoard;
+            return (teamBoard, currTeam);
         }
 
         public static IWorkItem ChooseWorkItem(IInstanceFactory instances)

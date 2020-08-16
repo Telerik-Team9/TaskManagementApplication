@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
@@ -16,18 +17,21 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
         {
-            IBoard currBoard = ChooseMethods.ChooseBoard(this.InstanceFactory);
-            return CreateStoryInBoard(currBoard);
+            ITeam currTeam = this.InstanceFactory.Database.Teams.First(t => t.Name == parameters[0]);
+            IBoard currBoard = this.InstanceFactory.Database.Boards.First(b => b.Name == parameters[1]);
+
+            string title = parameters[2];
+            string description = parameters[3];
+            (Priority priority, StorySize size, StoryStatus status) = ParseEnums(parameters[4], parameters[5], parameters[6]);
+
+
+            return CreateStoryInBoard(currBoard, title, description, priority, size, status);
         }
 
-        private string CreateStoryInBoard(IBoard currBoard)
+        private string CreateStoryInBoard(IBoard currBoard, string title, string description, Priority priority, StorySize size, StoryStatus status)
         {
-            (string title, string description) = ParseBaseWorkItemParameters();
-            (Priority priority, StorySize size, StoryStatus status) = ParseEnums();
-
-
             IStory currStory = this.InstanceFactory.ModelsFactory.CreateStory(title, description, priority, size, status);
 
             this.InstanceFactory.Database.Stories.Add(currStory);
@@ -37,11 +41,9 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 + currStory.PrintInfo();
         }
 
-        private (Priority, StorySize, StoryStatus) ParseEnums()
+        private (Priority, StorySize, StoryStatus) ParseEnums(string priorityAsStr, string sizeAsStr, string statusAsStr)
         {
-            // Parse Priority
-            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
-            string priorityAsStr = this.InstanceFactory.Reader.Read();
+            //Parse priority
             Priority priority;
 
             if (string.IsNullOrWhiteSpace(priorityAsStr))
@@ -53,9 +55,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new Exception("Invalid priority");
             }
 
-            // Parse Size
-            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Size", "Small/Medium/Large"));
-            string sizeAsStr = this.InstanceFactory.Reader.Read();
+            //Parse size
             StorySize size;
 
             if (string.IsNullOrWhiteSpace(sizeAsStr))
@@ -67,9 +67,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new Exception("Invalid size");
             }
 
-            // Parse Status
-            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Status", "NotDone/InProgress/Done"));
-            string statusAsStr = this.InstanceFactory.Reader.Read();
+            // Parse status
             StoryStatus status;
 
             if (string.IsNullOrWhiteSpace(statusAsStr))
@@ -82,6 +80,36 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             }
 
             return (priority, size, status);
+        }
+
+        public override IList<string> GetUserInput()
+        {
+            (IBoard currBoard, ITeam currTeam) = ChooseMethods.ChooseBoard(this.InstanceFactory);
+
+            (string title, string description) = ParseBaseWorkItemParameters();
+
+            // Get Priority
+            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
+            string priorityAsStr = this.InstanceFactory.Reader.Read();
+
+            // Get Size
+            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Size", "Small/Medium/Large"));
+            string sizeAsStr = this.InstanceFactory.Reader.Read();
+
+            // Parse Status
+            this.InstanceFactory.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Status", "NotDone/InProgress/Done"));
+            string statusAsStr = this.InstanceFactory.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currTeam.Name);
+            parameters.Add(currBoard.Name);
+            parameters.Add(title);
+            parameters.Add(description);
+            parameters.Add(priorityAsStr);
+            parameters.Add(sizeAsStr);
+            parameters.Add(statusAsStr);
+
+            return parameters;
         }
     }
 }
