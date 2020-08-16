@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Commands.ShowCommands;
@@ -15,25 +16,40 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
         {
-            ITeam currTeam = ChooseMethods.ChooseTeam(this.InstanceFactory);
-            return AddPersonToTeam(currTeam);
+            ITeam currTeam = this.InstanceFactory
+                .Database
+                .Teams
+                .First(t=>t.Name == parameters[0]);
+
+            return AddPersonToTeam(currTeam,parameters[1]);
         }
 
-        private string AddPersonToTeam(ITeam currTeam)
+        public override IList<string> GetUserInput()
         {
+            ITeam currTeam = ChooseMethods.ChooseTeam(this.InstanceFactory);
+
             this.Writer.WriteLine(ListMethods.ListAllUnits(this.InstanceFactory, p => "Name: " + p.Name, "member"));
 
             this.Writer.WriteLine(string.Format("Enter person's name:"));
             string personName = this.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currTeam.Name);
+            parameters.Add(personName);
+
+            return parameters;
+        }
+
+        private string AddPersonToTeam(ITeam currTeam, string personName)
+        {
 
             if (!this.InstanceFactory.Database.Members.Any(p => p.Name == personName))
             {
                 throw new ArgumentException(string.Format(CoreConstants.MemberDoesNotExistExcMessage, personName));
             }
 
-            // Check / debug
             if (currTeam.Members.Any(p => p.Name == personName))
             {
                 throw new ArgumentException(string.Format(CoreConstants.PersonIsAlreadyOnTheTeamExcMessage, personName, currTeam.Name));

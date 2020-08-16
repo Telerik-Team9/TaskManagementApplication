@@ -18,7 +18,6 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
         public override string Execute(IList<string> parameters)
         {
-
             IBug currBug = InstanceFactory
                 .Database
                 .Bugs
