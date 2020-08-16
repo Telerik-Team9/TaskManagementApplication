@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
+using WorkManagementSystem.Core.Factories;
 using WorkManagementSystem.Models.Contracts;
 using WorkManagementSystem.Tests.Fakes;
 
@@ -15,7 +16,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
         public void ListAllWorkitemsCorrectly()
         {
             //Arrange
-            IInstanceFactory factory = new FakeInstanceFactory();
+            IInstanceFactory factory = new InstanceFactory();
             string expectedType = $"Type: {factory.Database.Bugs.First().GetWorkItemType()}";
             string expectedTitle = $"Title: {factory.Database.Bugs.First().Title}";
 
@@ -39,5 +40,20 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
             Assert.IsTrue(actual.Contains(expectedTitle1));
             Assert.IsTrue(actual.Contains(expectedTitle2));
         }
+
+        [TestMethod]
+        public void ThrowWhen_NoWorkItemsInDatabase()
+        {
+            //Arrange
+            IInstanceFactory factory = new FakeInstanceFactory();
+            Func<IWorkItem, string> criteria = x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title;
+
+            //Act and assert
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                string actual = ListMethods.ListAllWorkItems(factory, criteria);
+
+            });
+        }
     }
-} 
+}
