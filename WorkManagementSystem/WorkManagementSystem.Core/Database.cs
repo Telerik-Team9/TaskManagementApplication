@@ -12,7 +12,6 @@ namespace WorkManagementSystem.Core
         private readonly List<IMember> members = new List<IMember>();
         private readonly List<IBoard> boards = new List<IBoard>();
 
-
         private readonly List<IBug> bugs = new List<IBug>();
         private readonly List<IStory> stories = new List<IStory>();
         private readonly List<IFeedback> feedbacks = new List<IFeedback>();
