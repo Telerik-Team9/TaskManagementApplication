@@ -1,27 +1,25 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
+﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using WorkManagementSystem.Core.Commands.CreateCommands;
+using System.Text;
+using WorkManagementSystem.Core.Commands.ChangeCommands;
 using WorkManagementSystem.Core.Contracts;
-using WorkManagementSystem.Core.Factories;
-using WorkManagementSystem.Models.Contracts;
 using WorkManagementSystem.Tests.Fakes;
 
-namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.CreateCommandsTests
+namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ChangeCommandsTests
 {
     [TestClass]
-    public class CreatePersonCommand_Should
+    public class ChangeBugPropertyCommand_Should
     {
         [TestMethod]
-        public void Execute_Should_ReturnCorrectMsgWhen_ValiedValuesArePassed()
+        public void Execute_Should_CorrectlyChangeBugPriorityProperty()
         {
             //Arrange
-            IList<string> parameters = new List<string>() { "TestPersonName" };
+            IList<string> parameters = new List<string>() { "0", "priority", "medium" };
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
-            var command = new CreatePersonCommand(fakeFactory);
-            string expected = "Member TestPersonName has been created";
+            fakeFactory.Database.SeedFakeData();
+            var command = new ChangeBugPropertyCommand(fakeFactory);
+            string expected = "Bug priority set to medium";
 
             //Act
             string actual = command.Execute(parameters);
@@ -30,7 +28,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.CreateCommandsTests
             Assert.IsTrue(actual.Contains(expected));
         }
 
-        [TestMethod]
+*//*        [TestMethod]
         public void Execute_Should_AddPersonToDatabaseWhen_ValiedValuesArePassed()
         {
             //Arrange
@@ -59,6 +57,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.CreateCommandsTests
             {
                 _ = command.Execute(parameters);
             });
-        }
+        }*//*
     }
 }
+*/

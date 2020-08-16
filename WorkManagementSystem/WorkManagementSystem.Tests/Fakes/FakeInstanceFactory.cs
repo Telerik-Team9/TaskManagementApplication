@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using WorkManagementSystem.Core.Contracts;
+using WorkManagementSystem.Core.Factories;
 
 namespace WorkManagementSystem.Tests.Fakes
 {
     public class FakeInstanceFactory : IInstanceFactory
     {
-        public IDatabase Database => new FakeDatabase();
+        public IDatabase Database => FakeDatabase.Instance;
 
-        public IModelsFactory ModelsFactory => throw new NotImplementedException();
+        public IModelsFactory ModelsFactory => new FakeModelsFactory();
 
         public IReader Reader => throw new NotImplementedException();
 

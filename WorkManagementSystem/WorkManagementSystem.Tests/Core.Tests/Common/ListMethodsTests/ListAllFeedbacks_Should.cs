@@ -18,8 +18,8 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
         {
             //Arrange
             IInstanceFactory factory = new InstanceFactory();
-            string expected = "Type: Feedback | Id: 4 | Title: SeedDataFeedback";
-            Func<IWorkItem, string> criteria = x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title;
+            string expected = "Type: Feedback | Title: SeedDataFeedback";
+            Func<IWorkItem, string> criteria = x => "Type: " + x.GetWorkItemType() + " | Title: " + x.Title;
 
             //Act
             string actual = ListMethods.ListAllWorkItems(factory, criteria, "Feedback");

@@ -16,8 +16,8 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
         {
             //Arrange
             IInstanceFactory factory = new InstanceFactory();
-            string expected = "Type: Story | Id: 8 | Title: SeedDataStory";
-            Func<IWorkItem, string> criteria = x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title;
+            string expected = "Type: Story | Title: SeedDataStory";
+            Func<IWorkItem, string> criteria = x => "Type: " + x.GetWorkItemType() + " | Title: " + x.Title;
 
             //Act
             string actual = ListMethods.ListAllWorkItems(factory, criteria, "Story");
@@ -36,7 +36,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
             //Act and assert
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                string actual = ListMethods.ListAllWorkItems(factory, criteria, "Stories");
+                string actual = ListMethods.ListAllWorkItems(factory, criteria, "Story");
             });
         }
     }
