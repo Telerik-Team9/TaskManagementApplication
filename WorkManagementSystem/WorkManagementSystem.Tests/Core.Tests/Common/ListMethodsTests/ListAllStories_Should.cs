@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Core.Factories;
@@ -11,24 +9,25 @@ using WorkManagementSystem.Tests.Fakes;
 namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
 {
     [TestClass]
-    public class ListAllFeedbacks_Should
+    public class ListAllStories_Should
     {
         [TestMethod]
-        public void CorrectlyListAllFeedbacks()
+        public void CorrectlyListAllStories()
         {
             //Arrange
             IInstanceFactory factory = new InstanceFactory();
-            string expected = "Type: Feedback | Id: 4 | Title: SeedDataFeedback";
+            string expected = "Type: Story | Id: 8 | Title: SeedDataStory";
             Func<IWorkItem, string> criteria = x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title;
 
             //Act
-            string actual = ListMethods.ListAllWorkItems(factory, criteria, "Feedback");
+            string actual = ListMethods.ListAllWorkItems(factory, criteria, "Stories");
 
             //Assert
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
-        public void ThrowWhen_NoFeedbacksInDatabase()
+        public void ThrowWhen_NoStoriesInDatabase()
         {
             //Arrange
             IInstanceFactory factory = new FakeInstanceFactory();
@@ -37,7 +36,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
             //Act and assert
             Assert.ThrowsException<ArgumentException>(() =>
             {
-                string actual = ListMethods.ListAllWorkItems(factory, criteria, "Feedback");
+                string actual = ListMethods.ListAllWorkItems(factory, criteria, "Stories");
             });
         }
     }
