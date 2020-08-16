@@ -1,4 +1,5 @@
-﻿using WorkManagementSystem.Core.Contracts;
+﻿using System.Collections.Generic;
+using WorkManagementSystem.Core.Contracts;
 
 namespace WorkManagementSystem.Core.Commands.Abstracts
 {
@@ -26,6 +27,7 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
             return (title, description);
         }
 
-        public abstract string Execute();
+        public abstract IList<string> GetUserInput();
+        public abstract string Execute(IList<string> parameters);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
@@ -40,7 +42,8 @@ namespace WorkManagementSystem.Core
             try
             {
                 ICommand command = this.InstanceFactory.CommandManager.ParseCommand(commandName, this.InstanceFactory);
-                string result = command.Execute();
+                IList<string> parameters = command.GetUserInput();
+                string result = command.Execute(parameters);
 
                 return result.Trim();
             }

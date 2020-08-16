@@ -1,7 +1,10 @@
-﻿namespace WorkManagementSystem.Core.Contracts
+﻿using System.Collections.Generic;
+
+namespace WorkManagementSystem.Core.Contracts
 {
     public interface ICommand
     {
-        public string Execute();
+        public IList<string> GetUserInput();
+        public string Execute(IList<string> parameters);
     }
 }

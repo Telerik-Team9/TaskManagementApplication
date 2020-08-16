@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
@@ -14,35 +16,28 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
         {
-            IBug currBug = ChooseMethods.ChooseBug(this.InstanceFactory);
-            return this.AlterBug(currBug);
-        }
 
-        private string AlterBug(IBug bug)
-        {
-            this.Writer.WriteLine($"Priority: {bug.Priority}|Severity: {bug.Severity}|Status: {bug.Status}\n");
-            this.Writer.WriteLine("Choose which property you wish to change: (priority/severity/status)");
+            IBug currBug = InstanceFactory
+                .Database
+                .Bugs
+                .First(b => b.Id == int.Parse(parameters[0]));
 
-            string propertyToChange = this.Reader.Read();
-            this.Writer.WriteLine(ValidatePropertyType(propertyToChange));
 
-            string newValue = this.Reader.Read();
-
-            if (Enum.TryParse(newValue, ignoreCase: true, out Priority priority))
+            if (Enum.TryParse(parameters[2], ignoreCase: true, out Priority priority))
             {
-                bug.ChangePriority(priority);
+                currBug.ChangePriority(priority);
             }
 
-            else if (Enum.TryParse(newValue, ignoreCase: true, out BugSeverity severity))
+            else if (Enum.TryParse(parameters[2], ignoreCase: true, out BugSeverity severity))
             {
-                bug.ChangeSeverity(severity);
+                currBug.ChangeSeverity(severity);
             }
 
-            else if (Enum.TryParse(newValue, ignoreCase: true, out BugStatus status))
+            else if (Enum.TryParse(parameters[2], ignoreCase: true, out BugStatus status))
             {
-                bug.ChangeStatus(status);
+                currBug.ChangeStatus(status);
             }
 
             else
@@ -50,7 +45,8 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
                 throw new ArgumentException("Invalid value entered.");
             }
 
-            return $"Bug {propertyToChange} set to {newValue}";
+            return $"Bug {parameters[1]} set to {parameters[2]}";
+
         }
 
         private string ValidatePropertyType(string value)
@@ -63,6 +59,26 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
                 _ => throw new ArgumentException("Invalid property entered!")
             };
+        }
+
+        public override IList<string> GetUserInput()
+        {
+            IBug currBug = ChooseMethods.ChooseBug(this.InstanceFactory);
+
+            this.Writer.WriteLine($"Priority: {currBug.Priority}|Severity: {currBug.Severity}|Status: {currBug.Status}\n");
+            this.Writer.WriteLine("Choose which property you wish to change: (priority/severity/status)");
+
+            string propertyToChange = this.Reader.Read();
+            this.Writer.WriteLine(ValidatePropertyType(propertyToChange));
+
+            string newValue = this.Reader.Read();
+            IList<string> parameters = new List<string>();
+
+            parameters.Add(currBug.Id.ToString());
+            parameters.Add(propertyToChange);
+            parameters.Add(newValue);
+
+            return parameters;
         }
     }
 }
