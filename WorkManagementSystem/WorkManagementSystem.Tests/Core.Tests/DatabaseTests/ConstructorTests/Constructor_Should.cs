@@ -4,7 +4,7 @@ using WorkManagementSystem.Core;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
 
-namespace WorkManagementSystem.Tests.Core.Tests.DatabaseTests
+namespace WorkManagementSystem.Tests.Core.Tests.DatabaseTests.ConstructorTests
 {
     [TestClass]
     public class Constructor_Should
