@@ -23,10 +23,9 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
         private string AddPersonToTeam(ITeam currTeam)
         {
-            var showAllPeopele = new ShowAllPeopleCommand(this.InstanceFactory);// TODO: Remove this shit
-            this.Writer.WriteLine(showAllPeopele.Execute());
+            this.Writer.WriteLine(ListMethods.ListAllUnits(this.InstanceFactory, p => "Name: " + p.Name, "member"));
 
-            this.Writer.WriteLine(string.Format("Please enter person's name:"));
+            this.Writer.WriteLine(string.Format("Enter person's name:"));
             string personName = this.Reader.Read();
 
             if (!this.InstanceFactory.Database.Members.Any(p => p.Name == personName))

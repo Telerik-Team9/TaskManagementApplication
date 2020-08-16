@@ -6,8 +6,8 @@ namespace WorkManagementSystem.CLI
 {
     public class Startup
     {
-        private static IInstanceFactory instanceFactory = new InstanceFactory();
-        private static IEngine engine = new Engine(instanceFactory);
+        private readonly static IInstanceFactory instanceFactory = new InstanceFactory();
+        private readonly static IEngine engine = new Engine(instanceFactory);
 
         public static void Main()
         {

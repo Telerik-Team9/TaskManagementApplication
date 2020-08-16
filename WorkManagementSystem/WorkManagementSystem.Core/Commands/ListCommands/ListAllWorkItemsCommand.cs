@@ -1,5 +1,6 @@
-﻿using System;
+﻿/*using System;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
@@ -24,14 +25,34 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             // Get type filter
             var typeFilter = GetTypeFilter();
 
+            var filteredCollection = this.InstanceFactory.Database.ListAllWorkitems();
+
+            if (typeFilter != null)
+            {
+                filteredCollection = filteredCollection.Where(typeFilter).ToList();*//* Select(propertyFilter);*//*
+            }
+
             // Get property filter
-            //var propertyFilter = GetPropertyFilter();
+            var propertyFilter = GetPropertyFilter(typeFilter);
+
+
+            
+            
+            
+            
+            //typefileter = typeFilter ??= default
+
+
+
+
+
+
+
+
 
             //Get sorting filter
             //var sortFiler = 
 
-            var filteredCollection = this.InstanceFactory.Database.ListAllWorkitems();
-            filteredCollection = filteredCollection.Where(typeFilter).ToList();/* Select(propertyFilter);*/
 
             this.Writer.WriteLine(string.Join(NewLine, filteredCollection.Select(x => x.PrintInfo())));
 
@@ -40,7 +61,7 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
 
 
 
-            /*            var filterType = GetWorkItemType(type);
+            *//*            var filterType = GetWorkItemType(type);
 
 
                         if (!this.InstanceFactory.Database.ListAllWorkitems().Any())
@@ -55,7 +76,7 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
                             sb.AppendLine(person.PrintInfo() + NewLine);
                         }
 
-                        return sb.ToString().TrimEnd();*/
+                        return sb.ToString().TrimEnd();*//*
 
             return "";
         }
@@ -75,19 +96,43 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             };
         }
 
-        /*        private Func<IWorkItem, bool> GetPropertyFilter()
-                {
-                    this.Writer.Write("Do you want to filter by property? all/bug/feedback/story");
-                    string property = this.Reader.Read();
+        private Func<IWorkItem, bool> GetPropertyFilter()
+        {
+            this.Writer.WriteLine("Do you want to filter by property? status/assignee or leave this empty");
+            string property = this.Reader.Read();
+            return null;
 
-                    return property switch
-                    {
-                        "bug" => w => w is IBug,
-                        "feedback" => w => w is IFeedback,
-                        "story" => w => w is IStory,
+            this.Writer.WriteLine("Enter the value which you wish to filter");
 
-                        _ => null
-                    };
-                }*/
+            switch (property)
+            {
+                case "bug":
+                    return property == "asc" ? list.OrderBy(c => c.FirstName).ToList() : list.OrderByDescending(c => c.FirstName).ToList();
+                case "feedback":
+                    return order == "asc" ? list.OrderBy(c => c.LastName).ToList() : list.OrderByDescending(c => c.LastName).ToList();
+                case "story":
+                    return order == "asc" ? list.OrderBy(c => c.Country).ToList() : list.OrderByDescending(c => c.Country).ToList();
+                default:
+                    throw new InvalidOperationException();
+            }
+        }
     }
 }
+
+
+
+*//*private List<IOlympian> OrderList(List<IOlympian> list, string key, string order)
+{
+    switch (key)
+    {
+        case "firstname":
+            return order == "asc" ? list.OrderBy(c => c.FirstName).ToList() : list.OrderByDescending(c => c.FirstName).ToList();
+        case "lastname":
+            return order == "asc" ? list.OrderBy(c => c.LastName).ToList() : list.OrderByDescending(c => c.LastName).ToList();
+        case "country":
+            return order == "asc" ? list.OrderBy(c => c.Country).ToList() : list.OrderByDescending(c => c.Country).ToList();
+        default:
+            throw new InvalidOperationException();
+    }
+}
+*/

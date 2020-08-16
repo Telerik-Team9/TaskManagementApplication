@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
@@ -69,8 +70,10 @@ namespace WorkManagementSystem.Core.Common
                 .Teams
                 .First(t => t.Name == teamName);
 
+            var listBoards = currTeam.Boards.Select(b => "Name: " + b.Name);
+            
+            instances.Writer.WriteLine(string.Join(NewLine, listBoards));
             instances.Writer.WriteLine(NewLine + string.Format(CoreConstants.ChooseBoardForWorkitem, "workitem"));
-            instances.Writer.WriteLine(ListMethods.ListAllUnits(instances, x => "Name: " + x.Name, "board"));
 
             string boardName = instances.Reader.Read();
 
@@ -80,7 +83,6 @@ namespace WorkManagementSystem.Core.Common
             }
 
             //return board in a team
-
             IBoard teamBoard = currTeam
                 .Boards
                 .FirstOrDefault(b => b.Name == boardName);

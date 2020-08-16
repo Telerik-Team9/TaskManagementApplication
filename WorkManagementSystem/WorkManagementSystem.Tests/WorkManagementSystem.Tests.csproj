@@ -19,4 +19,11 @@
     <ProjectReference Include="..\WorkManagementSystem.Models\WorkManagementSystem.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Core.Tests\Common\ListMethodsTests\" />
+    <Folder Include="Core.Tests\DatabaseTests\" />
+    <Folder Include="Core.Tests\FactoriesTests\InstanceFactoryTests\" />
+    <Folder Include="Core.Tests\CommandTests\" />
+  </ItemGroup>
+
 </Project>
