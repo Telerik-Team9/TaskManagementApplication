@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
@@ -14,7 +15,12 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
+        {
+            return this.ShowAllTeams();
+        }
+
+        private string ShowAllTeams()
         {
             if (!this.InstanceFactory.Database.Teams.Any())
             {
@@ -29,6 +35,11 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
             }
 
             return sb.ToString().TrimEnd();
+        }
+
+        public override IList<string> GetUserInput()
+        {
+            return null;
         }
     }
 }

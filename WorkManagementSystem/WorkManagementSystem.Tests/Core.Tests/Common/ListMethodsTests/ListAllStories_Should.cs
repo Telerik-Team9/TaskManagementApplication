@@ -20,7 +20,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
             Func<IWorkItem, string> criteria = x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title;
 
             //Act
-            string actual = ListMethods.ListAllWorkItems(factory, criteria, "Stories");
+            string actual = ListMethods.ListAllWorkItems(factory, criteria, "Story");
 
             //Assert
             Assert.AreEqual(expected, actual);

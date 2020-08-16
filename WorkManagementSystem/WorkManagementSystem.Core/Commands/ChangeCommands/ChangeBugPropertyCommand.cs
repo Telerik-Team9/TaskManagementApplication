@@ -23,7 +23,41 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
                 .Bugs
                 .First(b => b.Id == int.Parse(parameters[0]));
 
+            return this.AlterBug(parameters, currBug);
+        }
 
+        public override IList<string> GetUserInput()
+        {
+            IBug currBug = ChooseMethods.ChooseBug(this.InstanceFactory);
+
+            this.Writer.WriteLine($"Priority: {currBug.Priority}|Severity: {currBug.Severity}|Status: {currBug.Status}\n");
+            this.Writer.WriteLine("Choose which property you wish to change: (priority/severity/status)");
+
+            string propertyToChange = this.Reader.Read();
+            this.Writer.WriteLine(ValidatePropertyType(propertyToChange));
+
+            string newValue = this.Reader.Read();
+            IList<string> parameters = new List<string>();
+
+            parameters.Add(currBug.Id.ToString());
+            parameters.Add(propertyToChange);
+            parameters.Add(newValue);
+
+            return parameters;
+        }
+        private string ValidatePropertyType(string value)
+        {
+            return value.ToLower() switch
+            {
+                "priority" => "(high/medium/low)",
+                "severity" => "(critical/major/minor)",
+                "status" => "(active/fixed)",
+
+                _ => throw new ArgumentException("Invalid property entered!")
+            };
+        }
+        private string AlterBug(IList<string> parameters, IBug currBug)
+        {
             if (Enum.TryParse(parameters[2], ignoreCase: true, out Priority priority))
             {
                 currBug.ChangePriority(priority);
@@ -45,39 +79,6 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
             }
 
             return $"Bug {parameters[1]} set to {parameters[2]}";
-
-        }
-
-        private string ValidatePropertyType(string value)
-        {
-            return value.ToLower() switch
-            {
-                "priority" => "(high/medium/low)",
-                "severity" => "(critical/major/minor)",
-                "status" => "(active/fixed)",
-
-                _ => throw new ArgumentException("Invalid property entered!")
-            };
-        }
-
-        public override IList<string> GetUserInput()
-        {
-            IBug currBug = ChooseMethods.ChooseBug(this.InstanceFactory);
-
-            this.Writer.WriteLine($"Priority: {currBug.Priority}|Severity: {currBug.Severity}|Status: {currBug.Status}\n");
-            this.Writer.WriteLine("Choose which property you wish to change: (priority/severity/status)");
-
-            string propertyToChange = this.Reader.Read();
-            this.Writer.WriteLine(ValidatePropertyType(propertyToChange));
-
-            string newValue = this.Reader.Read();
-            IList<string> parameters = new List<string>();
-
-            parameters.Add(currBug.Id.ToString());
-            parameters.Add(propertyToChange);
-            parameters.Add(newValue);
-
-            return parameters;
         }
     }
 }

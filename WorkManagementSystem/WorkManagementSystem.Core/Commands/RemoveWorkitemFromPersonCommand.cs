@@ -14,35 +14,54 @@ namespace WorkManagementSystem.Core.Commands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
         {
-            IMember member = ChooseMethods.ChoosePerson(this.InstanceFactory);
-            return this.RemoveWorkitemFromPerson(member);
-
-        }
-        private string RemoveWorkitemFromPerson(IMember currPerson)
-        {
-            IList<IWorkItem> workItems = this.InstanceFactory
+            IMember currMember = this.InstanceFactory
                 .Database
-                .ListAllWorkitems();
+                .Members
+                .First(p => p.Name == parameters[0]);
 
-            //lisr all workitems //TODO
+            return this.RemoveWorkitemFromPerson(currMember, parameters[1]);
+        }
 
-            foreach (var item in workItems)
+        public override IList<string> GetUserInput()
+        {
+            IMember currPerson = ChooseMethods.ChoosePerson(this.InstanceFactory);
+
+            if (!currPerson.WorkItems.Any())
+            {
+                throw new ArgumentException("Person has no workitems assigned.");
+            }
+
+            foreach (var item in currPerson.WorkItems)
             {
                 this.Writer.WriteLine(item.PrintInfo());
             }
 
             this.Writer.Write(string.Format("Enter workitem's id: "));
-            int workItemId = int.Parse(this.Reader.Read());
+            string workItemId = this.Reader.Read();
 
-            if (!workItems.Any(workitem => workitem.Id == workItemId))
+            IList<string> parameters = new List<string>();
+            parameters.Add(currPerson.Name);
+            parameters.Add(workItemId);
+
+            return parameters;
+        }
+
+        private string RemoveWorkitemFromPerson(IMember currPerson, string workItemId)
+        {
+            IList<IWorkItem> workItems = this.InstanceFactory //TODO
+               .Database
+               .ListAllWorkitems();
+
+            if (!workItems.Any(workitem => workitem.Id == int.Parse(workItemId)))
             {
                 throw new ArgumentException($"No workitem with id {workItemId}");
             }
 
-            IWorkItem currWorkItem = workItems
-                .First(workitem => workitem.Id == workItemId);
+            IWorkItem currWorkItem = currPerson
+                .WorkItems
+                .First(workitem => workitem.Id == int.Parse(workItemId));
 
             var bug = currWorkItem as IBug;
             var story = currWorkItem as IStory;

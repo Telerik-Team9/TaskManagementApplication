@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Text;
 using WorkManagementSystem.Models.Abstracts;
-using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
@@ -9,8 +8,6 @@ namespace WorkManagementSystem.Models
 {
     public class Story : WorkItem, IStory
     {
-        private IMember assignee;
-
         public Story(string title, string description, Priority priority, StorySize size, StoryStatus status)
             : base(title, description)
         {

@@ -10,6 +10,5 @@ namespace WorkManagementSystem.Models
             : base(name)
         {
         }
-
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Contracts;
@@ -13,7 +15,12 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
+        {
+            return ShowAllPeople();
+        }
+
+        private string ShowAllPeople()
         {
             if (!this.InstanceFactory.Database.Members.Any())
             {
@@ -28,6 +35,11 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
             }
 
             return sb.ToString().TrimEnd();
+        }
+
+        public override IList<string> GetUserInput()
+        {
+            return null;
         }
     }
 }

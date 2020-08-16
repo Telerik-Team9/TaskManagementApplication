@@ -109,6 +109,8 @@ namespace WorkManagementSystem.Core
 
             IMember maggie = new Member("Maggie");
             IMember ali = new Member("Aliii");
+            maggie.AddActivityLog("A person with name 'Maggie' was created.");
+            ali.AddActivityLog("A person with name 'Aliii' was created.");
             this.Members.Add(maggie);
             this.Members.Add(ali);
 

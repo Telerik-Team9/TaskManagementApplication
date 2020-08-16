@@ -16,35 +16,43 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         {
         }
 
-        public override string Execute()
-        {
-            var parameters = GetUserInput();
-
-            IMember currMember = this.InstanceFactory.ModelsFactory.CreatePerson(parameters[0]);
-            this.InstanceFactory.Database.Members.Add(currMember);
-
-            string activity = string.Format(CoreConstants.CreatedMember, parameters[0]);
-            currMember.AddActivityLog(activity);
+        public override string Execute(IList<string> parameters)
+        {           
+            this.CreatePerson(parameters, out IMember currMember, out string activity);
 
             return activity
                 + NewLine
                 + currMember.PrintInfo();
         }
 
-        protected override IList<string> GetUserInput()
+        public override IList<string> GetUserInput()
         {
-            Writer.WriteLine(string.Format(CoreConstants.EnterUnitName, "person"));
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterUnitName, "person"));
 
-            string personName = Reader.Read();
-            var userInput = new List<string>();
-            userInput.Add(personName);
+            string personName = this.Reader.Read();
 
-            if (InstanceFactory.Database.Members.Any(m => m.Name == personName))
+            
+            IList<string> parameters = new List<string>();
+            parameters.Add(personName);
+
+            return parameters;
+        }
+
+        private void CreatePerson(IList<string> parameters, out IMember currMember, out string activity)
+        {
+            if (InstanceFactory.Database.Members.Any(m => m.Name == parameters[0]))
             {
-                throw new ArgumentException(string.Format(CoreConstants.MemberAlreadyExistsExcMessage, personName));
+                throw new ArgumentException(string.Format(CoreConstants.MemberAlreadyExistsExcMessage, parameters[0]));
             }
 
-            this.Execute(userInput);
+            currMember = this.InstanceFactory
+                .ModelsFactory
+                .CreatePerson(parameters[0]);
+
+            this.InstanceFactory.Database.Members.Add(currMember);
+
+            activity = string.Format(CoreConstants.CreatedMember, parameters[0]);
+            currMember.AddActivityLog(activity);
         }
     }
 }

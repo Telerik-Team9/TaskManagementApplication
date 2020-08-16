@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Common;
@@ -15,22 +16,39 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
+        {
+            this.CreateTeam(parameters, out ITeam currTeam);
+
+            return string.Format(CoreConstants.CreatedUnit, "Team", parameters[0]) + NewLine
+                + currTeam.PrintInfo();
+        }
+
+        public override IList<string> GetUserInput()
         {
             this.Writer.WriteLine(string.Format(CoreConstants.EnterUnitName, "team"));
 
             string teamName = this.Reader.Read();
 
-            if (this.InstanceFactory.Database.Teams.Any(team => team.Name == teamName))
+            IList<string> parameters = new List<string>();
+            parameters.Add(teamName);
+
+            return parameters;
+        }
+
+        private void CreateTeam(IList<string> parameters, out ITeam currTeam)
+        {
+            if (this.InstanceFactory.Database.Teams.Any(team => team.Name == parameters[0]))
             {
-                throw new ArgumentException(string.Format(CoreConstants.TeamAlreadyExistsExcMessage, teamName));
+                throw new ArgumentException(string.Format(CoreConstants.TeamAlreadyExistsExcMessage, parameters[0]));
             }
 
-            ITeam currTeam = this.InstanceFactory.ModelsFactory.CreateTeam(teamName);
-            this.InstanceFactory.Database.Teams.Add(currTeam);
+            currTeam = this.InstanceFactory
+                .ModelsFactory
+                .CreateTeam(parameters[0]);
 
-            return string.Format(CoreConstants.CreatedUnit, "Team", teamName) + NewLine
-                + currTeam.PrintInfo();
+            this.InstanceFactory.Database.Teams.Add(currTeam);
+            //  return currTeam;
         }
     }
 }

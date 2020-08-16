@@ -41,7 +41,7 @@ namespace WorkManagementSystem.Core.Common
 
         // Person
         public const string SelectTeamToAddPersonTo = "Please select a team to add a new person to:";
-        public const string PersonIsAlreadyOnTheTeamExcMessage = "{0} is already on {0} team.";
+        public const string PersonIsAlreadyOnTheTeamExcMessage = "{0} is already on {1} team.";
         public const string PersonAddedToATeam = "{0} has been added to {1} team.";
 
 

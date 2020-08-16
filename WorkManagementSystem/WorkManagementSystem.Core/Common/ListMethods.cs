@@ -47,7 +47,7 @@ namespace WorkManagementSystem.Core.Common
             {
                 "Bug" => ListAllBugs(instances, criteria),
                 "Feedback" => ListAllFeedbacks(instances, criteria),
-                "Stories" => ListAllStories(instances, criteria),
+                "Story" => ListAllStories(instances, criteria),
 
                 _ => throw new ArgumentException("Invalid workitem type.")
             };

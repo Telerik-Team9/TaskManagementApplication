@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
@@ -71,7 +70,7 @@ namespace WorkManagementSystem.Core.Common
                 .First(t => t.Name == teamName);
 
             var listBoards = currTeam.Boards.Select(b => "Name: " + b.Name);
-            
+
             instances.Writer.WriteLine(string.Join(NewLine, listBoards));
             instances.Writer.WriteLine(NewLine + string.Format(CoreConstants.ChooseBoardForWorkitem, "workitem"));
 

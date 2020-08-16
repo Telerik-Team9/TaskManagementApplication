@@ -22,10 +22,10 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
                 .Members
                 .First(p => p.Name == parameters[0]);
 
-            return AddWorkItemToPerson(parameters[1], currMember);
+            return this.AddWorkItemToPerson(currMember, parameters[1]);
         }
 
-        private string AddWorkItemToPerson(string workItemId, IMember currPerson)
+        private string AddWorkItemToPerson(IMember currPerson, string workItemId)
         {
             IList<IWorkItem> workItems = this.InstanceFactory //TODO
                .Database
@@ -56,7 +56,6 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
             return $"WorkItem {currWorkItem.Title} assigned to {currPerson.Name}.";
         }
-
 
         public override IList<string> GetUserInput()
         {

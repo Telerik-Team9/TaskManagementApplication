@@ -18,9 +18,43 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
         public override string Execute(IList<string> parameters)
         {
-            IStory currStory = this.InstanceFactory.Database.Stories.First(s => s.Id == int.Parse(parameters[0]));
+            IStory currStory = this.InstanceFactory
+                .Database
+                .Stories
+                .First(s => s.Id == int.Parse(parameters[0]));
 
             return this.AlterStory(currStory, parameters[1], parameters[2]);
+        }
+
+        public override IList<string> GetUserInput()
+        {
+            IStory currStory = ChooseMethods.ChooseStory(this.InstanceFactory);
+
+            this.Writer.WriteLine("Choose which property you wish to change: (priority/size/status)");
+
+            string propertyToChange = this.Reader.Read();
+            this.Writer.WriteLine(ValidatePropertyType(propertyToChange));
+
+            string newValue = this.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currStory.Id.ToString());
+            parameters.Add(newValue);
+            parameters.Add(propertyToChange);
+
+            return parameters;
+        }
+
+        private string ValidatePropertyType(string value)
+        {
+            return value.ToLower() switch
+            {
+                "priority" => "(high/medium/low)",
+                "size" => "(large/medium/small)",
+                "status" => "(notdone/inprogress/done)",
+
+                _ => throw new ArgumentException("Invalid property entered!")
+            };
         }
 
         private string AlterStory(IStory story, string newValue, string propertyToChange)
@@ -46,37 +80,6 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
             }
 
             return $"Story {propertyToChange} set to {newValue}";
-        }
-
-        private string ValidatePropertyType(string value)
-        {
-            return value.ToLower() switch
-            {
-                "priority" => "(high/medium/low)",
-                "size" => "(large/medium/small)",
-                "status" => "(notdone/inprogress/done)",
-
-                _ => throw new ArgumentException("Invalid property entered!")
-            };
-        }
-
-        public override IList<string> GetUserInput()
-        {
-            IStory currStory = ChooseMethods.ChooseStory(this.InstanceFactory);
-
-            this.Writer.WriteLine("Choose which property you wish to change: (priority/size/status)");
-
-            string propertyToChange = this.Reader.Read();
-            this.Writer.WriteLine(ValidatePropertyType(propertyToChange));
-
-            string newValue = this.Reader.Read();
-
-            IList<string> parameters = new List<string>();
-            parameters.Add(currStory.Id.ToString());
-            parameters.Add(newValue);
-            parameters.Add(propertyToChange);
-
-            return parameters;
         }
     }
 }

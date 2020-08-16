@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
@@ -15,10 +16,24 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
         {
         }
 
-        public override string Execute()
+        public override string Execute(IList<string> parameters)
+        {
+            ITeam currTeam = this.InstanceFactory
+                .Database
+                .Teams
+                .First(t => t.Name == parameters[0]);
+
+            return ShowAllTeamBoards(currTeam);
+        }
+
+        public override IList<string> GetUserInput()
         {
             ITeam currTeam = ChooseMethods.ChooseTeam(this.InstanceFactory);
-            return ShowAllTeamBoards(currTeam);
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currTeam.Name);
+
+            return parameters;
         }
 
         private string ShowAllTeamBoards(ITeam currTeam)
