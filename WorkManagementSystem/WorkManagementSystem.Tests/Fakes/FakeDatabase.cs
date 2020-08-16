@@ -14,9 +14,9 @@ namespace WorkManagementSystem.Tests.Fakes
 
         public IList<IBug> Bugs => new List<IBug>();
 
-        public IList<IStory> Stories => new List<IStory>();// { new Story("FakeStoryyyyyyyy", "FakeBugDescription", default, default, default) };
+        public IList<IStory> Stories => new List<IStory>();
 
-        public IList<IFeedback> Feedbacks => new List<IFeedback>(); //{ new Feedback("FakeFeeeeeeedback", "FakeFeedbackDescription", 5, default) };
+        public IList<IFeedback> Feedbacks => new List<IFeedback>();
 
         public IList<IWorkItem> ListAllWorkitems()
         {
