@@ -11,7 +11,7 @@ using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.CreateCommands
 {
-    class CreateFeedbackCommand : Command
+    public class CreateFeedbackCommand : Command
     {
         public CreateFeedbackCommand(IInstanceFactory instanceFactory)
             : base(instanceFactory)
