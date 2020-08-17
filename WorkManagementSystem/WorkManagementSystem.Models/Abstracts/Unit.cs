@@ -130,16 +130,7 @@ namespace WorkManagementSystem.Models.Abstracts
             var sb = new StringBuilder();
 
             sb.AppendLine("ActivityHistory:");
-
-            if (this.ActivityHistory.Any())
-            {
-                sb.AppendLine(string.Join(NewLine, this.ActivityHistory.Select(s => " -" + s.PrintInfo())));
-            }
-            else
-            {
-                sb.AppendLine(" -No history is present yet.");
-            }
-
+            sb.AppendLine(string.Join(NewLine, this.ActivityHistory.Select(s => " -" + s.PrintInfo())));
             return sb.ToString();
         }
 
