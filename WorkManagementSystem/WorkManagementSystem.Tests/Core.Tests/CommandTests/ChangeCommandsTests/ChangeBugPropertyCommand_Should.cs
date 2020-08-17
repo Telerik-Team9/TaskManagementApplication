@@ -1,9 +1,10 @@
-﻿/*using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using WorkManagementSystem.Core.Commands.ChangeCommands;
 using WorkManagementSystem.Core.Contracts;
+using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Tests.Fakes;
 
 namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ChangeCommandsTests
@@ -12,52 +13,117 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ChangeCommandsTests
     public class ChangeBugPropertyCommand_Should
     {
         [TestMethod]
-        public void Execute_Should_CorrectlyChangeBugPriorityProperty()
+        public void Execute_Should_ChangeCorrectlyPriortyProperty()
         {
             //Arrange
-            IList<string> parameters = new List<string>() { "0", "priority", "medium" };
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
-            fakeFactory.Database.SeedFakeData();
+            string bugId = fakeFactory.Database.Bugs.First().Id.ToString();
+            IList<string> parameters = new List<string>() { bugId, "priority", "medium" };
             var command = new ChangeBugPropertyCommand(fakeFactory);
-            string expected = "Bug priority set to medium";
+            string expected = $"Bug {parameters[1]} set to {parameters[2]}";
 
             //Act
             string actual = command.Execute(parameters);
 
             //Assert
             Assert.IsTrue(actual.Contains(expected));
-        }
-
-*//*        [TestMethod]
-        public void Execute_Should_AddPersonToDatabaseWhen_ValiedValuesArePassed()
-        {
-            //Arrange
-            IList<string> parameters = new List<string>() { "TestPersonName" };
-            IInstanceFactory factory = new InstanceFactory();
-            var command = new CreatePersonCommand(factory);
-
-            //Act
-            _ = command.Execute(parameters);
-
-            //Assert
-            Assert.IsInstanceOfType(factory.Database.Members.First(p => p.Name == parameters[0]), typeof(IMember));
+            Assert.IsTrue(fakeFactory.Database.Bugs.First(b => b.Id == int.Parse(parameters[0])).Priority == Priority.Medium);
         }
 
         [TestMethod]
-        public void Execute_Should_ThrowWhen_MemberAlreadyExists()
+        public void Execute_Should_ChangeCorrectlySeverityProperty()
         {
             //Arrange
-            IList<string> parameters = new List<string>() { "TestPersonName" };
-            IInstanceFactory factory = new InstanceFactory();
-            var command = new CreatePersonCommand(factory);
-            _ = command.Execute(parameters);
+            IInstanceFactory fakeFactory = new FakeInstanceFactory();
+            string bugId = fakeFactory.Database.Bugs.First().Id.ToString();
+            IList<string> parameters = new List<string>() { bugId, "severity", "major" };
+            var command = new ChangeBugPropertyCommand(fakeFactory);
+            string expected = $"Bug {parameters[1]} set to {parameters[2]}";
 
-            //Act & Assert         
+            //Act
+            string actual = command.Execute(parameters);
+
+            //Assert
+            Assert.IsTrue(actual.Contains(expected));
+            Assert.IsTrue(fakeFactory.Database.Bugs.First(b => b.Id == int.Parse(parameters[0])).Severity == BugSeverity.Major);
+        }
+
+        [TestMethod]
+        public void Execute_Should_ChangeCorrectlyStatusProperty()
+        {
+            //Arrange
+            IInstanceFactory fakeFactory = new FakeInstanceFactory();
+            string bugId = fakeFactory.Database.Bugs.First().Id.ToString();
+            IList<string> parameters = new List<string>() { bugId, "status", "fixed" };
+            var command = new ChangeBugPropertyCommand(fakeFactory);
+            string expected = $"Bug {parameters[1]} set to {parameters[2]}";
+
+            //Act
+            string actual = command.Execute(parameters);
+
+            //Assert
+            Assert.IsTrue(actual.Contains(expected));
+            Assert.IsTrue(fakeFactory.Database.Bugs.First(b => b.Id == int.Parse(parameters[0])).Status == BugStatus.Fixed);
+        }
+
+        [TestMethod]
+        public void Execute_Should_ThrowWhen_PriorityIsSame()
+        {
+            //Arrange
+            IInstanceFactory fakeFactory = new FakeInstanceFactory();
+            string bugId = fakeFactory.Database.Bugs.First().Id.ToString();
+            IList<string> parameters = new List<string>() { bugId, "priority", "medium" };
+            var command = new ChangeBugPropertyCommand(fakeFactory);
+            string expected = $"Bug {parameters[1]} set to {parameters[2]}";
+
+            //Act
+            string actual = command.Execute(parameters);
+
+            //Assert
             Assert.ThrowsException<ArgumentException>(() =>
             {
                 _ = command.Execute(parameters);
             });
-        }*//*
+        }
+
+        [TestMethod]
+        public void Execute_Should_ThrowWhen_SeverityIsSame()
+        {
+            //Arrange
+            IInstanceFactory fakeFactory = new FakeInstanceFactory();
+            string bugId = fakeFactory.Database.Bugs.First().Id.ToString();
+            IList<string> parameters = new List<string>() { bugId, "status", "fixed" };
+            var command = new ChangeBugPropertyCommand(fakeFactory);
+            string expected = $"Bug {parameters[1]} set to {parameters[2]}";
+
+            //Act
+            string actual = command.Execute(parameters);
+
+            //Assert
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                _ = command.Execute(parameters);
+            });
+        }
+
+        [TestMethod]
+        public void Execute_Should_ThrowWhen_StatusIsSame()
+        {
+            //Arrange
+            IInstanceFactory fakeFactory = new FakeInstanceFactory();
+            string bugId = fakeFactory.Database.Bugs.First().Id.ToString();
+            IList<string> parameters = new List<string>() { bugId, "severity", "major" };
+            var command = new ChangeBugPropertyCommand(fakeFactory);
+            string expected = $"Bug {parameters[1]} set to {parameters[2]}";
+
+            //Act
+            string actual = command.Execute(parameters);
+
+            //Assert
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                _ = command.Execute(parameters);
+            });
+        }
     }
 }
-*/

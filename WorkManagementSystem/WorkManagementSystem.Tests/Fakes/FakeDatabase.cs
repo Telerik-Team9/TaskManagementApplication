@@ -34,7 +34,24 @@ namespace WorkManagementSystem.Tests.Fakes
 
         public IList<IWorkItem> ListAllWorkitems()
         {
-            return new List<IWorkItem>();
+            IList<IWorkItem> workItems = new List<IWorkItem>();
+
+            foreach (var bug in this.Bugs)
+            {
+                workItems.Add(bug);
+            }
+
+            foreach (var story in this.Stories)
+            {
+                workItems.Add(story);
+            }
+
+            foreach (var feedback in this.Feedbacks)
+            {
+                workItems.Add(feedback);
+            }
+
+            return workItems;
         }
 
         public void SeedFakeData()
