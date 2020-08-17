@@ -20,7 +20,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.CreateCommandsTests
             IList<string> parameters = new List<string>() { "Team9", "TestBrd" };
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
             var command = new CreateBoardInTeamCommand(fakeFactory);
-            string expected = "A board with name 'TestBrd' has been added to Team9 team.\r\n";
+            string expected = "A board with name 'TestBrd' has been added to Team9 team";
 
             //Act
             string actual = command.Execute(parameters);
@@ -45,7 +45,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.CreateCommandsTests
         }
 
         [TestMethod]
-        public void Execute_Should_ThrowWhen_MemberAlreadyExists()
+        public void Execute_Should_ThrowWhen_BoardAlreadyExists()
         {
             //Arrange
             IList<string> parameters = new List<string>() { "Team9", "TestBrd" };
