@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using WorkManagementSystem.Core.Commands.Abstracts;
-using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Contracts;
@@ -21,9 +20,9 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
             ITeam currTeam = this.InstanceFactory
                 .Database
                 .Teams
-                .First(t=>t.Name == parameters[0]);
+                .First(t => t.Name == parameters[0]);
 
-            return AddPersonToTeam(currTeam,parameters[1]);
+            return AddPersonToTeam(currTeam, parameters[1]);
         }
 
         public override IList<string> GetUserInput()
