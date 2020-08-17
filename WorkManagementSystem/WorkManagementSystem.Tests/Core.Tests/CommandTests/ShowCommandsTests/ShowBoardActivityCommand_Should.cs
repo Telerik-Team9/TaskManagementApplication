@@ -9,7 +9,7 @@ using WorkManagementSystem.Tests.Fakes;
 namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ShowCommandsTests
 {
     [TestClass]
-    public class ShowBoardsActivityCommand_Should
+    public class ShowBoardActivityCommand_Should
     {
         [TestMethod]
         public void PrintValidInfo()
