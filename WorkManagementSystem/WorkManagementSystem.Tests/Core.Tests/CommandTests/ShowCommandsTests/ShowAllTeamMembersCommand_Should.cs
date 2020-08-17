@@ -2,16 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Contracts;
-using WorkManagementSystem.Models.Contracts;
 using WorkManagementSystem.Tests.Fakes;
 
 namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ShowCommandsTests
 {
     [TestClass]
-    public class ShowAlTeamMembersCommand_Should
+    public class ShowAllTeamMembersCommand_Should
     {
         [TestMethod]
         public void PrintValidInfoWhen_ValidValuesArePassed()
@@ -41,7 +39,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ShowCommandsTests
             IList<string> parameters = new List<string>() { "Team10" };
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
             var command = new ShowAllTeamMembersCommand(fakeFactory);
-            
+
             //Act and Assert
             Assert.ThrowsException<ArgumentException>(() =>
             {
