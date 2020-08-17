@@ -23,8 +23,9 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
             return AlterFeedback(currFeedback, parameters[1], parameters[2]);
         }
 
-        private string AlterFeedback(IFeedback feedback, string newValue, string propertyToChange)
+        private string AlterFeedback(IFeedback feedback, string propertyToChange, string newValue)
         {
+            // TODO: in future use we should get te property from "propertyToChange"
             if (int.TryParse(newValue, out int rating))
             {
                 feedback.ChangeRating(rating);
@@ -68,8 +69,8 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
             IList<string> parameters = new List<string>();
             parameters.Add(currFeedback.Id.ToString());
-            parameters.Add(newValue);
             parameters.Add(propertyToChange);
+            parameters.Add(newValue);
 
             return parameters;
         }
