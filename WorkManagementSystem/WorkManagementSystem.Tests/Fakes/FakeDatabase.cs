@@ -70,7 +70,6 @@ namespace WorkManagementSystem.Tests.Fakes
             this.Boards.Add(firstBoard);
             this.Boards.Add(secondBoard);
 
-
             IBug bug = new Bug("SeedDataBug", "SeedDataDescriptionBug", default, default, new List<string>());
             IFeedback feedback = new Feedback("SeedDataFeedback", "SeedDataDescriptionFeedback", 2, default);
             IStory story = new Story("SeedDataStory", "SeedDataDescriptionStory", default, default, default);
@@ -90,7 +89,10 @@ namespace WorkManagementSystem.Tests.Fakes
             this.Members.Add(telerikMember);
             this.Members.Add(maggie);
             this.Members.Add(ali);
+            team9.AddPerson(telerikMember);
             telerikMember.AddWorkItem(bug);
+
+
         }
     }
 }
