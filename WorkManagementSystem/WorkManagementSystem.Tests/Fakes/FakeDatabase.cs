@@ -70,12 +70,6 @@ namespace WorkManagementSystem.Tests.Fakes
             this.Boards.Add(firstBoard);
             this.Boards.Add(secondBoard);
 
-            IMember maggie = new Member("Maggie");
-            IMember ali = new Member("Aliii");
-            maggie.AddActivityLog("A person with name 'Maggie' was created.");
-            ali.AddActivityLog("A person with name 'Aliii' was created.");
-            this.Members.Add(maggie);
-            this.Members.Add(ali);
 
             IBug bug = new Bug("SeedDataBug", "SeedDataDescriptionBug", default, default, new List<string>());
             IFeedback feedback = new Feedback("SeedDataFeedback", "SeedDataDescriptionFeedback", 2, default);
@@ -86,6 +80,17 @@ namespace WorkManagementSystem.Tests.Fakes
             this.Bugs.Add(bug);
             this.Feedbacks.Add(feedback);
             this.Stories.Add(story);
+            
+            IMember telerikMember = new Member("TelerikMember");
+            IMember maggie = new Member("Maggie");
+            IMember ali = new Member("Aliii");
+            telerikMember.AddActivityLog("A person with name 'TelerikMember' was created.");
+            maggie.AddActivityLog("A person with name 'Maggie' was created.");
+            ali.AddActivityLog("A person with name 'Aliii' was created.");
+            this.Members.Add(telerikMember);
+            this.Members.Add(maggie);
+            this.Members.Add(ali);
+            telerikMember.AddWorkItem(bug);
         }
     }
 }

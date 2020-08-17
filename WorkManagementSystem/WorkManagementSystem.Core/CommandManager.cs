@@ -1,8 +1,8 @@
 ﻿using System;
-using WorkManagementSystem.Core.Commands;
 using WorkManagementSystem.Core.Commands.AddCommands;
 using WorkManagementSystem.Core.Commands.ChangeCommands;
 using WorkManagementSystem.Core.Commands.CreateCommands;
+using WorkManagementSystem.Core.Commands.RemoveCommands;
 using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Contracts;
 
