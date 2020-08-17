@@ -2,6 +2,7 @@
 using WorkManagementSystem.Core.Commands.AddCommands;
 using WorkManagementSystem.Core.Commands.ChangeCommands;
 using WorkManagementSystem.Core.Commands.CreateCommands;
+using WorkManagementSystem.Core.Commands.ListCommands;
 using WorkManagementSystem.Core.Commands.RemoveCommands;
 using WorkManagementSystem.Core.Commands.ShowCommands;
 using WorkManagementSystem.Core.Contracts;
@@ -39,7 +40,7 @@ namespace WorkManagementSystem.Core
                 "changefeedbackproperty" => new ChangeFeedbackPropertyCommand(instanceFactory),
                 "changestoryproperty" => new ChangeStoryPropertyCommand(instanceFactory),
 
-                //"listworkitems" => new ListAllWorkItemsCommand(instanceFactory),
+                "listworkitems" => new ListWorkItemsCommand(instanceFactory),
 
                 _ => throw new InvalidOperationException("Command does not exist")
             };
