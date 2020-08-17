@@ -1,8 +1,6 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models.Common.Enums;
@@ -25,25 +23,28 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             // Filter
             if (parameters[0].ToLower() == "status")
             {
-                Enum.TryParse(parameters[1], out BugStatus status);
-                filteredCollection = filteredCollection.Where(b => b.Status == status).ToList();
+                var status = Enum.Parse<BugStatus>(parameters[1] ,true);
+                filteredCollection = filteredCollection
+                    .Where(b => b.Status == status)
+                    .ToList();
             }
 
             else if (parameters[0].ToLower() == "assignee")
             {
-                filteredCollection = filteredCollection.Where(b => b.Assignee.Name == parameters[1]).ToList();
+                filteredCollection = filteredCollection
+                    .Where(b => b.Assignee.Name == parameters[1])
+                    .ToList();
             }
 
             // Sort
-
             if (!string.IsNullOrEmpty(parameters[2].ToLower()))
             {
-                filteredCollection = filteredCollection.Where(GetSortFilter(parameters[2], parameters[3]));
-
+                filteredCollection = filteredCollection
+                    .OrderBy(GetSortFilter(parameters[2], parameters[3]))
+                    .ToList();
             }
 
-
-
+            return string.Join(NewLine, filteredCollection.Select(x => x.PrintInfo()));
         }
 
         public override IList<string> GetUserInput()
@@ -57,19 +58,39 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
 
             // Get property filter
             this.Writer.WriteLine("Do you want to filter by a property? (status/assignee)" + NewLine
-                + "If yes - enter property type then property value separated by '-'"
+                + "If yes - enter property type then property value separated by '-'."
                 + "If not leave this empty");
             string[] propertyFilter = this.Reader.Read().Split('-');
             parameters.Add(propertyFilter[0]);
-            parameters.Add(propertyFilter[1]);
+
+
+            if (propertyFilter.Length == 1)
+            {
+                parameters.Add("");
+            }
+
+            else if (propertyFilter.Length == 2)
+            {
+                parameters.Add(propertyFilter[1]);
+
+            }
+
 
             // Get sorting filter
             this.Writer.WriteLine("Do you want to sort by property? (title/priority/severity)" + NewLine
-                + "If yes - enter property type then property value separated by '-'"
+                + "If yes - enter property type then property value separated by '-'."
                 + "If not leave this empty");
             string[] sortFilter = this.Reader.Read().Split('-');
-            parameters.Add(sortFilter[0]);
-            parameters.Add(sortFilter[1]);
+
+            if (sortFilter.Length == 1)
+            {
+                parameters.Add("");
+            }
+
+            else if (sortFilter.Length == 2)
+            {
+                parameters.Add(sortFilter[1]);
+            }
 
             return parameters;
         }
@@ -79,11 +100,11 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             return property switch
             {
                 "title" => w => w.Title == value,
-                "priority" => w => w.Property == ,
-                "severity" => w => w is IStory,
+                "priority" => w => w.Priority == Enum.Parse<Priority>(value),
+                "severity" => w => w.Severity == Enum.Parse<BugSeverity>(value),
 
                 _ => null
             };
         }
     }
-*/
+}

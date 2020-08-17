@@ -41,6 +41,9 @@ namespace WorkManagementSystem.Core
                 "changestoryproperty" => new ChangeStoryPropertyCommand(instanceFactory),
 
                 "listworkitems" => new ListWorkItemsCommand(instanceFactory),
+                "listbugs" => new ListBugsCommand(instanceFactory),
+                /*"listfeedbacks" => new ListFeedbacks(instanceFactory),
+                "liststories" => new ListStories(instanceFactory)*/
 
                 _ => throw new InvalidOperationException("Command does not exist")
             };
