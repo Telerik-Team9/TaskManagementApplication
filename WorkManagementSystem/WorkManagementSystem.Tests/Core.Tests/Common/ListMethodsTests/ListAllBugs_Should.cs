@@ -31,6 +31,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
             //Arrange
             IInstanceFactory factory = new FakeInstanceFactory();
             Func<IWorkItem, string> criteria = x => "Type: " + x.GetWorkItemType() + " | Id: " + x.Id + " | Title: " + x.Title;
+            factory.Database.Bugs.Clear();
 
             //Act and assert
             Assert.ThrowsException<ArgumentException>(() =>

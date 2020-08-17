@@ -48,9 +48,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
         private (Priority, BugSeverity) ParseEnums(string priorityAsStr, string severityAsStr)
         {
-            /*// Parse Priority
-            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
-            string priorityAsStr = this.Reader.Read();*/
+            // Parse Priority
             Priority priority;
 
             if (string.IsNullOrWhiteSpace(priorityAsStr))
@@ -62,9 +60,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
                 throw new InvalidEnumArgumentException("Invalid priority");
             }
 
-            /*// Parse Severity
-            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Severity", "Critical/Major/Minor"));
-            string severityAsStr = this.Reader.Read();*/
+            //Parse Severity
             BugSeverity severity;
 
             if (string.IsNullOrWhiteSpace(severityAsStr))

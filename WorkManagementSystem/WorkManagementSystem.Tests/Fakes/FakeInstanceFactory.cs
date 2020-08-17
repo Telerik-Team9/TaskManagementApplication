@@ -6,7 +6,9 @@ namespace WorkManagementSystem.Tests.Fakes
 {
     public class FakeInstanceFactory : IInstanceFactory
     {
-        public IDatabase Database => FakeDatabase.Instance;
+        private IDatabase database = new FakeDatabase();
+
+        public IDatabase Database => this.database;
 
         public IModelsFactory ModelsFactory => new FakeModelsFactory();
 

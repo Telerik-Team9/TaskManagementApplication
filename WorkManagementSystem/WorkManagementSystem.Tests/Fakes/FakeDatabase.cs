@@ -8,39 +8,29 @@ namespace WorkManagementSystem.Tests.Fakes
 {
     public class FakeDatabase : IDatabase
     {
-
-
-        private static IDatabase instance = null;
+        private IList<ITeam> teams = new List<ITeam>();
+        private IList<IMember> members = new List<IMember>();
+        private IList<IBoard> boards = new List<IBoard>();
+        private IList<IBug> bugs = new List<IBug>();
+        private IList<IStory> stories = new List<IStory>();
+        private IList<IFeedback> feedbacks = new List<IFeedback>();
 
         public FakeDatabase()
         {
             this.SeedFakeData();
         }
 
-        public static IDatabase Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new FakeDatabase();
-                }
+        public IList<ITeam> Teams => this.teams;
 
-                return instance;
-            }
-        }
+        public IList<IMember> Members => this.members;
 
-        public IList<ITeam> Teams => new List<ITeam>();
+        public IList<IBoard> Boards => this.boards;
 
-        public IList<IMember> Members => new List<IMember>();
+        public IList<IBug> Bugs => this.bugs;
 
-        public IList<IBoard> Boards => new List<IBoard>();
+        public IList<IStory> Stories => this.stories;
 
-        public IList<IBug> Bugs => new List<IBug>();
-
-        public IList<IStory> Stories => new List<IStory>();
-
-        public IList<IFeedback> Feedbacks => new List<IFeedback>();
+        public IList<IFeedback> Feedbacks => this.feedbacks;
 
         public IList<IWorkItem> ListAllWorkitems()
         {
