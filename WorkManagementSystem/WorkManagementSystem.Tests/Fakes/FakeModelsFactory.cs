@@ -12,7 +12,7 @@ namespace WorkManagementSystem.Tests.Fakes
     {
         public IBoard CreateBoard(string boardName)
         {
-            throw new NotImplementedException();
+            return new Board(boardName);
         }
 
         public IBug CreateBug(string title, string description, Priority priority, BugSeverity severity, IList<string> stepsToReproduce)
