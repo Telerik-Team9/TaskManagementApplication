@@ -128,15 +128,15 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ChangeCommandsTests
         }
 
         [TestMethod]
-        [DataRow("priority", "wrongpririty")]
-        [DataRow("status", "wrongstatus")]
-        [DataRow("size", "wrongsize")]
-        public void Execute_Should_ThrowWhen_InvalidValuesArePassed(string propertyName, string newPropertyValue)
+        [DataRow("wrongpririty", "priority")]
+        [DataRow("wrongstatus", "status")]
+        [DataRow("wrongsize", "size")]
+        public void Execute_Should_ThrowWhen_InvalidValuesArePassed(string newPropertyValue, string propertyName)
         {
             //Arrange
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
             string storyId = fakeFactory.Database.Stories.First().Id.ToString();
-            IList<string> parameters = new List<string>() { storyId, propertyName, newPropertyValue };
+            IList<string> parameters = new List<string>() { storyId, newPropertyValue, propertyName };
             var command = new ChangeStoryPropertyCommand(fakeFactory);
             string expected = $"Story {parameters[1]} set to {parameters[2]}";
 

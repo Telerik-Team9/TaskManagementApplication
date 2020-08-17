@@ -41,10 +41,26 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.AddCommands
 
             IList<string> parameters = new List<string>() { memberName, "-1" };
             var command = new AddWorkItemToPersonCommand(fakeFactory);
-            string expected = $" assigned to {memberName}";
 
             //Act and Assert
             Assert.ThrowsException<ArgumentException>(() =>
+            {
+                _ = command.Execute(parameters);
+            });
+        }
+
+        [TestMethod]
+        public void ThrowWhen_InvalidMemberNamePassed()
+        {
+            //Arrange
+            IInstanceFactory fakeFactory = new FakeInstanceFactory();
+            string bugId = fakeFactory.Database.Bugs.First().Id.ToString();
+
+            IList<string> parameters = new List<string>() { "a", bugId };
+            var command = new AddWorkItemToPersonCommand(fakeFactory);
+
+            //Act and Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
             {
                 _ = command.Execute(parameters);
             });
