@@ -126,5 +126,25 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ChangeCommandsTests
                 _ = command.Execute(parameters);
             });
         }
+
+        [TestMethod]
+        [DataRow("priority", "wrongpririty")]
+        [DataRow("status", "wrongstatus")]
+        [DataRow("size", "wrongsize")]
+        public void Execute_Should_ThrowWhen_InvalidValuesArePassed(string propertyName, string newPropertyValue)
+        {
+            //Arrange
+            IInstanceFactory fakeFactory = new FakeInstanceFactory();
+            string storyId = fakeFactory.Database.Stories.First().Id.ToString();
+            IList<string> parameters = new List<string>() { storyId, propertyName, newPropertyValue };
+            var command = new ChangeStoryPropertyCommand(fakeFactory);
+            string expected = $"Story {parameters[1]} set to {parameters[2]}";
+
+            //Act & Assert
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                _ = command.Execute(parameters);
+            });
+        }
     }
 }

@@ -87,7 +87,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ChangeCommandsTests
         }
 
         [TestMethod]
-        public void Execute_Should_ThrowWhen_SeverityIsSame()
+        public void Execute_Should_ThrowWhen_StatusIsSame()
         {
             //Arrange
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
@@ -107,7 +107,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ChangeCommandsTests
         }
 
         [TestMethod]
-        public void Execute_Should_ThrowWhen_StatusIsSame()
+        public void Execute_Should_ThrowWhen_SeverityIsSame()
         {
             //Arrange
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
@@ -120,6 +120,26 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ChangeCommandsTests
             string actual = command.Execute(parameters);
 
             //Assert
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                _ = command.Execute(parameters);
+            });
+        }
+
+        [TestMethod]
+        [DataRow("priority", "wrongpririty")]
+        [DataRow("status", "wrongstatus")]
+        [DataRow("severity", "wrongseverity")]
+        public void Execute_Should_ThrowWhen_InvalidValuesArePassed(string propertyName, string newPropertyValue)
+        {
+            //Arrange
+            IInstanceFactory fakeFactory = new FakeInstanceFactory();
+            string bugId = fakeFactory.Database.Bugs.First().Id.ToString();
+            IList<string> parameters = new List<string>() { bugId, propertyName, newPropertyValue };
+            var command = new ChangeBugPropertyCommand(fakeFactory);
+            string expected = $"Bug {parameters[1]} set to {parameters[2]}";
+
+            //Act & Assert
             Assert.ThrowsException<ArgumentException>(() =>
             {
                 _ = command.Execute(parameters);
