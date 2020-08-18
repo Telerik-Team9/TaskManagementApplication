@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models;
+using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core
@@ -126,6 +127,14 @@ namespace WorkManagementSystem.Core
             IBug bug2 = new Bug("AAAAAAAAAAAAAbug", "szkdjaskdhjask", default, default, new List<string>());
             secondBoard.AddWorkItem(bug2);
             this.Bugs.Add(bug2);
+
+            IStory story2 = new Story("AAAAAAAAAAAAAbug", "szkdjaskdhjask", default, default, default);
+            secondBoard.AddWorkItem(story2);
+            this.Stories.Add(story2);
+
+            IFeedback feedback2 = new Feedback("AAAAAAAAAAAAAbug", "szkdjaskdhjask", 6, FeedbackStatus.Scheduled);
+            secondBoard.AddWorkItem(feedback2);
+            this.Feedbacks.Add(feedback2);
         }
     }
 }

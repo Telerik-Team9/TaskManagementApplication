@@ -23,7 +23,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
             string actual = ListMethods.ListAllWorkItems(factory, criteria, "Bug");
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual.Contains(expected));
         }
         [TestMethod]
         public void ThrowWhen_NoBugsInDatabase()

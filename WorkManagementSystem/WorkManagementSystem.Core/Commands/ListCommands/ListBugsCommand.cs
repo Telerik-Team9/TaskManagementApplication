@@ -23,36 +23,44 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             // Filter
             if (parameters[0].ToLower() == "status")
             {
-                var status = Enum.Parse<BugStatus>(parameters[1], true);
-                filteredCollection = filteredCollection
-                    .Where(b => b.Status == status)
-                    .ToList();
+                filteredCollection = FilterByStatus(parameters, filteredCollection);
             }
 
             else if (parameters[0].ToLower() == "assignee")
             {
-                if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
-                    throw new ArgumentException("No member with that name.");
-
-                // If no bugs with assignee - throw
-                // filterdCol = filtCol
-                filteredCollection = this.InstanceFactory.Database.Bugs
-                    .Where(b => b.Assignee != null && b.Assignee.Name == parameters[1])
-                    .ToList();
-
+                filteredCollection = FilterByAssignee(parameters, filteredCollection);
             }
 
             // Sort
             if (!string.IsNullOrEmpty(parameters[2]))
             {
-                /*filteredCollection = filteredCollection
-                    .OrderBy(GetSortFilter(parameters[2], parameters[3]))
-                    .ToList();*/
-
                 filteredCollection = GetSortFilter(parameters[2], filteredCollection.ToList());
             }
 
             return string.Join(NewLine, filteredCollection.Select(x => x.PrintInfo()));
+        }
+
+        private static IList<IBug> FilterByStatus(IList<string> parameters, IList<IBug> filteredCollection)
+        {
+            var status = Enum.Parse<BugStatus>(parameters[1], true);
+            filteredCollection = filteredCollection
+                .Where(b => b.Status == status)
+                .ToList();
+            return filteredCollection;
+        }
+
+        private IList<IBug> FilterByAssignee(IList<string> parameters, IList<IBug> filteredCollection)
+        {
+            if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
+                throw new ArgumentException("No member with that name.");
+
+            if (!this.InstanceFactory.Database.Members.First(m => m.Name == parameters[1]).WorkItems.Any())
+                throw new ArgumentException("This member has no assined workitems yet.");
+
+            filteredCollection = filteredCollection
+                .Where(b => b.Assignee != null && b.Assignee.Name == parameters[1])
+                .ToList();
+            return filteredCollection;
         }
 
         public override IList<string> GetUserInput()
@@ -94,7 +102,6 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
         {
             return property switch
             {
-                // remove everything after ==
                 "title" => filteredCollection.OrderBy(w => w.Title).ToList(),
                 "priority" => filteredCollection.OrderBy(w => w.Priority).ToList(),
                 "severity" => filteredCollection.OrderBy(w => w.Severity).ToList(),

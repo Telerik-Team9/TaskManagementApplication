@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Core.Factories;
@@ -25,7 +23,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.Common.ListMethodsTests
             string actual = ListMethods.ListAllWorkItems(factory, criteria, "Feedback");
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(actual.Contains(expected));
         }
         [TestMethod]
         public void ThrowWhen_NoFeedbacksInDatabase()

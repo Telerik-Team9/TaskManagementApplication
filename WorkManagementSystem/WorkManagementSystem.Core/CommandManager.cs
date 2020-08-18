@@ -42,7 +42,7 @@ namespace WorkManagementSystem.Core
 
                 "listworkitems" => new ListWorkItemsCommand(instanceFactory),
                 "listbugs" => new ListBugsCommand(instanceFactory),
-                //"listfeedbacks" => new ListFeedbacks(instanceFactory),
+                "listfeedbacks" => new ListFeedbacksCommand(instanceFactory),
                 "liststories" => new ListStoriesCommand(instanceFactory),
 
                 _ => throw new InvalidOperationException("Command does not exist")

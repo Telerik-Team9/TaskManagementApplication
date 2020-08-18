@@ -11,7 +11,8 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
 {
     public class ListStoriesCommand : Command
     {
-        public ListStoriesCommand(IInstanceFactory instanceFactory) : base(instanceFactory)
+        public ListStoriesCommand(IInstanceFactory instanceFactory)
+            : base(instanceFactory)
         {
         }
 
@@ -22,12 +23,12 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             // Filter
             if (parameters[0].ToLower() == "status")
             {
-                filteredCollection = FilterStoriesByStatus(parameters, filteredCollection);
+                filteredCollection = FilterByStatus(parameters, filteredCollection);
             }
 
             else if (parameters[0].ToLower() == "assignee")
             {
-                filteredCollection = FliterStoriesByAssignee(parameters, filteredCollection);
+                filteredCollection = FilterByAssignee(parameters, filteredCollection);
             }
 
             // Sort
@@ -39,22 +40,25 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             return string.Join(NewLine, filteredCollection.Select(x => x.PrintInfo()));
         }
 
-        private IList<IStory> FliterStoriesByAssignee(IList<string> parameters, IList<IStory> filteredCollection)
+        private static IList<IStory> FilterByStatus(IList<string> parameters, IList<IStory> filteredCollection)
         {
-            if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
-                throw new ArgumentException("No member with that name.");
-
+            var status = Enum.Parse<StoryStatus>(parameters[1], true);
             filteredCollection = filteredCollection
-                .Where(b => b.Assignee.Name == parameters[1])
+                .Where(b => b.Status == status)
                 .ToList();
             return filteredCollection;
         }
 
-        private static IList<IStory> FilterStoriesByStatus(IList<string> parameters, IList<IStory> filteredCollection)
+        private IList<IStory> FilterByAssignee(IList<string> parameters, IList<IStory> filteredCollection)
         {
-            var status = Enum.Parse<StoryStatus>(parameters[1], true);
+            if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
+                throw new ArgumentException("No member with that name.");
+
+            if (!this.InstanceFactory.Database.Members.First(m => m.Name == parameters[1]).WorkItems.Any())
+                throw new ArgumentException("This member has no assined workitems yet.");
+
             filteredCollection = filteredCollection
-                .Where(s => s.Status == status)
+                .Where(b => b.Assignee != null && b.Assignee.Name == parameters[1])
                 .ToList();
             return filteredCollection;
         }
@@ -98,7 +102,6 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
         {
             return property switch
             {
-                // remove everything after ==
                 "title" => filteredCollection.OrderBy(w => w.Title).ToList(),
                 "priority" => filteredCollection.OrderBy(w => w.Priority).ToList(),
                 "size" => filteredCollection.OrderBy(w => w.Size).ToList(),
