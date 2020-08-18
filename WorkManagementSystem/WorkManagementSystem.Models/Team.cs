@@ -24,7 +24,7 @@ namespace WorkManagementSystem.Models
             this.boards = new List<IBoard>();
 
             this.activityHistory = new List<IActivityHistory>();
-            activityHistory.Add(new ActivityHistory($"Team {this.Name} was created."));
+            activityHistory.Add(new ActivityHistory(string.Format(ModelsConstants.ObjectWithNameCreated, "Team", this.Name)));
         }
 
         public string Name
@@ -81,7 +81,7 @@ namespace WorkManagementSystem.Models
 
             if (!this.Members.Any())
             {
-                sb.AppendLine(" " + string.Format(ModelsConstants.NoUnitsInTeam, "members"));
+                sb.AppendLine(" " + string.Format(ModelsConstants.NoObjectsAddedYet, "members"));
             }
             else
             {
@@ -92,7 +92,7 @@ namespace WorkManagementSystem.Models
 
             if (!this.Boards.Any())
             {
-                sb.AppendLine(" " + string.Format(ModelsConstants.NoUnitsInTeam, "boards"));
+                sb.AppendLine(" " + string.Format(ModelsConstants.NoObjectsAddedYet, "boards"));
             }
             else
             {
@@ -114,7 +114,7 @@ namespace WorkManagementSystem.Models
 
             this.boards.Add(board);
 
-            var newActivity = new ActivityHistory($"Board with title {board.Name} was added.");
+            var newActivity = new ActivityHistory(string.Format(ModelsConstants.ObjectWithTitleAdded, "Board", board.Name));
             this.activityHistory.Add(newActivity);
         }
 
@@ -127,7 +127,7 @@ namespace WorkManagementSystem.Models
 
             this.members.Add(person);
 
-            var newActivity = new ActivityHistory($"Person with name {person.Name} was added.");
+            var newActivity = new ActivityHistory(string.Format(ModelsConstants.ObjectWithNameCreated, "Person", person.Name));
             this.activityHistory.Add(newActivity);
         }
 

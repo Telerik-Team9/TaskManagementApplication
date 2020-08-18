@@ -68,7 +68,7 @@ namespace WorkManagementSystem.Models.Abstracts
         {
             if (this.WorkItems.Contains(newWorkItem))
             {
-                throw new ArgumentException("This workitem already exists.");
+                throw new ArgumentException(string.Format(ModelsConstants.AlreadySuchObject, "workitem"));
             }
             this.workItems.Add(newWorkItem);
 
@@ -80,7 +80,7 @@ namespace WorkManagementSystem.Models.Abstracts
         {
             if (!this.WorkItems.Contains(newWorkItem))
             {
-                throw new ArgumentException("This workitem does not exist.");
+                throw new ArgumentException(string.Format(ModelsConstants.NoSuchObject, "workitem"));
             }
 
             this.workItems.Remove(newWorkItem);
@@ -119,7 +119,7 @@ namespace WorkManagementSystem.Models.Abstracts
             }
             else
             {
-                sb.AppendLine(" -No workitems have been added yet.");
+                sb.AppendLine(" -" + string.Format(ModelsConstants.NoObjectsAddedYet, "workitems"));
             }
 
             return sb.ToString();

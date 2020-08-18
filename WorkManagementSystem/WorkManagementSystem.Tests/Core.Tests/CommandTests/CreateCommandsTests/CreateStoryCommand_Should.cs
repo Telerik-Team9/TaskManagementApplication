@@ -20,7 +20,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.CreateCommandsTests
             IList<string> parameters = new List<string>() { "Team9", "FIRSTBRD", "TestStoryTitle", "TestStoryDescription", "high", "medium", "inprogress" };
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
             var command = new CreateStoryCommand(fakeFactory);
-            string expected = "Story with title 'TestStoryTitle' was created";
+            string expected = "Story with title 'TestStoryTitle' created";
 
             //Act
             string actual = command.Execute(parameters);

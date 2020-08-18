@@ -12,7 +12,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.TeamTests
         {
             //Arrange
             ITeam cut = new Team("Team 9");
-            string expected = $"Team Team 9 was created.";
+            string expected = $"Team with name 'Team 9' created.";
 
             //Act
             string actual = cut.PrintActivityHistory();

@@ -54,24 +54,24 @@ namespace WorkManagementSystem.Models
         {
             if (this.Rating == newRating)
             {
-                throw new ArgumentException($"Rating is already {this.Rating}");
+                throw new ArgumentException(string.Format(ModelsConstants.PropertyIsAlreadyValue, "Rating", this.Rating));
             }
 
             int oldRating = this.Rating;
             this.Rating = newRating;
-            this.historyLog.Add($"Rating changed from {oldRating} to {newRating}.");
+            this.historyLog.Add(string.Format(ModelsConstants.PropertyChangedFromTo, "Rating", oldRating, newRating));
         }
 
         public void ChangeStatus(FeedbackStatus newStatus)
         {
             if (this.Status == newStatus)
             {
-                throw new ArgumentException($"Status is already {this.Status}");
+                throw new ArgumentException(string.Format(ModelsConstants.PropertyIsAlreadyValue, "Status", this.Status));
             }
 
             FeedbackStatus oldStatus = this.Status;
             this.Status = newStatus;
-            this.historyLog.Add($"Status changed from {oldStatus} to {newStatus}.");
+            this.historyLog.Add(string.Format(ModelsConstants.PropertyChangedFromTo, "Status", oldStatus, newStatus));
         }
     }
 }

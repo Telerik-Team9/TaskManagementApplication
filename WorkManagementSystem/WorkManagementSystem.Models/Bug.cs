@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using WorkManagementSystem.Models.Abstracts;
+using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 using static System.Environment;
@@ -11,8 +12,6 @@ namespace WorkManagementSystem.Models
 {
     public class Bug : WorkItem, IBug
     {
-        private IList<string> stepsToReproduce = new List<string>();
-
         public Bug(string title, string description, Priority priority, BugSeverity severity, IList<string> stepsToReproduce)
             : base(title, description)
         {
@@ -21,6 +20,8 @@ namespace WorkManagementSystem.Models
             this.Status = BugStatus.Active;
             this.stepsToReproduce = stepsToReproduce;
         }
+        
+        private IList<string> stepsToReproduce = new List<string>();
 
         public IReadOnlyCollection<string> StepsToReproduce
         {
@@ -42,51 +43,51 @@ namespace WorkManagementSystem.Models
         {
             if (this.Priority == newPriority)
             {
-                throw new ArgumentException($"Priority is already on {this.Priority}.");
+                throw new ArgumentException(string.Format(ModelsConstants.PropertyIsAlreadyValue, "Priority", this.Priority));
             }
 
             Priority oldPriority = this.Priority;
             this.Priority = newPriority;
 
-            this.historyLog.Add($"Priority changed from {oldPriority} to {newPriority}.");
+            this.historyLog.Add(string.Format(ModelsConstants.PropertyChangedFromTo, "Priority", oldPriority, newPriority));
         }
 
         public void ChangeSeverity(BugSeverity newSeverity)
         {
             if (this.Severity == newSeverity)
             {
-                throw new ArgumentException($"Severity is already on {this.Severity}.");
+                throw new ArgumentException(string.Format(ModelsConstants.PropertyIsAlreadyValue, "Severity", this.Severity));
             }
 
             BugSeverity oldSeverity = this.Severity;
             this.Severity = newSeverity;
 
-            this.historyLog.Add($"Severity changed from {oldSeverity} to {newSeverity}.");
+            this.historyLog.Add(string.Format(ModelsConstants.PropertyChangedFromTo, "Severity", oldSeverity, newSeverity));
         }
 
         public void ChangeStatus(BugStatus newStatus)
         {
             if (this.Status == newStatus)
             {
-                throw new ArgumentException($"Status is already on {this.Status}.");
+                throw new ArgumentException(string.Format(ModelsConstants.PropertyIsAlreadyValue, "Status", this.Status));
             }
 
             BugStatus oldStatus = this.Status;
             this.Status = newStatus;
 
-            this.historyLog.Add($"Status changed from {oldStatus} to {newStatus}.");
+            this.historyLog.Add(string.Format(ModelsConstants.PropertyChangedFromTo, "Status", oldStatus, newStatus));
         }
 
         public void ChangeAssignee(IMember newAssignee)
         {
             if (this.Assignee == newAssignee)
             {
-                throw new ArgumentException($"Bug is already assigned to {this.Assignee.Name}.");
+                throw new ArgumentException(string.Format(ModelsConstants.ObjectAlreadyAssigned, "Bug", this.Assignee.Name));
             }
 
             this.Assignee = newAssignee;
 
-            this.historyLog.Add($"Assigned to {newAssignee.Name}.");
+            this.historyLog.Add(string.Format(ModelsConstants.ObjectAssignedTo, this.Assignee.Name));
         }
 
         public override string GetWorkItemType()
@@ -120,7 +121,7 @@ namespace WorkManagementSystem.Models
         public void RemoveAssignee(IMember assignee)
         {
             this.Assignee = null;
-            this.historyLog.Add($"Unassigned from {assignee.Name}.");
+            this.historyLog.Add(string.Format(ModelsConstants.ObjectUnassignedFrom, assignee.Name));
         }
     }
 }

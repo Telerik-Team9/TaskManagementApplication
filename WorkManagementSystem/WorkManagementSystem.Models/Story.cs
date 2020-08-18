@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using WorkManagementSystem.Models.Abstracts;
+using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
@@ -28,53 +29,59 @@ namespace WorkManagementSystem.Models
         {
             if (this.Priority == newPriority)
             {
-                throw new ArgumentException($"Priority is already on {this.Priority}.");
+                throw new ArgumentException(string.Format(ModelsConstants.PropertyIsAlreadyValue, "Priority", this.Priority));
             }
 
             Priority oldPriority = this.Priority;
             this.Priority = newPriority;
 
-            this.historyLog.Add($"Priority changed from {oldPriority} to {newPriority}.");
+            this.historyLog.Add(string.Format(ModelsConstants.PropertyChangedFromTo, "Priority", oldPriority, newPriority));
         }
 
         public void ChangeSize(StorySize newSize)
         {
             if (this.Size == newSize)
             {
-                throw new ArgumentException($"Size is already on {this.Size}.");
+                throw new ArgumentException(string.Format(ModelsConstants.PropertyIsAlreadyValue, "Size", this.Size));
             }
 
             StorySize oldSize = this.Size;
             this.Size = newSize;
 
-            this.historyLog.Add($"Size changed from {oldSize} to {newSize}.");
+            this.historyLog.Add(string.Format(ModelsConstants.PropertyChangedFromTo, "Size",oldSize, newSize));
         }
 
         public void ChangeStatus(StoryStatus newStatus)
         {
             if (this.Status == newStatus)
             {
-                throw new ArgumentException($"Status is already on {this.Status}.");
+                throw new ArgumentException(string.Format(ModelsConstants.PropertyIsAlreadyValue, "Status", this.Status));
             }
 
             StoryStatus oldStatus = this.Status;
             this.Status = newStatus;
 
-            this.historyLog.Add($"Status changed from {oldStatus} to {newStatus}.");
+            this.historyLog.Add(string.Format(ModelsConstants.PropertyChangedFromTo, "Status", oldStatus, newStatus));
         }
 
         public void ChangeAssignee(IMember newAssignee)
         {
             if (this.Assignee == newAssignee)
             {
-                throw new ArgumentException($"Story is already assigned to {this.Assignee.Name}.");
+                throw new ArgumentException(string.Format(ModelsConstants.ObjectAlreadyAssigned, "Story", this.Assignee.Name));
             }
 
             this.Assignee = newAssignee;
 
-            this.historyLog.Add($"Assigned to {newAssignee.Name}.");
+            this.historyLog.Add(string.Format(ModelsConstants.ObjectAssignedTo, this.Assignee.Name));
         }
 
+        public void RemoveAssignee(IMember assignee)
+        {
+            this.Assignee = null;
+            this.historyLog.Add(string.Format(ModelsConstants.ObjectUnassignedFrom, assignee.Name));
+        }
+        
         public override string GetWorkItemType()
         {
             return "Story";
@@ -101,10 +108,5 @@ namespace WorkManagementSystem.Models
             return sb.ToString().TrimEnd();
         }
 
-        public void RemoveAssignee(IMember assignee)
-        {
-            this.Assignee = null;
-            this.historyLog.Add($"Unassigned from {assignee.Name}.");
-        }
     }
 }

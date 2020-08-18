@@ -18,6 +18,7 @@ namespace WorkManagementSystem.Models
             {
                 return base.Name;
             }
+
             protected set
             {
                 if (string.IsNullOrWhiteSpace(value))

@@ -20,7 +20,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.CreateCommandsTests
             IList<string> parameters = new List<string>() { "Team9", "FIRSTBRD", "TestBugTitle", "TestBugDescription", "medium", "minor", "one-two" };
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
             var command = new CreateBugCommand(fakeFactory);
-            string expected = "Bug with title 'TestBugTitle' was created";
+            string expected = "Bug with title 'TestBugTitle' created";
 
             //Act
             string actual = command.Execute(parameters);

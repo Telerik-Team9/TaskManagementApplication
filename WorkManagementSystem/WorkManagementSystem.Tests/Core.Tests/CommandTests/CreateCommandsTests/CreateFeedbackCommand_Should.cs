@@ -18,7 +18,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.CreateCommandsTests
             IList<string> parameters = new List<string>() { "Team9", "FIRSTBRD", "TestFeedbackTitle", "TestFeedbackDescription", "6", "new" };
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
             var command = new CreateFeedbackCommand(fakeFactory);
-            string expected = "Feedback with title 'TestFeedbackTitle' was created";
+            string expected = "Feedback with title 'TestFeedbackTitle' created";
 
             //Act
             string actual = command.Execute(parameters);

@@ -25,7 +25,7 @@ namespace WorkManagementSystem.Models.Abstracts
             this.comments = new List<IComment>();
 
             this.historyLog = new List<string>();
-            this.historyLog.Add($"{this.GetWorkItemType()} with title '{this.Title}' was created.");
+            this.historyLog.Add((string.Format(ModelsConstants.ObjectWithTitleCreated, this.GetWorkItemType(), this.Title)));
 
             this.Id = counter++;
         }
@@ -119,16 +119,16 @@ namespace WorkManagementSystem.Models.Abstracts
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("History:");
-
+/*
             if (this.HistoryLog.Any())
-            {
+            {*/
                 sb.AppendLine(string.Join(NewLine, this.HistoryLog.Select(s => " -" + s)));
-            }
+            //}
             //TODO: remove the else?
-            else
+/*            else
             {
                 sb.AppendLine(" -No history is present yet.");
-            }
+            }*/
 
             return sb.ToString().Trim();
         }
@@ -144,7 +144,7 @@ namespace WorkManagementSystem.Models.Abstracts
             }
             else
             {
-                sb.AppendLine(" -No comments have been added yet.");
+                sb.AppendLine(" -" + string.Format(ModelsConstants.NoObjectsAddedYet, "comments"));
             }
 
             return sb.ToString().Trim();
@@ -167,19 +167,7 @@ namespace WorkManagementSystem.Models.Abstracts
             var comment = new Comment(message, author);
             this.comments.Add(comment);
 
-            this.historyLog.Add($"Comment from '{author.Name}' added.");
+            this.historyLog.Add(string.Format(ModelsConstants.NoObjectsAddedYet, author.Name));
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-

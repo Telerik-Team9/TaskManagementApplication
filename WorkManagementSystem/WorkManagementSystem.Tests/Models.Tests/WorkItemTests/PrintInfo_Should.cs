@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using WorkManagementSystem.Models;
+using WorkManagementSystem.Models.Common;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Tests.Models.Tests.WorkItemTests
@@ -16,8 +17,8 @@ namespace WorkManagementSystem.Tests.Models.Tests.WorkItemTests
             string expectedId = $"Id: {bug.Id}";
             string expectedTitle = $"Title: {bug.Title}";
             string expectedDescription = $"Description: {bug.Description}";
-            string expectedComments = $"No comments have been added yet.";
-            string expectedHistory = $"Bug with title '{bug.Title}' was created.";
+            string expectedComments = "No comments added yet";
+            string expectedHistory = $"Bug with title '{bug.Title}' created";
 
             //Act
             string actual = bug.PrintInfo();
