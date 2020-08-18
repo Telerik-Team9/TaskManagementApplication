@@ -122,6 +122,10 @@ namespace WorkManagementSystem.Core
             this.Bugs.Add(bug);
             this.Feedbacks.Add(feedback);
             this.Stories.Add(story);
+
+            IBug bug2 = new Bug("AAAAAAAAAAAAAbug", "szkdjaskdhjask", default, default, new List<string>());
+            secondBoard.AddWorkItem(bug2);
+            this.Bugs.Add(bug2);
         }
     }
 }

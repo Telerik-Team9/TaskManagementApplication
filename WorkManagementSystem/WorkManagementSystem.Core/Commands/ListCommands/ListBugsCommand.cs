@@ -34,9 +34,12 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
                 if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
                     throw new ArgumentException("No member with that name.");
 
-                filteredCollection = filteredCollection
-                    .Where(b => b.Assignee.Name == parameters[1])
+                // If no bugs with assignee - throw
+                // filterdCol = filtCol
+                filteredCollection = this.InstanceFactory.Database.Bugs
+                    .Where(b => b.Assignee != null && b.Assignee.Name == parameters[1])
                     .ToList();
+
             }
 
             // Sort
@@ -45,6 +48,7 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
                 /*filteredCollection = filteredCollection
                     .OrderBy(GetSortFilter(parameters[2], parameters[3]))
                     .ToList();*/
+
                 filteredCollection = GetSortFilter(parameters[2], filteredCollection.ToList());
             }
 
