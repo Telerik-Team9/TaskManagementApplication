@@ -18,7 +18,18 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
         {
             var filteredCollection = this.InstanceFactory.Database.ListAllWorkitems();
 
-            if (parameters[0].ToLower() == "yes")
+            switch (parameters[0].ToLower())
+            {
+                case "title":
+                    filteredCollection = filteredCollection.OrderBy(w => w.Title).ToList();
+                    break;
+                default:
+                    filteredCollection = filteredCollection.OrderBy(w => w.Id).ToList();
+                    break;
+            }
+
+
+/*            if (parameters[0].ToLower() == "yes")
             {
                 filteredCollection = filteredCollection.OrderBy(w => w.Title).ToList();
             }
@@ -26,7 +37,7 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             else
             {
                 filteredCollection = filteredCollection.OrderBy(w => w.Id).ToList();
-            }
+            }*/
 
             return string.Join(NewLine, filteredCollection.Select(w => w.PrintInfo()));
         }
@@ -41,7 +52,7 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             IList<string> parameters = new List<string>();
 
             // Get sorting filter
-            this.Writer.WriteLine("Do you want to sort by title? (yes/no)");
+            this.Writer.WriteLine("Sort by title or id(default)? (title/id)");
             string sortFilter = this.Reader.Read();
             parameters.Add(sortFilter);
 

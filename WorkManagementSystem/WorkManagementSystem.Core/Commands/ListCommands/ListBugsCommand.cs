@@ -21,7 +21,20 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             var filteredCollection = this.InstanceFactory.Database.Bugs;
 
             // Filter
-            if (parameters[0].ToLower() == "status")
+            switch(parameters[0].ToLower())
+            {
+                case "status":
+                    filteredCollection = FilterByStatus(parameters, filteredCollection);
+                    break;
+                case "assignee":
+                    filteredCollection = FilterByAssignee(parameters, filteredCollection);
+                    break;
+                default:
+                    break;
+            }
+
+
+/*            if (parameters[0].ToLower() == "status")
             {
                 filteredCollection = FilterByStatus(parameters, filteredCollection);
             }
@@ -29,16 +42,19 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             else if (parameters[0].ToLower() == "assignee")
             {
                 filteredCollection = FilterByAssignee(parameters, filteredCollection);
-            }
+            }*/
+
+
 
             // Sort
             if (!string.IsNullOrEmpty(parameters[2]))
             {
-                filteredCollection = GetSortFilter(parameters[2], filteredCollection.ToList());
+                filteredCollection = SortByProperty(parameters[2], filteredCollection.ToList());
             }
 
             return string.Join(NewLine, filteredCollection.Select(x => x.PrintInfo()));
         }
+
         public override IList<string> GetUserInput()
         {
             if (!this.InstanceFactory.Database.Bugs.Any())
@@ -97,7 +113,7 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             return filteredCollection;
         }
 
-        private IList<IBug> GetSortFilter(string property, List<IBug> filteredCollection)
+        private IList<IBug> SortByProperty(string property, List<IBug> filteredCollection)
         {
             return property switch
             {

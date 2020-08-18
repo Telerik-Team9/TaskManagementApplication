@@ -21,15 +21,26 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             var filteredCollection = this.InstanceFactory.Database.Stories;
 
             // Filter
-            if (parameters[0].ToLower() == "status")
+            switch (parameters[0].ToLower())
             {
-                filteredCollection = FilterByStatus(parameters, filteredCollection);
+                case "status":
+                    filteredCollection = FilterByStatus(parameters, filteredCollection);
+                    break;
+                case "assignee":
+                    filteredCollection = FilterByAssignee(parameters, filteredCollection);
+                    break;
+                default:
+                    break;
             }
+            /*            if (parameters[0].ToLower() == "status")
+                        {
+                            filteredCollection = FilterByStatus(parameters, filteredCollection);
+                        }
 
-            else if (parameters[0].ToLower() == "assignee")
-            {
-                filteredCollection = FilterByAssignee(parameters, filteredCollection);
-            }
+                        else if (parameters[0].ToLower() == "assignee")
+                        {
+                            filteredCollection = FilterByAssignee(parameters, filteredCollection);
+                        }*/
 
             // Sort
             if (!string.IsNullOrEmpty(parameters[2]))
@@ -38,29 +49,6 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             }
 
             return string.Join(NewLine, filteredCollection.Select(x => x.PrintInfo()));
-        }
-
-        private static IList<IStory> FilterByStatus(IList<string> parameters, IList<IStory> filteredCollection)
-        {
-            var status = Enum.Parse<StoryStatus>(parameters[1], true);
-            filteredCollection = filteredCollection
-                .Where(b => b.Status == status)
-                .ToList();
-            return filteredCollection;
-        }
-
-        private IList<IStory> FilterByAssignee(IList<string> parameters, IList<IStory> filteredCollection)
-        {
-            if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
-                throw new ArgumentException("No member with that name.");
-
-            if (!this.InstanceFactory.Database.Members.First(m => m.Name == parameters[1]).WorkItems.Any())
-                throw new ArgumentException("This member has no assined workitems yet.");
-
-            filteredCollection = filteredCollection
-                .Where(b => b.Assignee != null && b.Assignee.Name == parameters[1])
-                .ToList();
-            return filteredCollection;
         }
 
         public override IList<string> GetUserInput()
@@ -96,6 +84,29 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             parameters.Add(sortFilter);
 
             return parameters;
+        }
+
+        private static IList<IStory> FilterByStatus(IList<string> parameters, IList<IStory> filteredCollection)
+        {
+            var status = Enum.Parse<StoryStatus>(parameters[1], true);
+            filteredCollection = filteredCollection
+                .Where(b => b.Status == status)
+                .ToList();
+            return filteredCollection;
+        }
+
+        private IList<IStory> FilterByAssignee(IList<string> parameters, IList<IStory> filteredCollection)
+        {
+            if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
+                throw new ArgumentException("No member with that name.");
+
+            if (!this.InstanceFactory.Database.Members.First(m => m.Name == parameters[1]).WorkItems.Any())
+                throw new ArgumentException("This member has no assined workitems yet.");
+
+            filteredCollection = filteredCollection
+                .Where(b => b.Assignee != null && b.Assignee.Name == parameters[1])
+                .ToList();
+            return filteredCollection;
         }
 
         private IList<IStory> GetSortFilter(string property, List<IStory> filteredCollection)

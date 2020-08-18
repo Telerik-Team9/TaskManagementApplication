@@ -35,15 +35,6 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             return string.Join(NewLine, filteredCollection.Select(x => x.PrintInfo()));
         }
 
-        private static IList<IFeedback> FilterByStatus(IList<string> parameters, IList<IFeedback> filteredCollection)
-        {
-            var status = Enum.Parse<FeedbackStatus>(parameters[1], true);
-            filteredCollection = filteredCollection
-                .Where(f => f.Status == status)
-                .ToList();
-            return filteredCollection;
-        }
-
         public override IList<string> GetUserInput()
         {
             if (!this.InstanceFactory.Database.Stories.Any())
@@ -77,6 +68,15 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             parameters.Add(sortFilter);
 
             return parameters;
+        }
+
+        private static IList<IFeedback> FilterByStatus(IList<string> parameters, IList<IFeedback> filteredCollection)
+        {
+            var status = Enum.Parse<FeedbackStatus>(parameters[1], true);
+            filteredCollection = filteredCollection
+                .Where(f => f.Status == status)
+                .ToList();
+            return filteredCollection;
         }
 
         private IList<IFeedback> GetSortFilter(string property, List<IFeedback> filteredCollection)

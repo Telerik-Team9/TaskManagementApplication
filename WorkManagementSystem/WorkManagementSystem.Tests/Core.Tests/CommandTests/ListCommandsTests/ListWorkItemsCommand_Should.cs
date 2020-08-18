@@ -17,7 +17,7 @@ namespace WorkManagementSystem.Tests.Core.Tests.CommandTests.ListCommandsTests
             //Arrnge
             IInstanceFactory fakeFactory = new FakeInstanceFactory();
             var command = new ListWorkItemsCommand(fakeFactory);
-            IList<string> parameters = new List<string>() { "yes" };
+            IList<string> parameters = new List<string>() { "title" };
             IList<string> result = fakeFactory.Database
                 .ListAllWorkitems()
                 .OrderBy(t => t.Title)

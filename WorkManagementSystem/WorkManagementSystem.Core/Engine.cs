@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using WorkManagementSystem.Core.Common;
 using WorkManagementSystem.Core.Contracts;
+using static System.Environment;
 
 namespace WorkManagementSystem.Core
 {
@@ -24,13 +24,17 @@ namespace WorkManagementSystem.Core
         {
             while (true)
             {
-                //Thread.Sleep(3000);
-                this.Writer.WriteLine(CoreConstants.allCommands);
+                // Draw logo and commands table
+                this.Writer.WriteLine(NewLine + CoreConstants.Team9Logo + NewLine);
+                this.Writer.WriteLine(TableParser.ToStringTable(CoreConstants.AllCommands));
+                this.Writer.Write(" > ");
 
+                // Read user input, process and print result
                 var commandName = this.Reader.Read();
                 var result = this.Process(commandName);
                 this.Print(result);
 
+                // Clear console after user is ready
                 this.Writer.WriteLine(CoreConstants.PressEnterForNewCommand);
                 this.Reader.Read();
                 this.Writer.Clear();
@@ -61,7 +65,7 @@ namespace WorkManagementSystem.Core
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(commandResult);
-            sb.AppendLine("*****************************");
+            sb.AppendLine("-----------------------------------------------------------------------");
             this.InstanceFactory.Writer.WriteLine(sb.ToString());
         }
     }

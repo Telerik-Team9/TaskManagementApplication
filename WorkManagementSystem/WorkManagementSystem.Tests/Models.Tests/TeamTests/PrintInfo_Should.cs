@@ -14,7 +14,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.TeamTests
         public void ReturnMsgWhen_MembersCollectionIsEmpty()
         {
             //Arrange
-            string expected = "No members in the team.";
+            string expected = "No members in team.";
 
             //Act
             string actual = this.cut.PrintInfo();
@@ -27,7 +27,7 @@ namespace WorkManagementSystem.Tests.Models.Tests.TeamTests
         public void ReturnMsgWhen_BoardsCollectionIsEmpty()
         {
             //Arrange
-            string expected = "No boards in the team.";
+            string expected = "No boards in team.";
 
             //Act
             string actual = this.cut.PrintInfo();
