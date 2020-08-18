@@ -18,16 +18,17 @@ namespace WorkManagementSystem.Core.Commands.Abstracts
 
         protected (string, string) ParseBaseWorkItemParameters()
         {
-            this.Writer.Write("Title: ");
+            this.Writer.WriteLine("Title: ");
             string title = this.Reader.Read();
 
-            this.Writer.Write("Description: ");
+            this.Writer.WriteLine("Description: ");
             string description = this.Reader.Read();
 
             return (title, description);
         }
 
         public abstract IList<string> GetUserInput();
+
         public abstract string Execute(IList<string> parameters);
     }
 }
