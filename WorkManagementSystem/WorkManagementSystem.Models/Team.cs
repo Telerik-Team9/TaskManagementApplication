@@ -37,12 +37,12 @@ namespace WorkManagementSystem.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "team name"));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidInput, "team name"));
                 }
 
                 if (value.Length < 3 || value.Length > 15)
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "team name", 3, 15));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidTextRange, "team name", 3, 15));
                 }
 
                 this.name = value;
@@ -81,7 +81,7 @@ namespace WorkManagementSystem.Models
 
             if (!this.Members.Any())
             {
-                sb.AppendLine(" No members in the team.");
+                sb.AppendLine(" " + string.Format(ModelsConstants.NoUnitsInTeam, "members"));
             }
             else
             {
@@ -92,7 +92,7 @@ namespace WorkManagementSystem.Models
 
             if (!this.Boards.Any())
             {
-                sb.AppendLine(" No boards in the team.");
+                sb.AppendLine(" " + string.Format(ModelsConstants.NoUnitsInTeam, "boards"));
             }
             else
             {
@@ -109,7 +109,7 @@ namespace WorkManagementSystem.Models
         {
             if (board == null)
             {
-                throw new ArgumentException("The board you tried to enter is invalid.");
+                throw new ArgumentException(string.Format(ModelsConstants.InvalidObject, "board"));
             }
 
             this.boards.Add(board);
@@ -122,7 +122,7 @@ namespace WorkManagementSystem.Models
         {
             if (person == null)
             {
-                throw new ArgumentException("The person you tried to enter is invalid.");
+                throw new ArgumentException(string.Format(ModelsConstants.InvalidObject, "person"));
             }
 
             this.members.Add(person);

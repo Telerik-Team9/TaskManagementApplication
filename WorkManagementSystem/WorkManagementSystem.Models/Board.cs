@@ -22,12 +22,12 @@ namespace WorkManagementSystem.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "name"));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidInput, "name"));
                 }
 
                 if (value.Length < 5 || value.Length > 10)
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "name", 5, 10));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidTextRange, "name", 5, 10));
                 }
 
                 base.Name = value;

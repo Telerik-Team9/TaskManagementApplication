@@ -43,12 +43,12 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "title"));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidInput, "title"));
                 }
 
                 if (value.Length < 10 || value.Length > 50)
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "title", 10, 50));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidTextRange, "title", 10, 50));
                 }
 
                 this.title = value;
@@ -65,12 +65,12 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "description"));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidInput, "description"));
                 }
 
                 if (value.Length < 10 || value.Length > 500)
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "description", 10, 50));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidTextRange, "description", 10, 50));
                 }
 
                 this.description = value;

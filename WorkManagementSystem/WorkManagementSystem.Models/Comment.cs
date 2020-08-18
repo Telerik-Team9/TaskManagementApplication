@@ -26,12 +26,12 @@ namespace WorkManagementSystem.Models
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "comment"));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidInput, "comment"));
                 }
 
                 if (value.Length < 2 || value.Length > 50)
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "comment", 2, 50));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidTextRange, "comment", 2, 50));
                 }
 
                 this.message = value;

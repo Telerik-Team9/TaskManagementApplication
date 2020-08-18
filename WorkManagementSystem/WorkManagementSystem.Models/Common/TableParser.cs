@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -96,7 +96,7 @@ namespace WorkManagementSystem.Models.Common
             return maxColumnsWidth;
         }
 
-        /*        public static string DrawMemberTable(IEnumerable<IMember> members)
+        *//*        public static string DrawMemberTable(IEnumerable<IMember> members)
                 {
                     //string allWorkitems = string.Join("; ", members.ToList()
                     var workitemNames = new List<string>();
@@ -114,6 +114,7 @@ namespace WorkManagementSystem.Models.Common
                       m => m.Name, m => string.Join("; ", m.WorkItems.ToList()));
 
                     return "";
-                }*/
+                }*//*
     }
 }
+*/

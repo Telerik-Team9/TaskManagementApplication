@@ -30,7 +30,7 @@ namespace WorkManagementSystem.Models
             {
                 if (value < 1 || value > 10)
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidNumberRange, "rating", 1, 10));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidNumberRange, "rating", 1, 10));
                 }
 
                 this.rating = value;

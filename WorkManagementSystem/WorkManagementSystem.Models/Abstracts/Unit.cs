@@ -34,12 +34,12 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidInput, "name"));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidInput, "name"));
                 }
 
                 if (value.Length < 5 || value.Length > 15)
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidParameterRange, "name", 5, 15));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidTextRange, "name", 5, 15));
                 }
 
                 ValidateForSpecialChars(value);
@@ -72,7 +72,7 @@ namespace WorkManagementSystem.Models.Abstracts
             }
             this.workItems.Add(newWorkItem);
 
-            var newActivity = new ActivityHistory($"{newWorkItem.GetWorkItemType()} with title {newWorkItem.Title} was added.");
+            var newActivity = new ActivityHistory(string.Format(ModelsConstants.ObjectWithTitleAdded, newWorkItem.GetWorkItemType(), newWorkItem.Title));
             this.activityHistory.Add(newActivity);
         }
 
@@ -85,7 +85,7 @@ namespace WorkManagementSystem.Models.Abstracts
 
             this.workItems.Remove(newWorkItem);
 
-            this.activityHistory.Add(new ActivityHistory($"WorkItem with title {newWorkItem.Title} removed."));
+            this.activityHistory.Add(new ActivityHistory(string.Format(ModelsConstants.ObjectWithTitleRemoved, newWorkItem.GetWorkItemType(), newWorkItem.Title)));
         }
 
         public void AddActivityLog(string activity)
@@ -140,7 +140,7 @@ namespace WorkManagementSystem.Models.Abstracts
             {
                 if (!(char.IsLetter(ch) || char.IsWhiteSpace(ch)))
                 {
-                    throw new ArgumentException(string.Format(GlobalConstants.InvalidUnitName, this.GetType().Name));
+                    throw new ArgumentException(string.Format(ModelsConstants.InvalidUnitName, this.GetType().Name));
                 }
             }
         }
