@@ -128,11 +128,11 @@ namespace WorkManagementSystem.Core
             secondBoard.AddWorkItem(bug2);
             this.Bugs.Add(bug2);
 
-            IStory story2 = new Story("AAAAAAAAAAAAAbug", "szkdjaskdhjask", default, default, default);
+            IStory story2 = new Story("AAAAAAAAAStory", "szkdjaskdhjask", default, default, default);
             secondBoard.AddWorkItem(story2);
             this.Stories.Add(story2);
 
-            IFeedback feedback2 = new Feedback("AAAAAAAAAAAAAbug", "szkdjaskdhjask", 6, FeedbackStatus.Scheduled);
+            IFeedback feedback2 = new Feedback("AAAAAAAAAAAAAStory", "szkdjaskdhjask", 6, FeedbackStatus.Scheduled);
             secondBoard.AddWorkItem(feedback2);
             this.Feedbacks.Add(feedback2);
         }

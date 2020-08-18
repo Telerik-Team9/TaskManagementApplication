@@ -2,6 +2,7 @@
 using WorkManagementSystem.Core;
 using WorkManagementSystem.Core.Contracts;
 using WorkManagementSystem.Models;
+using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Tests.Fakes
@@ -93,6 +94,18 @@ namespace WorkManagementSystem.Tests.Fakes
             telerikMember.AddWorkItem(bug);
 
 
+
+            IBug bug2 = new Bug("AAAAAAAAAbug", "szkdjaskdhjask", default, default, new List<string>());
+            secondBoard.AddWorkItem(bug2);
+            this.Bugs.Add(bug2);
+
+            IStory story2 = new Story("AAAAAAAAAAAAStory", "szkdjaskdhjask", default, default, default);
+            secondBoard.AddWorkItem(story2);
+            this.Stories.Add(story2);
+
+            IFeedback feedback2 = new Feedback("AAAAAAAAAAAAAFeedback", "szkdjaskdhjask", 6, FeedbackStatus.Scheduled);
+            secondBoard.AddWorkItem(feedback2);
+            this.Feedbacks.Add(feedback2);
         }
     }
 }
