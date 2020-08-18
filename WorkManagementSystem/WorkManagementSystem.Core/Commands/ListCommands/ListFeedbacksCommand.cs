@@ -9,7 +9,7 @@ using static System.Environment;
 
 namespace WorkManagementSystem.Core.Commands.ListCommands
 {
-    class ListFeedbacksCommand : Command
+    public class ListFeedbacksCommand : Command
     {
         public ListFeedbacksCommand(IInstanceFactory instanceFactory)
             : base(instanceFactory)
