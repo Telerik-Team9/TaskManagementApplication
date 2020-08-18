@@ -39,30 +39,6 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
 
             return string.Join(NewLine, filteredCollection.Select(x => x.PrintInfo()));
         }
-
-        private static IList<IBug> FilterByStatus(IList<string> parameters, IList<IBug> filteredCollection)
-        {
-            var status = Enum.Parse<BugStatus>(parameters[1], true);
-            filteredCollection = filteredCollection
-                .Where(b => b.Status == status)
-                .ToList();
-            return filteredCollection;
-        }
-
-        private IList<IBug> FilterByAssignee(IList<string> parameters, IList<IBug> filteredCollection)
-        {
-            if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
-                throw new ArgumentException("No member with that name.");
-
-            if (!this.InstanceFactory.Database.Members.First(m => m.Name == parameters[1]).WorkItems.Any())
-                throw new ArgumentException("This member has no assined workitems yet.");
-
-            filteredCollection = filteredCollection
-                .Where(b => b.Assignee != null && b.Assignee.Name == parameters[1])
-                .ToList();
-            return filteredCollection;
-        }
-
         public override IList<string> GetUserInput()
         {
             if (!this.InstanceFactory.Database.Bugs.Any())
@@ -96,6 +72,29 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
             parameters.Add(sortFilter);
 
             return parameters;
+        }
+
+        private static IList<IBug> FilterByStatus(IList<string> parameters, IList<IBug> filteredCollection)
+        {
+            var status = Enum.Parse<BugStatus>(parameters[1], true);
+            filteredCollection = filteredCollection
+                .Where(b => b.Status == status)
+                .ToList();
+            return filteredCollection;
+        }
+
+        private IList<IBug> FilterByAssignee(IList<string> parameters, IList<IBug> filteredCollection)
+        {
+            if (!this.InstanceFactory.Database.Members.Any(m => m.Name == parameters[1]))
+                throw new ArgumentException("No member with that name.");
+
+            if (!this.InstanceFactory.Database.Members.First(m => m.Name == parameters[1]).WorkItems.Any())
+                throw new ArgumentException("This member has no assined workitems yet.");
+
+            filteredCollection = filteredCollection
+                .Where(b => b.Assignee != null && b.Assignee.Name == parameters[1])
+                .ToList();
+            return filteredCollection;
         }
 
         private IList<IBug> GetSortFilter(string property, List<IBug> filteredCollection)
