@@ -72,8 +72,8 @@ namespace WorkManagementSystem.Core.Common
           /* Title */  { "Create",              "Show",                 "Add/Remove",                   "Change",                   "List"          },
                        { "createperson",        "showallpeople",        "addcommenttoworkitem",         "changebugproperty",        "listworkitems" },
                        { "createteam",          "showallteamboards",    "addpersontoteam",              "changefeedbackproperty",   "listbugs"      },
-                       { "createboardinteam",   "showallteammembers",   "removeworkitemfromperson",     "changestoryproperty",      "listfeedbacks" },
-                       { "createbug",           "showallteams",         "",                             "",                         "liststories"   },
+                       { "createboardinteam",   "showallteammembers",   "addworkitemtoperson",          "changestoryproperty",      "listfeedbacks" },
+                       { "createbug",           "showallteams",         "removeworkitemfromperson",     "",                         "liststories"   },
                        { "createfeedback",      "showboardactivity",    "",                             "",                         ""              },
                        { "createstory",         "showteamactivity",     "",                             "",                         ""              },
         };

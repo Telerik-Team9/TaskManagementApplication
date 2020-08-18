@@ -29,7 +29,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
         public override IList<string> GetUserInput()
         {
             IStory currStory = ChooseMethods.ChooseStory(this.InstanceFactory);
-
+            this.Writer.WriteLine($"Priority: {currStory.Priority}|Size: {currStory.Size}|Status: {currStory.Status}\n");
             this.Writer.WriteLine("Choose which property you wish to change: (priority/size/status)");
 
             string propertyToChange = this.Reader.Read();
