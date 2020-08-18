@@ -167,7 +167,7 @@ namespace WorkManagementSystem.Models.Abstracts
             var comment = new Comment(message, author);
             this.comments.Add(comment);
 
-            this.historyLog.Add(string.Format(ModelsConstants.NoObjectsAddedYet, author.Name));
+            this.historyLog.Add(string.Format(ModelsConstants.CommentAdded, author.Name));
         }
     }
 }
