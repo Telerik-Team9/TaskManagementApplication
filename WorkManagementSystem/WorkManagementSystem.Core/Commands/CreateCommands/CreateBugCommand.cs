@@ -30,6 +30,35 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             return CreateBugInBoard(currBoard, title, description, priority, severity, stepsAsStr);
         }
+        
+        public override IList<string> GetUserInput()
+        {
+            (IBoard currBoard, ITeam currTeam) = ChooseMethods.ChooseBoard(this.InstanceFactory);
+
+            (string title, string description) = ParseBaseWorkItemParameters();
+
+            // Get Priority
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
+            string priorityAsStr = this.Reader.Read();
+
+            // Get Severity
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Severity", "Critical/Major/Minor"));
+            string severityAsStr = this.Reader.Read();
+
+            this.Writer.WriteLine("Enter the steps to reproduce of the bug, splliting them by '-'.");
+            string stepsAsStr = this.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currTeam.Name);
+            parameters.Add(currBoard.Name);
+            parameters.Add(title);
+            parameters.Add(description);
+            parameters.Add(priorityAsStr);
+            parameters.Add(severityAsStr);
+            parameters.Add(stepsAsStr);
+
+            return parameters;
+        }
 
         private string CreateBugInBoard(IBoard currBoard, string title, string description, Priority priority, BugSeverity severity, string stepsAsStr)
         {
@@ -74,33 +103,5 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             return (priority, severity);
         }
 
-        public override IList<string> GetUserInput()
-        {
-            (IBoard currBoard, ITeam currTeam) = ChooseMethods.ChooseBoard(this.InstanceFactory);
-
-            (string title, string description) = ParseBaseWorkItemParameters();
-
-            // Get Priority
-            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Priority", "Low/Medium/High"));
-            string priorityAsStr = this.Reader.Read();
-
-            // Get Severity
-            this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Severity", "Critical/Major/Minor"));
-            string severityAsStr = this.Reader.Read();
-
-            this.Writer.WriteLine("Enter the steps to reproduce of the bug, splliting them by '-'.");
-            string stepsAsStr = this.Reader.Read();
-
-            IList<string> parameters = new List<string>();
-            parameters.Add(currTeam.Name);
-            parameters.Add(currBoard.Name);
-            parameters.Add(title);
-            parameters.Add(description);
-            parameters.Add(priorityAsStr);
-            parameters.Add(severityAsStr);
-            parameters.Add(stepsAsStr);
-
-            return parameters;
-        }
     }
 }

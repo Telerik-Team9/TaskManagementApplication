@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WorkManagementSystem.Core.Commands.Abstracts;
@@ -19,6 +18,11 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
         {
             return ShowAllPeople();
         }
+        
+        public override IList<string> GetUserInput()
+        {
+            return null;
+        }
 
         private string ShowAllPeople()
         {
@@ -35,11 +39,6 @@ namespace WorkManagementSystem.Core.Commands.ShowCommands
             }
 
             return sb.ToString().TrimEnd();
-        }
-
-        public override IList<string> GetUserInput()
-        {
-            return null;
         }
     }
 }

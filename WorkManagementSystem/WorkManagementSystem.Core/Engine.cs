@@ -35,7 +35,8 @@ namespace WorkManagementSystem.Core
                 this.Print(result);
 
                 // Clear console after user is ready
-                this.Writer.WriteLine(CoreConstants.PressEnterForNewCommand);
+                this.Writer.Write("-----------------------------------------------------------------------" + NewLine);
+                this.Writer.Write(CoreConstants.PressEnterForNewCommand);
                 this.Reader.Read();
                 this.Writer.Clear();
             }
@@ -47,7 +48,7 @@ namespace WorkManagementSystem.Core
             {
                 ICommand command = this.InstanceFactory.CommandManager.ParseCommand(commandName, this.InstanceFactory);
                 IList<string> parameters = command.GetUserInput();
-                
+
                 string result = command.Execute(parameters);
 
                 return result.Trim();
@@ -66,7 +67,6 @@ namespace WorkManagementSystem.Core
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(commandResult);
-            sb.AppendLine("-----------------------------------------------------------------------");
             this.InstanceFactory.Writer.WriteLine(sb.ToString());
         }
     }

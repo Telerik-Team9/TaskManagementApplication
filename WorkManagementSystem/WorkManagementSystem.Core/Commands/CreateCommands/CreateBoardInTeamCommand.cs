@@ -15,12 +15,26 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
             : base(instanceFactory)
         {
         }
-
+       
         public override string Execute(IList<string> parameters)
         {
             ITeam currTeam = this.InstanceFactory.Database.Teams.First(t => t.Name == parameters[0]);
 
             return CreateBoardInTeam(currTeam, parameters[1]);
+        }
+        
+        public override IList<string> GetUserInput()
+        {
+            ITeam currTeam = ChooseMethods.ChooseTeam(this.InstanceFactory);
+
+            this.Writer.WriteLine(string.Format(CoreConstants.EnterUnitName, "board"));
+            string boardName = this.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currTeam.Name);
+            parameters.Add(boardName);
+
+            return parameters;
         }
 
         private string CreateBoardInTeam(ITeam currTeam, string boardName)
@@ -41,20 +55,6 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             return activity + NewLine
                 + currBoard.PrintInfo();
-        }
-
-        public override IList<string> GetUserInput()
-        {
-            ITeam currTeam = ChooseMethods.ChooseTeam(this.InstanceFactory);
-
-            this.Writer.WriteLine(string.Format(CoreConstants.EnterUnitName, "board"));
-            string boardName = this.Reader.Read();
-
-            IList<string> parameters = new List<string>();
-            parameters.Add(currTeam.Name);
-            parameters.Add(boardName);
-
-            return parameters;
         }
     }
 }

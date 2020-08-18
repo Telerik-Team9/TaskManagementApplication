@@ -32,15 +32,6 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
                 default:
                     break;
             }
-            /*            if (parameters[0].ToLower() == "status")
-                        {
-                            filteredCollection = FilterByStatus(parameters, filteredCollection);
-                        }
-
-                        else if (parameters[0].ToLower() == "assignee")
-                        {
-                            filteredCollection = FilterByAssignee(parameters, filteredCollection);
-                        }*/
 
             // Sort
             if (!string.IsNullOrEmpty(parameters[2]))

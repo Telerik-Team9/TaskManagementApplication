@@ -89,6 +89,5 @@ namespace WorkManagementSystem.Core.Commands.ListCommands
                 _ => null
             };
         }
-
     }
 }
