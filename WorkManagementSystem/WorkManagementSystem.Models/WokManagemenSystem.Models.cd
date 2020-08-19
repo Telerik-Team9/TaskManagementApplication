@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WorkManagementSystem.Models.Abstracts.Unit" Collapsed="true">
+    <Position X="4" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAAAAAAAAEQAAABEAAAAQAAAAEAgAACAAAAIAAAgA=</HashCode>
+      <FileName>Abstracts\Unit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Abstracts.WorkItem" Collapsed="true">
+    <Position X="5.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAiAABIQAAgQEAAJEAAAIAAAAAAAAEAAAAAAAAAoAA=</HashCode>
+      <FileName>Abstracts\WorkItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Common.ModelsConstants" Collapsed="true">
+    <Position X="28" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAACADAAIAAAQBAAAAAYBGABAkACgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\ModelsConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorkManagementSystem.Models.ActivityHistory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAEAAAAAAAAAAIAAAAAAAABAAAAA=</HashCode>
+      <FileName>ActivityHistory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Board" Collapsed="true">
+    <Position X="5" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Board.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Bug" Collapsed="true">
+    <Position X="3" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAEEAAAAAAEBAAQQAAAIAQAACABAAAAAAQAgAA=</HashCode>
+      <FileName>Bug.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Comment" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgEAAAAAAAAAAAAAAAAAAIAAAACA=</HashCode>
+      <FileName>Comment.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Feedback" Collapsed="true">
+    <Position X="5.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAEAAAAAAAAAAAAAAAAAQQAAAEAAAAAAAAAkAA=</HashCode>
+      <FileName>Feedback.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Member" Collapsed="true">
+    <Position X="2.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Member.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Story" Collapsed="true">
+    <Position X="7.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAEEAAAgAAEAAAQQAAACAQAAAABAAAAAAAAgAA=</HashCode>
+      <FileName>Story.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkManagementSystem.Models.Team" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAEAAAAQAAAAEAAQAKAAEBKAAAEA=</HashCode>
+      <FileName>Team.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IActivityHistory" Collapsed="true">
+    <Position X="14.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Contracts\IActivityHistory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IAssignable" Collapsed="true">
+    <Position X="19.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAQAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IAssignable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IBoard" Collapsed="true">
+    <Position X="12.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IBoard.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IBug" Collapsed="true">
+    <Position X="17" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAABAAAAAAAAAQAACAAAAAAAAQAAAA=</HashCode>
+      <FileName>Contracts\IBug.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IComment" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Contracts\IComment.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IFeedback" Collapsed="true">
+    <Position X="21.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAAAAQAAAEAAAAAAAAAEAA=</HashCode>
+      <FileName>Contracts\IFeedback.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IMember" Collapsed="true">
+    <Position X="10.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IMember.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IPrintable" Collapsed="true">
+    <Position X="11.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IPrintable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IPrioritizable" Collapsed="true">
+    <Position X="22" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IPrioritizable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IStory" Collapsed="true">
+    <Position X="17" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAgAAAAAAAAAAACAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IStory.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.ITeam" Collapsed="true">
+    <Position X="8" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAACAAEBCAAAEA=</HashCode>
+      <FileName>Contracts\ITeam.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IUnit" Collapsed="true">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAABAAAAAQAAAAEAgAACAAAAAAAAgA=</HashCode>
+      <FileName>Contracts\IUnit.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WorkManagementSystem.Models.Contracts.IWorkItem" Collapsed="true">
+    <Position X="17" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAIAAAgQEAAAAAAAAAAAAAAAAAAAAAAAAAAoAA=</HashCode>
+      <FileName>Contracts\IWorkItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="WorkManagementSystem.Models.Common.Enums.BugSeverity" Collapsed="true">
+    <Position X="24.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAACA=</HashCode>
+      <FileName>Common\Enums\BugSeverity.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WorkManagementSystem.Models.Common.Enums.BugStatus" Collapsed="true">
+    <Position X="26.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAABAAAA=</HashCode>
+      <FileName>Common\Enums\BugStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WorkManagementSystem.Models.Common.Enums.FeedbackStatus" Collapsed="true">
+    <Position X="28" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAACAAAAAAAAAQAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\Enums\FeedbackStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WorkManagementSystem.Models.Common.Enums.Priority" Collapsed="true">
+    <Position X="24.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAgAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Common\Enums\Priority.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WorkManagementSystem.Models.Common.Enums.StorySize" Collapsed="true">
+    <Position X="26.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Common\Enums\StorySize.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WorkManagementSystem.Models.Common.Enums.StoryStatus" Collapsed="true">
+    <Position X="28" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Common\Enums\StoryStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WorkManagementSystem.Core.Commands.Abstracts.Command" Collapsed="true">
+    <Position X="26.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.AddCommands.AddCommentToWorkItemCommand" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.AddCommands.AddPersonToTeamCommand" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.AddCommands.AddWorkItemToPersonCommand" Collapsed="true">
+    <Position X="25.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ChangeCommands.ChangeBugPropertyCommand" Collapsed="true">
+    <Position X="34.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ChangeCommands.ChangeFeedbackPropertyCommand" Collapsed="true">
+    <Position X="41" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ChangeCommands.ChangeStoryPropertyCommand" Collapsed="true">
+    <Position X="47.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.CreateCommands.CreateBoardInTeamCommand" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.CreateCommands.CreateBugCommand" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.CreateCommands.CreateFeedbackCommand" Collapsed="true">
+    <Position X="18.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.CreateCommands.CreatePersonCommand" Collapsed="true">
+    <Position X="27.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.CreateCommands.CreateStoryCommand" Collapsed="true">
+    <Position X="36.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.CreateCommands.CreateTeamCommand" Collapsed="true">
+    <Position X="43.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ListCommands.ListBugsCommand" Collapsed="true">
+    <Position X="50" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ListCommands.ListFeedbacksCommand" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ListCommands.ListStoriesCommand" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ListCommands.ListWorkItemsCommand" Collapsed="true">
+    <Position X="20.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.RemoveCommands.RemoveWorkitemFromPersonCommand" Collapsed="true">
+    <Position X="29.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ShowCommands.ShowAllPeopleCommand" Collapsed="true">
+    <Position X="38.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ShowCommands.ShowAllTeamBoardsCommand" Collapsed="true">
+    <Position X="45.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ShowCommands.ShowAllTeamMembersCommand" Collapsed="true">
+    <Position X="52.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ShowCommands.ShowAllTeamsCommand" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ShowCommands.ShowBoardActivityCommand" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ShowCommands.ShowPersonActivityCommand" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Commands.ShowCommands.ShowTeamActivityCommand" Collapsed="true">
+    <Position X="32" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Common.ChooseMethods" Collapsed="true">
+    <Position X="54.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Common.CoreConstants" Collapsed="true">
+    <Position X="54.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Common.ListMethods" Collapsed="true">
+    <Position X="54.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Common.TableParser" Collapsed="true">
+    <Position X="58.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Factories.InstanceFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="60" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Factories.ModelsFactory" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="56.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Readers.ConsoleReader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="58.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Writers.ConsoleWriter" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="60" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.CommandManager" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="56.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Database" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="56.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WorkManagementSystem.Core.Engine" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="58.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="WorkManagementSystem.Core.Contracts.ICommand" Collapsed="true">
+    <Position X="54.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WorkManagementSystem.Core.Contracts.ICommandManager" Collapsed="true">
+    <Position X="56.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WorkManagementSystem.Core.Contracts.IDatabase" Collapsed="true">
+    <Position X="58.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WorkManagementSystem.Core.Contracts.IEngine" Collapsed="true">
+    <Position X="60" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WorkManagementSystem.Core.Contracts.IInstanceFactory" Collapsed="true">
+    <Position X="54.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WorkManagementSystem.Core.Contracts.IModelsFactory" Collapsed="true">
+    <Position X="56.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WorkManagementSystem.Core.Contracts.IReader" Collapsed="true">
+    <Position X="58.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="WorkManagementSystem.Core.Contracts.IWriter" Collapsed="true">
+    <Position X="60" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
