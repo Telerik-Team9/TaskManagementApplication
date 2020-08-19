@@ -50,7 +50,7 @@ namespace WorkManagementSystem.Core.Commands.RemoveCommands
 
         private string RemoveWorkitemFromPerson(IMember currPerson, string workItemId)
         {
-            IList<IWorkItem> workItems = this.InstanceFactory //TODO
+            IList<IWorkItem> workItems = this.InstanceFactory
                .Database
                .ListAllWorkitems();
 

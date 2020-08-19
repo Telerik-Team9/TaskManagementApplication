@@ -6,7 +6,7 @@ namespace WorkManagementSystem.Models
 {
     public class Comment : IComment
     {
-        private string message; //TODO - discuss 
+        private string message;
 
         public Comment(string message, IMember author)
         {

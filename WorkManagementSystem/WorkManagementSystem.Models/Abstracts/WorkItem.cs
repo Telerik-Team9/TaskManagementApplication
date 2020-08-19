@@ -119,16 +119,8 @@ namespace WorkManagementSystem.Models.Abstracts
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("History:");
-/*
-            if (this.HistoryLog.Any())
-            {*/
-                sb.AppendLine(string.Join(NewLine, this.HistoryLog.Select(s => " -" + s)));
-            //}
-            //TODO: remove the else?
-/*            else
-            {
-                sb.AppendLine(" -No history is present yet.");
-            }*/
+
+            sb.AppendLine(string.Join(NewLine, this.HistoryLog.Select(s => " -" + s)));
 
             return sb.ToString().Trim();
         }

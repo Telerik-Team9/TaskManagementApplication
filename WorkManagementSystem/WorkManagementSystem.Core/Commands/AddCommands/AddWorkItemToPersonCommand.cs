@@ -27,7 +27,7 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
 
         private string AddWorkItemToPerson(IMember currPerson, string workItemId)
         {
-            IList<IWorkItem> workItems = this.InstanceFactory //TODO
+            IList<IWorkItem> workItems = this.InstanceFactory
                .Database
                .ListAllWorkitems();
 
@@ -61,11 +61,9 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
         {
             IMember currPerson = ChooseMethods.ChoosePerson(this.InstanceFactory);
 
-            IList<IWorkItem> workItems = this.InstanceFactory //TODO
+            IList<IWorkItem> workItems = this.InstanceFactory
                 .Database
                 .ListAllWorkitems();
-
-            //lisr all workitems
 
             foreach (var item in workItems)
             {

@@ -3,7 +3,7 @@ using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core.Contracts
 {
-    public interface IDatabase // TODO - discuss
+    public interface IDatabase
     {
         public IList<ITeam> Teams { get; }
 

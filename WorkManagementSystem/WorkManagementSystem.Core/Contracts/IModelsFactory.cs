@@ -4,7 +4,6 @@ using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core.Contracts
 {
-    //TODO : Discuss 
     public interface IModelsFactory
     {
         IMember CreatePerson(string name);

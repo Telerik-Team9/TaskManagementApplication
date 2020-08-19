@@ -21,53 +21,17 @@ namespace WorkManagementSystem.Core
             this.SeedData();
         }
 
-        public IList<ITeam> Teams
-        {
-            get
-            {
-                return this.teams;
-            }
-        }
+        public IList<ITeam> Teams { get => this.teams; }
 
-        public IList<IMember> Members
-        {
-            get
-            {
-                return this.members;
-            }
-        }
+        public IList<IMember> Members { get => this.members; }
 
-        public IList<IBoard> Boards
-        {
-            get
-            {
-                return this.boards;
-            }
-        }
+        public IList<IBoard> Boards { get => this.boards; }
 
-        public IList<IBug> Bugs
-        {
-            get
-            {
-                return this.bugs;
-            }
-        }
+        public IList<IBug> Bugs { get => this.bugs; }
 
-        public IList<IStory> Stories
-        {
-            get
-            {
-                return this.stories;
-            }
-        }
+        public IList<IStory> Stories { get => this.stories; }
 
-        public IList<IFeedback> Feedbacks
-        {
-            get
-            {
-                return this.feedbacks;
-            }
-        }
+        public IList<IFeedback> Feedbacks { get => this.feedbacks; }
 
         public IList<IWorkItem> ListAllWorkitems()
         {

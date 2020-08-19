@@ -5,8 +5,6 @@ namespace WorkManagementSystem.Models
 {
     internal class ActivityHistory : IActivityHistory
     {
-        // TODO _ PRIOR TO INITIALISATION, A CONSTANT MUST BE PASSED TO THE CONSTRUCTOR
-        // TODO SHould be internal?
         private static string DateFormat = "[yyyy-MM-dd|HH:mm]";
 
         internal ActivityHistory(string activityMessage)

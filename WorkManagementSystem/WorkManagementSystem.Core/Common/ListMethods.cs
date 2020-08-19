@@ -40,7 +40,7 @@ namespace WorkManagementSystem.Core.Common
 
             return string.Join(Environment.NewLine, workitems.Select(criteria));
         }
-        // TODO: CHoose board from a team, not from DB!!
+
         public static string ListAllWorkItems(IInstanceFactory instances, Func<IWorkItem, string> criteria, string typeOfWorkItem)
         {
             return typeOfWorkItem switch

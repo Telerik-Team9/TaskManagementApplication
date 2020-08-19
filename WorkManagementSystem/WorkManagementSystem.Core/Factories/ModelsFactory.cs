@@ -6,7 +6,7 @@ using WorkManagementSystem.Models.Contracts;
 
 namespace WorkManagementSystem.Core.Factories
 {
-    public class ModelsFactory : IModelsFactory //TODO
+    public class ModelsFactory : IModelsFactory
     {
         public IMember CreatePerson(string name)
         {

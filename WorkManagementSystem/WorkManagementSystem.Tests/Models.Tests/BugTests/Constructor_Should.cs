@@ -1,8 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using WorkManagementSystem.Models;
 using WorkManagementSystem.Models.Common.Enums;
 using WorkManagementSystem.Models.Contracts;
@@ -33,19 +30,5 @@ namespace WorkManagementSystem.Tests.Models.Tests.BugTests
             Assert.IsNotNull(bug.StepsToReproduce);
             Assert.IsInstanceOfType(bug, typeof(IBug));
         }
-        //TODO
-       /* [TestMethod]
-        public void InitializeCorrectlyStepsToReproduceCollections()
-        {
-            //Arrange
-            IList<string> list = new List<string>() { "steps", "to", "reproduce" };
-
-            //Act
-            IBug bug = new Bug("TestBugTitle", "TestBugDescription", default, default, list);
-            var actualList = bug.StepsToReproduce as ReadOnlyCollection<string>;
-
-            //Assert
-            Assert.AreEqual(bug.StepsToReproduce, actualList);
-        }*/
     }
 }

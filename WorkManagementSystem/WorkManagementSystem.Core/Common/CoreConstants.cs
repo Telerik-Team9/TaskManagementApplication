@@ -5,19 +5,9 @@ using static System.Environment;
 
 namespace WorkManagementSystem.Core.Common
 {
-    public static class CoreConstants
+    public static class CoreConstants //TODO: fix constants
     {
         public const string PressEnterForNewCommand = "Press \"Enter\" to select a new command.";
-
-
-
-
-
-
-
-
-
-
 
         // Common
         public const string EnterFollowingParameters = "Please enter the following parameters:";
@@ -77,79 +67,5 @@ namespace WorkManagementSystem.Core.Common
                        { "createfeedback",      "showboardactivity",    "",                             "",                         ""              },
                        { "createstory",         "showteamactivity",     "",                             "",                         ""              },
         };
-
-
     }
 }
-
-
-
-/*      
-        public static IList<string> memberProperties = new List<string>()
-        {
-            "Name"
-        };
-
-        public static IList<string> commonWorkitemProperties = new List<string>()
-        {
-            "Title",
-            "Desctiprtion",
-            "Comments",
-            "History"
-        };
-
-        public static IList<string> bugProperties = new List<string>()
-        {
-            "Priority",
-            "Severity",
-            "Status",
-            "Assignee"
-        };
-
-        public static IList<string> feedbackProperties = new List<string>()
-        {
-            "Rating",
-            "Status"
-        };
-
-        public static IList<string> storyProperties = new List<string>()
-        {
-            "Size",
-            "Status",
-            "Priority",
-            "Assignee"
-        };*/
-
-/*        public static string allCommands =
-            "Create commands:" + NewLine +
-            "  createperson" + NewLine +
-            "  createteam" + NewLine +
-            "  createboardinteam" + NewLine +
-            "  createbug" + NewLine +
-            "  createfeedback" + NewLine +
-            "  createstory" + NewLine +
-            "Show commands:" + NewLine +
-            "  showallpeople" + NewLine +
-            "  showallteamboards" + NewLine +
-            "  showallteammembers" + NewLine +
-            "  showallteams" + NewLine +
-            "  showpersonactivity" + NewLine +
-            "  showboardactivity" + NewLine +
-            "  showteamactivity" + NewLine +
-            "Add commands:" + NewLine +
-            "  addcommenttoworkitem" + NewLine +
-            "  addpersontoteam" + NewLine +
-            "Change commands:" + NewLine +
-            "  changebugproperty" + NewLine +
-            "  changefeedbackproperty" + NewLine +
-            "  changestoryproperty" + NewLine +
-            "Remove commands:" + NewLine +
-            "  removeworkitemfromperson" + NewLine +
-            "List commands:" + NewLine +
-            "  listworkitems" + NewLine +
-            "  Listbugs" + NewLine +
-            "  Listfeedbacks" + NewLine +
-            "  Liststories" + NewLine +
-            "-----------------------------------------------------" + NewLine;*/
-
-

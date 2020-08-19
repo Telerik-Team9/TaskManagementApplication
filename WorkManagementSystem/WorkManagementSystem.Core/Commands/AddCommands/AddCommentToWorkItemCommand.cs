@@ -37,7 +37,6 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
             this.Writer.WriteLine(string.Format("Enter person's name:"));
             string personName = this.Reader.Read();
 
-
             if (!this.InstanceFactory.Database.Members.Any(p => p.Name == personName))
             {
                 throw new ArgumentException(string.Format(CoreConstants.MemberDoesNotExistExcMessage, personName));
