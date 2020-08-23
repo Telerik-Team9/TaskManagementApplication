@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using static System.Environment;
+﻿using static System.Environment;
 
 namespace WorkManagementSystem.Core.Common
 {
@@ -48,7 +45,7 @@ namespace WorkManagementSystem.Core.Common
 
         public static readonly string Team9Logo =
             "/$$$$$$$$                                       /$$$$$$  "     + NewLine +
-            "|__  $$__/                                      /$$__  $$"     + NewLine +
+            "|__  $$__/                                     / $$__  $$"     + NewLine +
             "   | $$  /$$$$$$   /$$$$$$  /$$$$$$/$$$$       | $$  \\ $$"    + NewLine +
             "   | $$ /$$__  $$ |____  $$| $$_  $$_  $$      |  $$$$$$$"     + NewLine +
             "   | $$| $$$$$$$$  /$$$$$$$| $$ \\ $$ \\ $$       \\____  $$"  + NewLine +
@@ -66,6 +63,7 @@ namespace WorkManagementSystem.Core.Common
                        { "createbug",           "showallteams",         "removeworkitemfromperson",     "",                         "liststories"   },
                        { "createfeedback",      "showboardactivity",    "",                             "",                         ""              },
                        { "createstory",         "showteamactivity",     "",                             "",                         ""              },
+                       { "",                    "showpersonactivity",   "",                             "",                         ""              }
         };
     }
 }

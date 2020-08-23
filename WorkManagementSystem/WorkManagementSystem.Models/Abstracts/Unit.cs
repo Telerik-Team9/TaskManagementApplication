@@ -93,7 +93,7 @@ namespace WorkManagementSystem.Models.Abstracts
             this.activityHistory.Add(new ActivityHistory(activity));
         }
 
-        public virtual string PrintInfo()
+        public string PrintInfo()
         {
             var sb = new StringBuilder();
 

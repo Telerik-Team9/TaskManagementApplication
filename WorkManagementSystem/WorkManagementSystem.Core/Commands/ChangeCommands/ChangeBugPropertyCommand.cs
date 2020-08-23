@@ -45,6 +45,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
 
             return parameters;
         }
+
         private string ValidatePropertyType(string value)
         {
             return value.ToLower() switch
@@ -56,6 +57,7 @@ namespace WorkManagementSystem.Core.Commands.ChangeCommands
                 _ => throw new ArgumentException("Invalid property entered!")
             };
         }
+
         private string AlterBug(IList<string> parameters, IBug currBug)
         {
             if (Enum.TryParse(parameters[2], ignoreCase: true, out Priority priority))

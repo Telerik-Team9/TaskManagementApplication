@@ -12,6 +12,7 @@ namespace WorkManagementSystem.Models.Contracts
 
         public IReadOnlyCollection<IComment> Comments { get; }
 
+        // TODO: EXtract in separate interface ISupportHistory
         public IReadOnlyCollection<string> HistoryLog { get; } //ActivityHistory instead of string?
 
         public string GetWorkItemType();

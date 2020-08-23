@@ -25,6 +25,29 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
             return this.AddWorkItemToPerson(currMember, parameters[1]);
         }
 
+        public override IList<string> GetUserInput()
+        {
+            IMember currPerson = ChooseMethods.ChoosePerson(this.InstanceFactory);
+
+            IList<IWorkItem> workItems = this.InstanceFactory
+                .Database
+                .ListAllWorkitems();
+
+            foreach (var item in workItems)
+            {
+                this.Writer.WriteLine(item.PrintInfo());
+            }
+
+            this.Writer.Write(string.Format("Enter workitem's id: "));
+            string workItemId = this.Reader.Read();
+
+            IList<string> parameters = new List<string>();
+            parameters.Add(currPerson.Name);
+            parameters.Add(workItemId);
+
+            return parameters;
+        }
+        
         private string AddWorkItemToPerson(IMember currPerson, string workItemId)
         {
             IList<IWorkItem> workItems = this.InstanceFactory
@@ -55,29 +78,6 @@ namespace WorkManagementSystem.Core.Commands.AddCommands
             currPerson.AddWorkItem(currWorkItem);
 
             return $"WorkItem {currWorkItem.Title} assigned to {currPerson.Name}.";
-        }
-
-        public override IList<string> GetUserInput()
-        {
-            IMember currPerson = ChooseMethods.ChoosePerson(this.InstanceFactory);
-
-            IList<IWorkItem> workItems = this.InstanceFactory
-                .Database
-                .ListAllWorkitems();
-
-            foreach (var item in workItems)
-            {
-                this.Writer.WriteLine(item.PrintInfo());
-            }
-
-            this.Writer.Write(string.Format("Enter workitem's id: "));
-            string workItemId = this.Reader.Read();
-
-            IList<string> parameters = new List<string>();
-            parameters.Add(currPerson.Name);
-            parameters.Add(workItemId);
-
-            return parameters;
         }
     }
 }

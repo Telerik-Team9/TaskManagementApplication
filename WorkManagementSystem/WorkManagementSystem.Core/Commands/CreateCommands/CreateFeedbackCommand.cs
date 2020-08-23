@@ -64,7 +64,7 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
 
             (string title, string description) = ParseBaseWorkItemParameters();
 
-            this.Writer.Write(CoreConstants.Rating);
+            this.Writer.WriteLine(CoreConstants.Rating);
             string rating = this.Reader.Read();
 
             this.Writer.WriteLine(string.Format(CoreConstants.EnterEnum, "Status", "(Done/New/Scheduled/Unscheduled)"));
@@ -82,4 +82,3 @@ namespace WorkManagementSystem.Core.Commands.CreateCommands
         }
     }
 }
-

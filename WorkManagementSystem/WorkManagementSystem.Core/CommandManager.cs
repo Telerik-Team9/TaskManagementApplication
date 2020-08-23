@@ -69,6 +69,7 @@ namespace WorkManagementSystem.Core
                 "createperson" => new CreatePersonCommand(instanceFactory),
                 "createstory" => new CreateStoryCommand(instanceFactory),
                 "createteam" => new CreateTeamCommand(instanceFactory),
+
                 "showallpeople" => new ShowAllPeopleCommand(instanceFactory),
                 "showallteams" => new ShowAllTeamsCommand(instanceFactory),
                 "showallteammembers" => new ShowAllTeamMembersCommand(instanceFactory),
@@ -76,13 +77,16 @@ namespace WorkManagementSystem.Core
                 "showpersonactivity" => new ShowPersonActivityCommand(instanceFactory),
                 "showboardactivity" => new ShowBoardActivityCommand(instanceFactory),
                 "showteamactivity" => new ShowTeamActivityCommand(instanceFactory),
+
                 "addpersontoteam" => new AddPersonToTeamCommand(instanceFactory),
                 "addworkitemtoperson" => new AddWorkItemToPersonCommand(instanceFactory),
                 "addcommenttoworkitem" => new AddCommentToWorkItemCommand(instanceFactory),
                 "removeworkitemfromperson" => new RemoveWorkitemFromPersonCommand(instanceFactory),
+
                 "changebugproperty" => new ChangeBugPropertyCommand(instanceFactory),
                 "changefeedbackproperty" => new ChangeFeedbackPropertyCommand(instanceFactory),
                 "changestoryproperty" => new ChangeStoryPropertyCommand(instanceFactory),
+
                 "listworkitems" => new ListWorkItemsCommand(instanceFactory),
                 "listbugs" => new ListBugsCommand(instanceFactory),
                 "listfeedbacks" => new ListFeedbacksCommand(instanceFactory),
